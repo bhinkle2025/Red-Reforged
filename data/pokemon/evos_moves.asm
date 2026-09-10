@@ -312,6 +312,7 @@ IvysaurEvosMoves:
 	db 21, RAZOR_LEAF
 	db 25, CALM_MIND
 	db 27, TOXIC
+	db 30, SLUDGE
 	db 32, POWER_WHIP
 	db 0
 
@@ -535,11 +536,13 @@ BlastoiseEvosMoves:
 ; Learnset
 	db 8, WATER_GUN
 	db 10, WITHDRAW
+	db 14, MEDITATE
 	db 17, BITE
 	db 22, HEADBUTT
+	db 24, ICE_PUNCH
 	db 26, WATERFALL
-	ds 30, IRON_DEFENSE
-	db 31, SKULL_BASH
+	db 31, IRON_DEFENSE
+	db 33, SKULL_BASH
 	db 36, HYDRO_PUMP
 	db 0
 
@@ -1855,6 +1858,7 @@ BulbasaurEvosMoves:
 	db 21, RAZOR_LEAF
 	db 25, CALM_MIND
 	db 27, TOXIC
+	db 30, SLUDGE
 	db 32, POWER_WHIP
 	db 0
 
@@ -1870,6 +1874,7 @@ VenusaurEvosMoves:
 	db 21, RAZOR_LEAF
 	db 25, CALM_MIND
 	db 27, TOXIC
+	db 30, SLUDGE
 	db 32, POWER_WHIP
 	db 0
 
@@ -2113,11 +2118,13 @@ SquirtleEvosMoves:
 ; Learnset
 	db 8, WATER_GUN
 	db 10, WITHDRAW
+	db 14, MEDITATE
 	db 17, BITE
 	db 22, HEADBUTT
+	db 24, ICE_PUNCH
 	db 26, WATERFALL
-	db 30, IRON_DEFENSE
-	db 31, SKULL_BASH
+	db 31, IRON_DEFENSE
+	db 33, SKULL_BASH
 	db 36, HYDRO_PUMP
 	db 0
 
@@ -2144,11 +2151,13 @@ WartortleEvosMoves:
 ; Learnset
 	db 8, WATER_GUN
 	db 10, WITHDRAW
+	db 14, MEDITATE
 	db 17, BITE
 	db 22, HEADBUTT
+	db 24, ICE_PUNCH
 	db 26, WATERFALL
-	ds 30, IRON_DEFENSE
-	db 31, SKULL_BASH
+	db 31, IRON_DEFENSE
+	db 33, SKULL_BASH
 	db 36, HYDRO_PUMP
 	db 0
 
