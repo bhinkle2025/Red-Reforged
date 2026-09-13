@@ -14,7 +14,7 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  BUBBLEBEAM,   \
+	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  BUBBLEBEAM,   AMNESIA,      \
 	     HYPER_BEAM,   THUNDERBOLT,  DREAM_EATER,  DIG,          SHADOW_CLAW,  \
 	     THUNDER,      MIMIC,        DOUBLE_TEAM,  SWIFT,        CALM_MIND,    \
 	     SKULL_BASH,   REST,         SUBSTITUTE,   NIGHT_SHADE,                \

@@ -14,7 +14,7 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm DOUBLE_EDGE,  STEEL_WING,   \
+	tmhm DOUBLE_EDGE,  STEEL_WING,   TRI_ATTACK,   \
 	     MIMIC,        DOUBLE_TEAM,  SWIFT,        \
 	     SKY_ATTACK,   REST,         SUBSTITUTE,   FLY
 	; end

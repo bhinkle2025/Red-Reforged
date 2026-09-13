@@ -17,7 +17,7 @@
 	tmhm DOUBLE_EDGE,  THUNDERBOLT,  IRON_DEFENSE, LIGHT_SCREEN, \
 	     THUNDER,      MIMIC,        DOUBLE_TEAM,  REFLECT,      \
 	     SWIFT,        REST,         THUNDER_WAVE, SUBSTITUTE,   \
-	     FLASH
+	     EXPLOSION,    FLASH	
 	; end
 
 	db 0 ; padding
