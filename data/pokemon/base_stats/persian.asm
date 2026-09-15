@@ -17,7 +17,7 @@
 	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  BUBBLEBEAM,   AMNESIA,      \
 	     HYPER_BEAM,   THUNDERBOLT,  DREAM_EATER,  DIG,          SHADOW_CLAW,  \
 	     THUNDER,      MIMIC,        DOUBLE_TEAM,  SWIFT,        CALM_MIND,    \
-	     SKULL_BASH,   REST,         SUBSTITUTE,   NIGHT_SHADE,                \
+	     SKULL_BASH,   REST,         SUBSTITUTE,   NIGHT_SHADE,  THUNDER_WAVE, \
 		 CUT,          FLASH
 	; end
 

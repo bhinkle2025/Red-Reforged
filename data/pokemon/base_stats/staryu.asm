@@ -18,7 +18,8 @@
 	     ICE_BEAM,     BLIZZARD,     THUNDERBOLT,  THUNDER,      \
 	     PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
 	     SWIFT,        SKULL_BASH,   REST,         THUNDER_WAVE, \
-	     TRI_ATTACK,   SUBSTITUTE,   SURF,         FLASH
+	     TRI_ATTACK,   SUBSTITUTE,   SELFDESTRUCT,  \
+		 SURF,         FLASH
 	; end
 
 	db 0 ; padding

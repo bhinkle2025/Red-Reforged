@@ -181,18 +181,26 @@ CutTreeText::
 	ld b, SHEARS
 	call IsItemInBag
 	jr nz, .useShears
-
-	; Otherwise check for a Pokémon with Cut
+	; Set Cut as the move we're checking
 	ld a, CUT
 	ld [wSearchedMove], a
+	; First check whether a party Pokémon already knows Cut.
+	; If so, HM01 is not required.
+	call CheckPartyForMove
+	jr nc, .useCutYesNo
+	; Otherwise, HM01 must be in the player's bag.
+	ld b, HM01
+	call IsItemInBag
+	jr z, .done
+	; HM01 is owned, so check whether a party Pokémon can learn Cut.
 	ld d, CUT
 	call CheckPartyCanLearnMove
 	jr c, .done
-
+	; CheckPartyCanLearnMove sets wWhichPokemon,
+	; so load that Pokémon's nickname.
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMonNicks
 	call GetPartyMonName
-
 .useCutYesNo
 	call WaitForTextScrollButtonPress
 	ld hl, LikeToUseCutText

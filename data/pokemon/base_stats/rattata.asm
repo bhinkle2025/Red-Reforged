@@ -18,7 +18,7 @@
 	     BLIZZARD,     THUNDERBOLT,  THUNDER,      NIGHT_SHADE,  \
 	     DIG,          MIMIC,        DOUBLE_TEAM,  SWIFT,        \
 	     SKULL_BASH,   REST,         SUBSTITUTE,   SHADOW_CLAW,  \
-		 CUT
+		 THUNDER_WAVE, CUT
 	; end
 
 	db 0 ; padding

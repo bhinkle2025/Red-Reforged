@@ -14,7 +14,7 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    \
+	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    SWIFT,        \
 	     DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     \
 	     SUBMISSION,   SEISMIC_TOSS, EARTHQUAKE,   ICE_PUNCH,    \
 	     PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  \

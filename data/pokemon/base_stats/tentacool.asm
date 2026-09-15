@@ -14,7 +14,7 @@
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm SWORDS_DANCE, DOUBLE_EDGE,  BUBBLEBEAM,   \
+	tmhm SWORDS_DANCE, DOUBLE_EDGE,  BUBBLEBEAM,   SWIFT,        \
 	     ICE_BEAM,     BLIZZARD,     MEGA_DRAIN,   SLUDGE,       \
 	     MIMIC,        DOUBLE_TEAM,  REFLECT,      SKULL_BASH,   \
 	     REST,         SUBSTITUTE,   DAZZLE,                     \

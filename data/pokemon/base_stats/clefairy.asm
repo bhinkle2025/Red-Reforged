@@ -14,7 +14,7 @@
 	db GROWTH_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    \
+	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    SWIFT,        \
 	     DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     \
 	     SUBMISSION,   SEISMIC_TOSS, FIRE_PUNCH,   SOLARBEAM,    DAZZLE,       \
 	     THUNDERBOLT,  THUNDER,      PSYCHIC_M,    CALM_MIND,    MIMIC,        \

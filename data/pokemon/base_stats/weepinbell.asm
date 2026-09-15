@@ -14,7 +14,7 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm SWORDS_DANCE, DOUBLE_EDGE,  SLUDGE,       CALM_MIND,    \
+	tmhm SWORDS_DANCE, DOUBLE_EDGE,  SLUDGE,       CALM_MIND,    SWIFT,        \
 	     MEGA_DRAIN,   SOLARBEAM,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
 	     REST,         SUBSTITUTE,   CUT,          FLASH
 	; end
