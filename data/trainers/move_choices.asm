@@ -46,7 +46,7 @@ TrainerClassMoveChoiceModifications:
 	move_choices 1, 3    ; MISTY
 	move_choices 1, 3    ; LT_SURGE
 	move_choices 1, 3    ; ERIKA
-	move_choices 1, 3    ; KOGA
+	move_choices 1, 2, 3 ; KOGA
 	move_choices 1, 3    ; BLAINE
 	move_choices 1, 3    ; SABRINA
 	move_choices 1, 2    ; GENTLEMAN

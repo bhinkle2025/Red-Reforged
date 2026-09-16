@@ -94,6 +94,7 @@ SpecialTrainerMoves:
 	db 4, 1, AMNESIA
 	db 4, 2, SLEEP_POWDER
 	db 4, 3, SLUDGE
+	db 4, 4, BUG_BUZZ
 	db 0
 
 	db KOGA, 2

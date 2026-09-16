@@ -130,35 +130,43 @@ AIMoveChoiceModification1:
 	ld a, [wBattleMonStatus]
 	and a
 	ret z ; return if no status ailment on player's mon
-	ld hl, wBuffer - 1 ; temp move selection array (-1 byte offset)
-	ld de, wEnemyMonMoves ; enemy moves
+
+	ld hl, wBuffer - 1
+	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
+
 .nextMove
 	dec b
-	ret z ; processed all 4 moves
+	ret z
+
 	inc hl
 	ld a, [de]
 	and a
-	ret z ; no more moves in move set
+	ret z
+
 	inc de
 	call ReadMove
+
+	; only check non-damaging moves
 	ld a, [wEnemyMovePower]
 	and a
 	jr nz, .nextMove
+
 	ld a, [wEnemyMoveEffect]
-	push hl
-	push de
-	push bc
-	ld hl, StatusAilmentMoveEffects
-	ld de, 1
-	call IsInArray
-	pop bc
-	pop de
-	pop hl
-	jr nc, .nextMove
-	ld a, [hl]
-	add $5 ; heavily discourage move
-	ld [hl], a
+
+	cp SLEEP_EFFECT
+	jr z, .forbidMove
+
+	cp POISON_EFFECT
+	jr z, .forbidMove
+
+	cp PARALYZE_EFFECT
+	jr z, .forbidMove
+
+	jr .nextMove
+
+.forbidMove
+	ld [hl], $50
 	jr .nextMove
 
 StatusAilmentMoveEffects:
@@ -172,34 +180,124 @@ StatusAilmentMoveEffects:
 ; in particular, stat-modifying moves and other move effects
 ; that fall in-between
 AIMoveChoiceModification2:
-	ld a, [wAILayer2Encouragement]
-	cp $1
-	ret nz
-	ld hl, wBuffer - 1 ; temp move selection array (-1 byte offset)
-	ld de, wEnemyMonMoves ; enemy moves
+	ld hl, wBuffer - 1
+	ld de, wEnemyMonMoves
 	ld b, NUM_MOVES + 1
+
 .nextMove
 	dec b
-	ret z ; processed all 4 moves
+	ret z
+
 	inc hl
-	ld a, [de]
+	ld a, [de] ; move ID
 	and a
-	ret z ; no more moves in move set
+	ret z
 	inc de
-	call ReadMove
-	ld a, [wEnemyMoveEffect]
-	cp ATTACK_UP1_EFFECT
-	jr c, .nextMove
-	cp BIDE_EFFECT
-	jr c, .preferMove
-	cp ATTACK_UP2_EFFECT
-	jr c, .nextMove
-	cp POISON_EFFECT
-	jr c, .preferMove
+
+	; Look for this move in the stat-boost table.
+	push hl
+	push de
+	push bc
+
+	ld c, a
+	ld hl, StatBoostMoves
+
+.searchTable
+	ld a, [hli]
+	cp -1
+	jr z, .notStatBoost
+
+	cp c
+	jr z, .foundStatBoost
+
+	inc hl ; skip stat index
+	jr .searchTable
+
+.foundStatBoost
+	ld a, [hl] ; stat index 0-5
+
+	pop bc
+	pop de
+	pop hl
+	jr .checkStat
+
+.notStatBoost
+	pop bc
+	pop de
+	pop hl
 	jr .nextMove
+
+.checkStat
+	; a = stat index:
+	; 0 Attack
+	; 1 Defense
+	; 2 Speed
+	; 3 Special
+	; 4 Accuracy
+	; 5 Evasion
+
+	push bc
+	push hl
+
+	ld c, a
+	ld b, 0
+	ld hl, wEnemyMonStatMods
+	add hl, bc
+	ld a, [hl]
+
+	pop hl
+	pop bc
+
+	; +6: completely forbid another boost.
+	cp MAX_STAT_LEVEL
+	jr nc, .forbidMove
+
+	; Neutral or below: encourage boosting.
+	cp BASE_STAT_LEVEL
+	jr c, .preferMove
+	jr z, .preferMove
+
+	; Above neutral, progressively discourage:
+	; +1 = no adjustment
+	; +2 = +1
+	; +3 = +2
+	; +4 = +3
+	; +5 = +4
+	sub BASE_STAT_LEVEL
+	dec a
+	add [hl]
+	ld [hl], a
+	jr .nextMove
+
 .preferMove
-	dec [hl] ; slightly encourage this move
+	dec [hl]
 	jr .nextMove
+
+.forbidMove
+	ld [hl], $50
+	jr .nextMove
+
+StatBoostMoves:
+	db SWORDS_DANCE, MOD_ATTACK
+	db MEDITATE, MOD_ATTACK
+	db SHARPEN, MOD_ATTACK
+
+	db HARDEN, MOD_DEFENSE
+	db WITHDRAW, MOD_DEFENSE
+	db DEFENSE_CURL, MOD_DEFENSE
+	db BARRIER, MOD_DEFENSE
+	db ACID_ARMOR, MOD_DEFENSE
+	db IRON_DEFENSE, MOD_DEFENSE
+
+	db AGILITY, MOD_SPEED
+
+	db CALM_MIND, MOD_SPECIAL
+	db AMNESIA, MOD_SPECIAL
+
+	db DOUBLE_TEAM, MOD_EVASION
+	db MINIMIZE, MOD_EVASION
+
+	db -1
 
 ; encourages moves that are effective against the player's mon (even if non-damaging).
 ; discourage damaging moves that are ineffective or not very effective against the player's mon,
@@ -348,8 +446,8 @@ BlackbeltAI:
 GiovanniAI:
 	cp 25 percent + 1
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 CooltrainerMAI:
@@ -375,22 +473,22 @@ BrockAI:
 	ld a, [wEnemyMonStatus]
 	and a
 	ret z
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 MistyAI:
 	cp 25 percent + 1
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 LtSurgeAI:
 	cp 25 percent + 1
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 ErikaAI:
@@ -399,22 +497,22 @@ ErikaAI:
 	ld a, 10
 	call AICheckIfHPBelowFraction
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 KogaAI:
 	cp 25 percent + 1
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 BlaineAI:
 	cp 25 percent + 1
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 SabrinaAI:
@@ -423,8 +521,8 @@ SabrinaAI:
 	ld a, 10
 	call AICheckIfHPBelowFraction
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 Rival2AI:
@@ -433,8 +531,8 @@ Rival2AI:
 	ld a, 5
 	call AICheckIfHPBelowFraction
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 Rival3AI:
@@ -443,8 +541,8 @@ Rival3AI:
 	ld a, 5
 	call AICheckIfHPBelowFraction
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 LoreleiAI:
@@ -453,15 +551,15 @@ LoreleiAI:
 	ld a, 5
 	call AICheckIfHPBelowFraction
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 BrunoAI:
 	cp 25 percent + 1
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 AgathaAI:
@@ -472,8 +570,8 @@ AgathaAI:
 	ld a, 4
 	call AICheckIfHPBelowFraction
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 LanceAI:
@@ -482,8 +580,8 @@ LanceAI:
 	ld a, 5
 	call AICheckIfHPBelowFraction
 	ret nc
+	and a ; clear carry so the trainer still attacks normally
 	ret
-	nop
 	nop
 
 GenericAI:
