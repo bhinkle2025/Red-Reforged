@@ -78,7 +78,7 @@ Moves:
 	move DRILL_PECK,   NO_ADDITIONAL_EFFECT,        80, FLYING,       100, 20
 	move SUBMISSION,   RECOIL_EFFECT,              120, FIGHTING,     100, 15
 	move LOW_KICK,     FLINCH_SIDE_EFFECT2,         50, FIGHTING,      90, 20
-	move COUNTER,      NO_ADDITIONAL_EFFECT,         1, FIGHTING,     100, 20
+	move BODY_PRESS,   NO_ADDITIONAL_EFFECT,        80, FIGHTING,     100, 20
 	move SEISMIC_TOSS, NO_ADDITIONAL_EFFECT,        75, FIGHTING,     100, 15
 	move STRENGTH,     NO_ADDITIONAL_EFFECT,       100, NORMAL,       100, 15
 	move ABSORB,       DRAIN_HP_EFFECT,             40, GRASS,        100, 20
@@ -127,7 +127,7 @@ Moves:
 	move HAZE,         HAZE_EFFECT,                  0, ICE,          100, 30
 	move REFLECT,      REFLECT_EFFECT,               0, STAT,         100, 20
 	move DRAGON_CLAW,  NO_ADDITIONAL_EFFECT,        80, DRAGON,       100, 15
-	move BIDE,         BIDE_EFFECT,                  0, NORMAL,       100, 10
+	move NIGHT_SLASH,  NIGHT_SLASH_EFFECT,          85, DARK,         100, 10
 	move METRONOME,    METRONOME_EFFECT,             0, NORMAL,       100, 10
 	move MIRROR_MOVE,  MIRROR_MOVE_EFFECT,           0, FLYING,       100, 20
 	move SELFDESTRUCT, EXPLODE_EFFECT,             130, NORMAL,       100,  5

@@ -142,7 +142,7 @@ SpecialTrainerMoves:
 
 	db SABRINA, 1
 	db 1, 1, AMNESIA
-	db 1, 2, REFLECT
+	db 1, 2, THUNDER_WAVE
 	db 1, 3, DAZZLE
 	db 2, 1, LOVELY_KISS
 	db 2, 2, PSYCHIC_M
@@ -155,7 +155,7 @@ SpecialTrainerMoves:
 
 	db SABRINA, 2
 	db 1, 1, AMNESIA
-	db 1, 2, REFLECT
+	db 1, 2, THUNDER_WAVE
 	db 2, 4, HYPNOSIS
 	db 3, 1, LOVELY_KISS
 	db 3, 2, NIGHT_SHADE

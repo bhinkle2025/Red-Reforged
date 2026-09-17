@@ -79,7 +79,7 @@ DEF EFFECTIVENESS_MASK EQU %01111111
 
 ; wPlayerBattleStatus1 or wEnemyBattleStatus1 bit flags
 	const_def
-	const STORING_ENERGY           ; 0 ; Bide
+	const STORING_ENERGY           ; 0 ; 
 	const THRASHING_ABOUT          ; 1 ; Thrash, Petal Dance
 	const ATTACKING_MULTIPLE_TIMES ; 2 ; e.g. Double Kick, Fury Attack
 	const FLINCHED                 ; 3

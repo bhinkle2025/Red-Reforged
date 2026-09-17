@@ -73,7 +73,7 @@
 	const DRILL_PECK   ; 41
 	const SUBMISSION   ; 42
 	const LOW_KICK     ; 43
-	const COUNTER      ; 44
+	const BODY_PRESS   ; 44
 	const SEISMIC_TOSS ; 45
 	const STRENGTH     ; 46
 	const ABSORB       ; 47
@@ -122,7 +122,7 @@
 	const HAZE         ; 72
 	const REFLECT      ; 73
 	const DRAGON_CLAW  ; 74
-	const BIDE         ; 75
+	const NIGHT_SLASH  ; 75
 	const METRONOME    ; 76
 	const MIRROR_MOVE  ; 77
 	const SELFDESTRUCT ; 78

@@ -603,8 +603,8 @@ OnixEvosMoves:
 	db 10, RAGE
 	db 15, HARDEN
 	db 20, SHARPEN
-	db 25, SKULL_BASH
-	db 30, ROCK_SLIDE
+	db 25, IRON_DEFENSE
+	db 30, BODY_PRESS
 	db 35, EARTHQUAKE
 	db 0
 
@@ -1760,6 +1760,7 @@ PersianEvosMoves:
 	db 27, SLASH
 	db 31, AGILITY
 	db 35, PLAY_ROUGH
+	db 40, NIGHT_SLASH
 	db 0
 
 MarowakEvosMoves:

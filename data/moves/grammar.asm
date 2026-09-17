@@ -5,7 +5,6 @@ ExclamationPointMoveSets:
 
 ; set 1
 	db RECOVER
-	db BIDE
 	db SELFDESTRUCT
 	db AMNESIA
 	db 0 ; end set
@@ -38,7 +37,7 @@ ExclamationPointMoveSets:
 	db ROAR
 	db SING
 	db PECK
-	db COUNTER
+	db BODY_PRESS
 	db STRENGTH
 	db ABSORB
 	db STRING_SHOT
@@ -64,6 +63,7 @@ ExclamationPointMoveSets:
 	db REST
 	db SHARPEN
 	db SLASH
+	db NIGHT_SLASH
 	db SUBSTITUTE
 	db 0 ; end set
 

@@ -68,7 +68,7 @@ MoveSoundTable:
 	db SFX_BATTLE_13,          $f0, $20 ; DRILL_PECK
 	db SFX_BATTLE_23,          $01, $c0 ; SUBMISSION
 	db SFX_BATTLE_23,          $00, $80 ; LOW_KICK
-	db SFX_SUPER_EFFECTIVE,    $00, $e0 ; COUNTER
+	db SFX_BATTLE_26,          $20, $40 ; BODY_PRESS
 	db SFX_BATTLE_26,          $01, $60 ; SEISMIC_TOSS
 	db SFX_BATTLE_26,          $20, $40 ; STRENGTH
 	db SFX_BATTLE_24,          $00, $80 ; ABSORB
@@ -117,7 +117,7 @@ MoveSoundTable:
 	db SFX_BATTLE_0F,          $f8, $10 ; HAZE
 	db SFX_NOT_VERY_EFFECTIVE, $f0, $10 ; REFLECT
 	db SFX_NOT_VERY_EFFECTIVE, $00, $80 ; DRAGON_CLAW
-	db SFX_BATTLE_18,          $00, $c0 ; BIDE
+	db SFX_NOT_VERY_EFFECTIVE, $01, $ff ; NIGHT_SLASH
 	db SFX_BATTLE_32,          $c0, $ff ; METRONOME
 	db SFX_BATTLE_09,          $f2, $20 ; MIRROR_MOVE
 	db SFX_BATTLE_34,          $00, $80 ; SELFDESTRUCT
