@@ -245,6 +245,9 @@ ExplodeEffect:
 	ld [de], a
 	ret
 
+NightSlashEffect:
+	ret
+
 FreezeBurnParalyzeEffect:
 	xor a
 	ld [wAnimationType], a

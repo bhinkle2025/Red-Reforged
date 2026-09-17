@@ -603,8 +603,8 @@ OnixEvosMoves:
 	db 10, RAGE
 	db 15, HARDEN
 	db 20, SHARPEN
-	db 25, IRON_DEFENSE
-	db 30, BODY_PRESS
+	db 25, SKULL_BASH
+	db 30, ROCK_SLIDE
 	db 35, EARTHQUAKE
 	db 0
 
