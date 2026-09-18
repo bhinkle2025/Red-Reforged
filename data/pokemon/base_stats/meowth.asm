@@ -17,7 +17,7 @@
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  BUBBLEBEAM,   THUNDER_WAVE, \
 	     THUNDERBOLT,  THUNDER,      DREAM_EATER,  DIG,          CALM_MIND,   \
 	     MIMIC,        DOUBLE_TEAM,  SWIFT,        SKULL_BASH,   SHADOW_CLAW, \
-	     REST,         SUBSTITUTE,   NIGHT_SHADE,  CUT,          FLASH
+	     REST,         SUBSTITUTE,   HEX,          CUT,          FLASH
 	; end
 
 	db 0 ; padding

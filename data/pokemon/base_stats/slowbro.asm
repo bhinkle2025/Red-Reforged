@@ -21,7 +21,7 @@
 	     CALM_MIND,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
 	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         THUNDER_WAVE, \
 	     AMNESIA,      TRI_ATTACK,   SUBSTITUTE,   SURF,         STRENGTH,     \
-	     FLAMETHROWER, NIGHT_SHADE,  FLASH
+	     FLAMETHROWER, HEX,          FLASH
 	; end
 
 	db 0 ; padding

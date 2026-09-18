@@ -14,7 +14,7 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm SWORDS_DANCE, DOUBLE_EDGE,  SLUDGE,       DAZZLE,       \
+	tmhm SWORDS_DANCE, DOUBLE_EDGE,  VENOSHOCK,    DAZZLE,       \
 	     MEGA_DRAIN,   SOLARBEAM,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
 	     REST,         SUBSTITUTE,   CALM_MIND,    CUT,          FLASH
 	; end

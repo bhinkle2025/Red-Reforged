@@ -17,7 +17,7 @@
 	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  ICE_BEAM,     BLIZZARD,     SELFDESTRUCT, \
 	     HYPER_BEAM,   DREAM_EATER,  THUNDERBOLT,  THUNDER,      PSYCHIC_M,    \
 	     MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     SWIFT,        SKULL_BASH,   REST,         THUNDER_WAVE, NIGHT_SHADE,  \
+	     SWIFT,        SKULL_BASH,   REST,         THUNDER_WAVE, HEX,          \
 	     TRI_ATTACK,   SUBSTITUTE,   SOLARBEAM,    FLASH
 	; end
 

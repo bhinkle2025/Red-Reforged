@@ -15,7 +15,7 @@
 
 	; tm/hm learnset
 	tmhm SWORDS_DANCE, DOUBLE_EDGE,  BUBBLEBEAM,   SWIFT,        \
-	     ICE_BEAM,     BLIZZARD,     MEGA_DRAIN,   SLUDGE,       \
+	     ICE_BEAM,     BLIZZARD,     MEGA_DRAIN,   VENOSHOCK,    \
 	     MIMIC,        DOUBLE_TEAM,  REFLECT,      SKULL_BASH,   \
 	     REST,         SUBSTITUTE,   DAZZLE,                     \
 		 CUT,          SURF

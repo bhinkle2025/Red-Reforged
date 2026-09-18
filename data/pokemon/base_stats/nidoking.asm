@@ -14,14 +14,14 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    SLUDGE,       DRAGON_RAGE,  \
+	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    VENOSHOCK,    DRAGON_RAGE,  \
 	     GIGA_IMPACT,  DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     OUTRAGE,      \
 	     BLIZZARD,     HYPER_BEAM,   SUBMISSION,   THUNDERPUNCH, \
 	     SEISMIC_TOSS, FIRE_PUNCH,   THUNDERBOLT,  THUNDER,      EARTHQUAKE,   \
 	     MIMIC,        DOUBLE_TEAM,  REFLECT,      SHADOW_CLAW, \
 	     FIRE_BLAST,   SKULL_BASH,   REST,         ROCK_SLIDE,   SUBSTITUTE,   \
 	     ICE_PUNCH,    DIG,          FLAMETHROWER, SURF,         STRENGTH,     \
-		 CUT,          NIGHT_SHADE
+		 CUT,          HEX
 	; end
 
 	db 0 ; padding

@@ -47,7 +47,7 @@ CeladonCityGramps3Text:
 	jr nz, .gotTM41
 	ld hl, .Text
 	call PrintText
-	lb bc, TM_NIGHT_SHADE, 1
+	lb bc, TM_HEX, 1
 	call GiveItem
 	jr c, .Success
 	ld hl, .TM41NoRoomText

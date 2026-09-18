@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm DOUBLE_EDGE,  SLUDGE,       \
+	tmhm DOUBLE_EDGE,  VENOSHOCK,       \
 	     MEGA_DRAIN,   MIMIC,        DOUBLE_TEAM,  CALM_MIND,    \
-	     SWIFT,        REST,         SUBSTITUTE,   NIGHT_SHADE,  \
+	     SWIFT,        REST,         SUBSTITUTE,   HEX,          \
 		 STEEL_WING,   FLY
 	; end
 

@@ -17,7 +17,7 @@
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  BLIZZARD,     SHADOW_CLAW,  ICE_BEAM,     \
 	     THUNDERBOLT,  THUNDER,      MIMIC,        DOUBLE_TEAM,  DIG,          \
 	     REFLECT,      SKULL_BASH,   REST,         SUBSTITUTE,   \
-		 SLUDGE,       CUT,          STRENGTH
+		 VENOSHOCK,    CUT,          STRENGTH
 	; end
 
 	db 0 ; padding

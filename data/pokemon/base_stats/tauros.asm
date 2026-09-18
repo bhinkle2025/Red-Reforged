@@ -14,7 +14,7 @@
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  NIGHT_SHADE,  \
+	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  HEX,          \
 	     ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   THUNDERBOLT,  ROCK_SLIDE,   \
 	     THUNDER,      EARTHQUAKE,   MIMIC,        DOUBLE_TEAM,  \
 	     FIRE_BLAST,   SKULL_BASH,   REST,         SUBSTITUTE,   \

@@ -17,7 +17,7 @@
 	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  HYPER_BEAM,   \
 	     DIG,          MIMIC,        DOUBLE_TEAM,  REFLECT,      DREAM_EATER,  \
 	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         CALM_MIND,    \
-	     SUBSTITUTE,   SOLARBEAM,    FLAMETHROWER, NIGHT_SHADE
+	     SUBSTITUTE,   SOLARBEAM,    FLAMETHROWER, HEX
 	; end
 
 	db 0 ; padding

@@ -163,7 +163,7 @@ DEF TM01 EQU const_value
 	add_tm FIRE_PUNCH   ; $CC
 	add_tm MEGA_KICK    ; $CD
 	add_tm LIGHT_SCREEN ; $CE
-	add_tm SLUDGE       ; $CF
+	add_tm VENOSHOCK    ; $CF
 	add_tm BODY_SLAM    ; $D0
 	add_tm GIGA_IMPACT  ; $D1
 	add_tm DOUBLE_EDGE  ; $D2
@@ -197,7 +197,7 @@ DEF TM01 EQU const_value
 	add_tm FIRE_BLAST   ; $EE
 	add_tm SWIFT        ; $EF
 	add_tm SKULL_BASH   ; $F0
-	add_tm NIGHT_SHADE  ; $F1
+	add_tm HEX          ; $F1
 	add_tm DREAM_EATER  ; $F2
 	add_tm SKY_ATTACK   ; $F3
 	add_tm REST         ; $F4

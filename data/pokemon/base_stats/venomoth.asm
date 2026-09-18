@@ -14,7 +14,7 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  DREAM_EATER,  SLUDGE,       \
+	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  DREAM_EATER,  VENOSHOCK,       \
 	     HYPER_BEAM,   MEGA_DRAIN,   SOLARBEAM,    PSYCHIC_M,    AMNESIA,      \
 	     CALM_MIND,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
 	     SWIFT,        REST,         SUBSTITUTE

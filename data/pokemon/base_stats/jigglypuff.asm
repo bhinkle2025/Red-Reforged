@@ -21,7 +21,7 @@
 	     DOUBLE_TEAM,  REFLECT,      FIRE_BLAST,   SKULL_BASH,   DAZZLE,       \
 	     REST,         THUNDER_WAVE, AMNESIA,      TRI_ATTACK,   SUBSTITUTE,   \
 	     THUNDERPUNCH, ICE_PUNCH,    DREAM_EATER,  DIG,          FLAMETHROWER, \
-		 STRENGTH,     FLASH,        NIGHT_SHADE
+		 STRENGTH,     FLASH,        HEX
 	; end
 
 	db 0 ; padding

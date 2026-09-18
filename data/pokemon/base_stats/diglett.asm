@@ -16,7 +16,7 @@
 	; tm/hm learnset
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  SWORDS_DANCE, SHADOW_CLAW, \
 	     EARTHQUAKE,   DIG,          MIMIC,        DOUBLE_TEAM,  \
-	     REST,         ROCK_SLIDE,   SUBSTITUTE,   SLUDGE,       CUT,  \
+	     REST,         ROCK_SLIDE,   SUBSTITUTE,   VENOSHOCK,       CUT,  \
 	; end
 
 	db 0 ; padding

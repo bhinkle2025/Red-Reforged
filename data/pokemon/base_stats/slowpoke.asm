@@ -19,7 +19,7 @@
 	     EARTHQUAKE,   DIG,          PSYCHIC_M,    CALM_MIND,    \
 	     MIMIC,        DOUBLE_TEAM,  REFLECT,      FIRE_BLAST,   \
 	     SWIFT,        SKULL_BASH,   REST,         THUNDER_WAVE, AMNESIA,      \
-	     TRI_ATTACK,   SUBSTITUTE,   NIGHT_SHADE,                              \
+	     TRI_ATTACK,   SUBSTITUTE,   HEX,                                      \
 		 SURF,         STRENGTH,     FLASH
 	; end
 

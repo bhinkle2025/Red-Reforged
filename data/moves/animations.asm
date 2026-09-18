@@ -123,7 +123,7 @@ AttackAnimationPointers:
 	dw EggBombAnim
 	dw LickAnim
 	dw SmogAnim
-	dw SludgeAnim
+	dw VenoshockAnim
 	dw BoneClubAnim
 	dw FireBlastAnim
 	dw WaterfallAnim
@@ -927,7 +927,7 @@ EggBombAnim:
 	db -1 ; end
 
 LickAnim:
-	battle_anim SLUDGE, SUBANIM_1_BLOB_DRIP_ENEMY, 1, 6
+	battle_anim VENOSHOCK, SUBANIM_1_BLOB_DRIP_ENEMY, 1, 6
 	db -1 ; end
 
 SmogAnim:
@@ -936,9 +936,9 @@ SmogAnim:
 	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
-SludgeAnim:
-	battle_anim SLUDGE, SUBANIM_1_BLOB_TOSS, 1, 6
-	battle_anim SLUDGE, SUBANIM_1_BLOB_DRIP_ENEMY, 1, 6
+VenoshockAnim:
+	battle_anim VENOSHOCK, SUBANIM_1_BLOB_TOSS, 1, 6
+	battle_anim VENOSHOCK, SUBANIM_1_BLOB_DRIP_ENEMY, 1, 6
 	db -1 ; end
 
 BoneClubAnim:

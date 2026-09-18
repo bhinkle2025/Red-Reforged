@@ -17,8 +17,8 @@
 	tmhm BODY_SLAM,    FIRE_PUNCH,   MEGA_DRAIN,   THUNDERBOLT,  \
 	     THUNDER,      MIMIC,        DOUBLE_TEAM,  SELFDESTRUCT, SWIFT,        \
 	     FIRE_BLAST,   REST,         EXPLOSION,    SUBSTITUTE,   THUNDERPUNCH, \
-		 ICE_PUNCH,    ROCK_SLIDE,   DIG,          FLAMETHROWER, SLUDGE,       \
-		 NIGHT_SHADE,  STRENGTH
+		 ICE_PUNCH,    ROCK_SLIDE,   DIG,          FLAMETHROWER, VENOSHOCK,    \
+		 HEX,          STRENGTH
 	; end
 
 	db 0 ; padding

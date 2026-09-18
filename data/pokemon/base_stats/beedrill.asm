@@ -17,7 +17,7 @@
 	tmhm SWORDS_DANCE, GIGA_IMPACT,  DOUBLE_EDGE,  HYPER_BEAM,   \
 	     MEGA_DRAIN,   MIMIC,        DOUBLE_TEAM,  REFLECT,      SOLARBEAM,    \
 	     SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE,   \
-	     SLUDGE,       OUTRAGE,      CUT,          FLASH
+	     VENOSHOCK,    OUTRAGE,      CUT,          FLASH
 	; end
 
 	db 0 ; padding

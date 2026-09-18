@@ -1,12 +1,12 @@
 _FuchsiaGymKogaPostBattleAdviceText::
-	text "When hit by"
-	line "SLUDGE, #MON"
-	cont "may be poisoned!"
+	text "VENOSHOCK becomes"
+	line "far more powerful"
+	cont "against poisoned"
+	cont "#MON!"
 
-	para "It's toxic goo"
-	line "will surely"
-	cont "terrorize your" 
-	cont "foes!"
+	para "Poison your foe,"
+	line "then strike with"
+	cont "VENOSHOCK!"
 	done
 
 _FuchsiaGymRematchPreBattleText::

@@ -17,7 +17,7 @@
 	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  BUBBLEBEAM,   \
 	     ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   DIG,          CALM_MIND,    \
 	     MIMIC,        DOUBLE_TEAM,  REFLECT,      SWIFT,        \
-	     SKULL_BASH,   REST,         SUBSTITUTE,   NIGHT_SHADE,                \
+	     SKULL_BASH,   REST,         SUBSTITUTE,   HEX,          \
 		 SURF,         STRENGTH
 	; end
 

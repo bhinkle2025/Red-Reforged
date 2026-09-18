@@ -4422,6 +4422,28 @@ GetDamageVarsForPlayerAttack:
 	and a
 	ld d, a ; d = move power
 	ret z ; return if move power is zero
+	; Hex doubles in power if the target has a major status condition.
+	ld a, [wPlayerMoveEffect]
+	cp HEX_EFFECT
+	jr nz, .checkVenoshock
+
+	ld a, [wEnemyMonStatus]
+	and a
+	jr nz, .doublePower
+	jr .statusPowerDone
+
+	.checkVenoshock
+	cp VENOSHOCK_EFFECT
+	jr nz, .statusPowerDone
+
+	ld a, [wEnemyMonStatus]
+	bit PSN, a
+	jr z, .statusPowerDone
+
+	.doublePower
+	sla d
+
+.statusPowerDone
 	ld a, [hl] ; a = [wPlayerMoveType]
 	cp SPECIAL ; types >= SPECIAL are all special
 	ld a, [wPlayerMoveNum]
@@ -4529,6 +4551,28 @@ GetDamageVarsForEnemyAttack:
 	ld d, a ; d = move power
 	and a
 	ret z ; return if move power is zero
+	; Hex doubles in power if the target has a major status condition.
+	ld a, [wEnemyMoveEffect]
+	cp HEX_EFFECT
+	jr nz, .checkVenoshock
+
+	ld a, [wBattleMonStatus]
+	and a
+	jr nz, .doublePower
+	jr .statusPowerDone
+
+.checkVenoshock
+	cp VENOSHOCK_EFFECT
+	jr nz, .statusPowerDone
+
+	ld a, [wBattleMonStatus]
+	bit PSN, a
+	jr z, .statusPowerDone
+
+.doublePower
+	sla d
+
+.statusPowerDone
 	ld a, [hl] ; a = [wEnemyMoveType]
 	cp SPECIAL ; types >= SPECIAL are all special
 	ld a, [wEnemyMoveNum]
@@ -4935,14 +4979,14 @@ ApplyAttackToEnemyPokemon:
 	jr z, ApplyDamageToEnemyPokemon
 	cp SUPER_FANG_EFFECT
 	jr z, .superFangEffect
-	cp SPECIAL_DAMAGE_EFFECT
-	jr z, .specialDamage
+
 	ld a, [wPlayerMovePower]
 	and a
-	jp z, ApplyAttackToEnemyPokemonDone ; no attack to apply if base power is 0
+	jp z, ApplyAttackToEnemyPokemonDone
 	jr ApplyDamageToEnemyPokemon
+
 .superFangEffect
-; set the damage to half the target's HP
+	; set the damage to half the target's HP
 	ld hl, wEnemyMonHP
 	ld de, wDamage
 	ld a, [hli]
@@ -4955,45 +4999,11 @@ ApplyAttackToEnemyPokemon:
 	ld [de], a
 	or b
 	jr nz, ApplyDamageToEnemyPokemon
-; make sure Super Fang's damage is always at least 1
+
+	; make sure Super Fang's damage is always at least 1
 	ld a, $01
 	ld [de], a
 	jr ApplyDamageToEnemyPokemon
-.specialDamage
-	ld hl, wBattleMonLevel
-	ld a, [hl]
-	ld b, a ; Seismic Toss deals damage equal to the user's level
-	ld a, [wPlayerMoveNum]
-	cp SEISMIC_TOSS
-	jr z, .storeDamage
-	cp NIGHT_SHADE
-	jr z, .storeDamage
-	ld b, SONICBOOM_DAMAGE ; 20
-	cp SONICBOOM
-	jr z, .storeDamage
-	ld b, DRAGON_RAGE_DAMAGE ; 40
-	cp DRAGON_RAGE
-	jr z, .storeDamage
-; Psywave
-	ld a, [hl]
-	ld b, a
-	srl a
-	add b
-	ld b, a ; b = level * 1.5
-; loop until a random number in the range [1, b) is found
-.loop
-	call BattleRandom
-	and a
-	jr z, .loop
-	cp b
-	jr nc, .loop
-	ld b, a
-.storeDamage ; store damage value at b
-	ld hl, wDamage
-	xor a
-	ld [hli], a
-	ld a, b
-	ld [hl], a
 
 ApplyDamageToEnemyPokemon:
 	ld hl, wDamage
@@ -5054,14 +5064,14 @@ ApplyAttackToPlayerPokemon:
 	jr z, ApplyDamageToPlayerPokemon
 	cp SUPER_FANG_EFFECT
 	jr z, .superFangEffect
-	cp SPECIAL_DAMAGE_EFFECT
-	jr z, .specialDamage
+
 	ld a, [wEnemyMovePower]
 	and a
 	jp z, ApplyAttackToPlayerPokemonDone
 	jr ApplyDamageToPlayerPokemon
+
 .superFangEffect
-; set the damage to half the target's HP
+	; set the damage to half the target's HP
 	ld hl, wBattleMonHP
 	ld de, wDamage
 	ld a, [hli]
@@ -5074,45 +5084,11 @@ ApplyAttackToPlayerPokemon:
 	ld [de], a
 	or b
 	jr nz, ApplyDamageToPlayerPokemon
-; make sure Super Fang's damage is always at least 1
+
+	; make sure Super Fang's damage is always at least 1
 	ld a, $01
 	ld [de], a
 	jr ApplyDamageToPlayerPokemon
-.specialDamage
-	ld hl, wEnemyMonLevel
-	ld a, [hl]
-	ld b, a
-	ld a, [wEnemyMoveNum]
-	cp SEISMIC_TOSS
-	jr z, .storeDamage
-	cp NIGHT_SHADE
-	jr z, .storeDamage
-	ld b, SONICBOOM_DAMAGE
-	cp SONICBOOM
-	jr z, .storeDamage
-	ld b, DRAGON_RAGE_DAMAGE
-	cp DRAGON_RAGE
-	jr z, .storeDamage
-; Psywave
-	ld a, [hl]
-	ld b, a
-	srl a
-	add b
-	ld b, a ; b = attacker's level * 1.5
-; loop until a random number in the range [0, b) is found
-; this differs from the range when the player attacks, which is [1, b)
-; it's possible for the enemy to do 0 damage with Psywave, but the player always does at least 1 damage
-.loop
-	call BattleRandom
-	cp b
-	jr nc, .loop
-	ld b, a
-.storeDamage
-	ld hl, wDamage
-	xor a
-	ld [hli], a
-	ld a, b
-	ld [hl], a
 
 ApplyDamageToPlayerPokemon:
 	ld hl, wDamage

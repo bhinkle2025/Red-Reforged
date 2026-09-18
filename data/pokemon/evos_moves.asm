@@ -283,7 +283,7 @@ NidokingEvosMoves:
 	db 0
 ; Learnset
 	db 45, SUBMISSION
-	db 50, SLUDGE
+	db 50, VENOSHOCK
 	db 55, EARTHQUAKE
 	db 0
 
@@ -312,7 +312,7 @@ IvysaurEvosMoves:
 	db 21, RAZOR_LEAF
 	db 25, CALM_MIND
 	db 27, TOXIC
-	db 30, SLUDGE
+	db 30, VENOSHOCK
 	db 32, POWER_WHIP
 	db 0
 
@@ -362,7 +362,7 @@ GrimerEvosMoves:
 	db 35, TOXIC
 	db 38, SHADOW_PUNCH
 	db 42, ACID_ARMOR
-	db 48, SLUDGE
+	db 48, VENOSHOCK
 	db 0
 
 GengarEvosMoves:
@@ -370,9 +370,9 @@ GengarEvosMoves:
 	db 0
 ; Learnset
 	db 19, POISON_GAS
-	db 21, NIGHT_SHADE
+	db 21, HEX
 	db 30, TOXIC
-	db 36, SLUDGE
+	db 36, VENOSHOCK
 	db 39, SHADOW_PUNCH
 	db 45, DREAM_EATER
 	db 0
@@ -396,7 +396,7 @@ NidoqueenEvosMoves:
 	db 0
 ; Learnset
 	db 45, SUBMISSION
-	db 50, SLUDGE
+	db 50, VENOSHOCK
 	db 55, EARTHQUAKE
 	db 0
 
@@ -489,7 +489,7 @@ TentacoolEvosMoves:
 	db 27, ACID_ARMOR
 	db 31, ACID
 	db 36, TOXIC
-	db 40, SLUDGE
+	db 40, VENOSHOCK
 	db 45, HYDRO_PUMP
 	db 0
 
@@ -499,9 +499,9 @@ GastlyEvosMoves:
 	db 0
 ; Learnset
 	db 19, POISON_GAS
-	db 21, NIGHT_SHADE
+	db 21, HEX
 	db 26, TOXIC
-	db 28, SLUDGE
+	db 28, VENOSHOCK
 	db 33, DREAM_EATER
 	db 0
 
@@ -783,7 +783,7 @@ DrowzeeEvosMoves:
 	db 22, PSYBEAM
 	db 27, HEADBUTT
 	db 31, PSYCHIC_M
-	db 37, NIGHT_SHADE
+	db 37, HEX
 	db 40, DREAM_EATER
 	db 0
 
@@ -857,7 +857,7 @@ KoffingEvosMoves:
 	db 32, ACID
 	db 37, SMOKESCREEN
 	db 40, TOXIC
-	db 42, SLUDGE
+	db 42, VENOSHOCK
 	db 45, HAZE
 	db 48, EXPLOSION
 	db 0
@@ -1611,7 +1611,7 @@ HypnoEvosMoves:
 	db 22, PSYBEAM
 	db 27, HEADBUTT
 	db 31, PSYCHIC_M
-	db 37, NIGHT_SHADE
+	db 37, HEX
 	db 40, DREAM_EATER
 	db 0
 
@@ -1684,7 +1684,7 @@ MukEvosMoves:
 	db 35, TOXIC
 	db 38, SHADOW_PUNCH
 	db 42, ACID_ARMOR
-	db 48, SLUDGE
+	db 48, VENOSHOCK
 	db 0
 
 MissingNo8AEvosMoves:
@@ -1744,7 +1744,7 @@ WeezingEvosMoves:
 	db 32, ACID
 	db 37, SMOKESCREEN
 	db 40, TOXIC
-	db 42, SLUDGE
+	db 42, VENOSHOCK
 	db 45, HAZE
 	db 48, EXPLOSION
 	db 0
@@ -1787,9 +1787,9 @@ HaunterEvosMoves:
 	db 0
 ; Learnset
 	db 19, POISON_GAS
-	db 21, NIGHT_SHADE
+	db 21, HEX
 	db 30, TOXIC
-	db 36, SLUDGE
+	db 36, VENOSHOCK
 	db 39, SHADOW_PUNCH
 	db 45, DREAM_EATER
 	db 0
@@ -1859,7 +1859,7 @@ BulbasaurEvosMoves:
 	db 21, RAZOR_LEAF
 	db 25, CALM_MIND
 	db 27, TOXIC
-	db 30, SLUDGE
+	db 30, VENOSHOCK
 	db 32, POWER_WHIP
 	db 0
 
@@ -1875,7 +1875,7 @@ VenusaurEvosMoves:
 	db 21, RAZOR_LEAF
 	db 25, CALM_MIND
 	db 27, TOXIC
-	db 30, SLUDGE
+	db 30, VENOSHOCK
 	db 32, POWER_WHIP
 	db 0
 
@@ -1887,7 +1887,7 @@ TentacruelEvosMoves:
 	db 27, ACID_ARMOR
 	db 31, ACID
 	db 36, TOXIC
-	db 40, SLUDGE
+	db 40, VENOSHOCK
 	db 45, HYDRO_PUMP
 	db 0
 

@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm FIRE_PUNCH,   MEGA_DRAIN,   THUNDERBOLT,  THUNDER,      \
 	     PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  SELFDESTRUCT, DAZZLE,       \
-	     DREAM_EATER,  REST,         EXPLOSION,    SUBSTITUTE,   NIGHT_SHADE,  \
-		 THUNDERPUNCH, ICE_PUNCH,    SLUDGE,       CALM_MIND
+	     DREAM_EATER,  REST,         EXPLOSION,    SUBSTITUTE,   HEX,          \
+		 THUNDERPUNCH, ICE_PUNCH,    VENOSHOCK,    CALM_MIND
 	; end
 
 	db 0 ; padding

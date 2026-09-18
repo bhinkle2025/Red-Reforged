@@ -93,7 +93,7 @@ SpecialTrainerMoves:
 	db 3, 2, DOUBLE_TEAM
 	db 4, 1, AMNESIA
 	db 4, 2, SLEEP_POWDER
-	db 4, 3, SLUDGE
+	db 4, 3, VENOSHOCK
 	db 4, 4, BUG_BUZZ
 	db 0
 
@@ -104,10 +104,10 @@ SpecialTrainerMoves:
 	db 3, 4, ACID
 	db 4, 1, LEECH_LIFE
 	db 4, 2, DOUBLE_TEAM
-	db 4, 3, SLUDGE
+	db 4, 3, VENOSHOCK
 	db 5, 1, AMNESIA
 	db 5, 2, SLEEP_POWDER
-	db 5, 3, SLUDGE
+	db 5, 3, VENOSHOCK
 	db 0
 
 	db BLAINE, 1
@@ -117,7 +117,7 @@ SpecialTrainerMoves:
 	db 2, 2, DOUBLE_KICK
 	db 2, 4, FLARE_BLITZ
 	db 3, 1, SOLARBEAM
-	db 3, 2, NIGHT_SHADE
+	db 3, 2, HEX
 	db 3, 3, CALM_MIND
 	db 3, 4, FIRE_BLAST
 	db 4, 1, GIGA_IMPACT
@@ -158,7 +158,7 @@ SpecialTrainerMoves:
 	db 1, 2, THUNDER_WAVE
 	db 2, 4, HYPNOSIS
 	db 3, 1, LOVELY_KISS
-	db 3, 2, NIGHT_SHADE
+	db 3, 2, HEX
 	db 4, 1, HYPER_BEAM
 	db 5, 1, SURF
 	db 0
@@ -173,7 +173,7 @@ SpecialTrainerMoves:
 	db 3, 1, EARTHQUAKE
 	db 3, 2, ICE_PUNCH
 	db 3, 3, FIRE_BLAST
-	db 3, 4, SLUDGE
+	db 3, 4, VENOSHOCK
 	db 4, 1, EARTHQUAKE
 	db 4, 2, FIRE_PUNCH
 	db 4, 3, THUNDER
@@ -188,7 +188,7 @@ SpecialTrainerMoves:
 	db 2, 4, IRON_DEFENSE
 	db 3, 1, SURF
 	db 3, 2, ICE_BEAM
-	db 4, 1, NIGHT_SHADE
+	db 4, 1, HEX
 	db 4, 2, LOVELY_KISS
 	db 5, 1, BLIZZARD
 	db 0
@@ -216,13 +216,13 @@ SpecialTrainerMoves:
 	db 3, 1, BITE
 	db 3, 2, GLARE
 	db 3, 4, WRAP
-	db 4, 1, NIGHT_SHADE
-	db 4, 2, SLUDGE
+	db 4, 1, HEX
+	db 4, 2, VENOSHOCK
 	db 4, 3, HYPNOSIS
 	db 5, 1, HYPNOSIS
 	db 5, 2, DREAM_EATER
 	db 5, 3, CALM_MIND
-	db 5, 4, NIGHT_SHADE
+	db 5, 4, HEX
 	db 0
 
 	db LANCE, 1
@@ -266,7 +266,7 @@ SpecialTrainerMoves:
 	db 4, 3, ICE_BEAM
 	db 4, 4, EARTHQUAKE
 	db 5, 1, FLARE_BLITZ
-	db 6, 1, SLUDGE
+	db 6, 1, VENOSHOCK
 	db 6, 3, MEGA_DRAIN
 	db 0
 
@@ -297,7 +297,7 @@ SpecialTrainerMoves:
 	db 3, 3, SEISMIC_TOSS
 	db 3, 4, GIGA_IMPACT
 	db 4, 2, HYPER_BEAM
-	db 4, 4, NIGHT_SHADE
+	db 4, 4, HEX
 	db 5, 1, SWORDS_DANCE
 	db 5, 2, POWER_WHIP
 	db 5, 4, ACID
@@ -320,7 +320,7 @@ SpecialTrainerMoves:
 	db 4, 3, BLIZZARD
 	db 4, 4, AGILITY
 	db 5, 2, HYPER_BEAM
-	db 5, 4, NIGHT_SHADE
+	db 5, 4, HEX
 	db 6, 1, SWORDS_DANCE
 	db 6, 2, POWER_WHIP
 	db 6, 3, GIGA_IMPACT

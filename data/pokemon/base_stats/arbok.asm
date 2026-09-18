@@ -15,7 +15,7 @@
 
 	; tm/hm learnset
 	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  HYPER_BEAM,   \
-	     MEGA_DRAIN,   EARTHQUAKE,   DIG,          SLUDGE,       \
+	     MEGA_DRAIN,   EARTHQUAKE,   DIG,          VENOSHOCK,    \
 	     MIMIC,        DOUBLE_TEAM,  SKULL_BASH,   REST,         \
 	     ROCK_SLIDE,   SUBSTITUTE,   STRENGTH
 	; end

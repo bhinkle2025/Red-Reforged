@@ -14,10 +14,10 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  SLUDGE,       SKY_ATTACK,   \
+	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  VENOSHOCK,    SKY_ATTACK,   \
 	     HYPER_BEAM,   MEGA_DRAIN,   MIMIC,        DOUBLE_TEAM,  \
 	     SWIFT,        REST,         SUBSTITUTE,   CALM_MIND,    \
-		 NIGHT_SHADE,  STEEL_WING,   FLY
+		 HEX,          STEEL_WING,   FLY
 	; end
 
 	db 0 ; padding

@@ -3,7 +3,7 @@ PhysicalToSpecialMoves:
         db GUST
         db HURRICANE
 ; Poison
-        db SLUDGE
+        db VENOSHOCK
         db SMOG
 ; Normal
         db HYPER_BEAM
