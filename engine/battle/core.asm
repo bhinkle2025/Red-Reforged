@@ -1334,7 +1334,7 @@ EnemySendOutFirstMon:
 	ld a, [wSerialExchangeNybbleReceiveData]
 	sub 4
 	ld [wWhichPokemon], a
-	jr .next3
+	jr EnemySendOutSelectedMon
 .next
 	ld b, $ff
 .next2
@@ -1355,9 +1355,19 @@ EnemySendOutFirstMon:
 	ld a, [hl]
 	or c
 	jr z, .next2
-.next3
+EnemySendOutSelectedMon::
+	xor a              ; normal trainer send-out
+	push af
+	jr EnemySendOutMonCommon
+
+EnemySendOutForcedMon::
+	ld a, 1            ; Roar / Whirlwind forced send-out
+	push af
+
+EnemySendOutMonCommon::
 	ld a, [wWhichPokemon]
 	ld hl, wEnemyMon1Level
+	; continue with the rest of your existing routine...
 	ld bc, wEnemyMon2 - wEnemyMon1
 	call AddNTimes
 	ld a, [hl]
@@ -1437,8 +1447,25 @@ EnemySendOutFirstMon:
 	ld b, SET_PAL_BATTLE
 	call RunPaletteCommand
 	call GBPalNormal
+
+	; Recover normal/forced switch marker.
+	pop af
+	and a
+	jr nz, .forcedSendOut
+
+	; Normal trainer switch: text first.
 	ld hl, TrainerSentOutText
 	call PrintText
+	xor a
+	jr .saveSendOutType
+
+.forcedSendOut
+	ld a, 1
+
+.saveSendOutType
+	push af
+
+	; Load and animate the new enemy Pokémon.
 	ld a, [wEnemyMonSpecies2]
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
@@ -1452,6 +1479,16 @@ EnemySendOutFirstMon:
 	ld a, [wEnemyMonSpecies2]
 	call PlayCry
 	call DrawEnemyHUDAndHPBar
+
+	; Forced switch: text after the Pokémon appears.
+	pop af
+	and a
+	jr z, .afterSendOutText
+
+	ld hl, EnemyDraggedOutText
+	call PrintText
+
+.afterSendOutText
 	ld a, [wCurrentMenuItem]
 	and a
 	ret nz
@@ -1467,6 +1504,10 @@ TrainerAboutToUseText:
 
 TrainerSentOutText:
 	text_far _TrainerSentOutText
+	text_end
+
+EnemyDraggedOutText:
+	text_far _EnemyDraggedOutText
 	text_end
 
 ; tests if the player has any pokemon that are not fainted
@@ -1754,6 +1795,53 @@ SendOutMon:
 	ld a, [hli]
 	or [hl] ; is enemy mon HP zero?
 	jp z, .skipDrawingEnemyHUDAndHPBar ; if HP is zero, skip drawing the HUD and HP bar
+	call DrawEnemyHUDAndHPBar
+.skipDrawingEnemyHUDAndHPBar
+	call DrawPlayerHUDAndHPBar
+	predef LoadMonBackPic
+	xor a
+	ldh [hStartTileID], a
+	ld hl, wBattleAndStartSavedMenuItem
+	ld [hli], a
+	ld [hl], a
+	ld [wBoostExpByExpAll], a
+	ld [wDamageMultipliers], a
+	ld [wPlayerMoveNum], a
+	ld hl, wPlayerUsedMove
+	ld [hli], a
+	ld [hl], a
+	ld hl, wPlayerStatsToDouble
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ld [wPlayerDisabledMove], a
+	ld [wPlayerDisabledMoveNumber], a
+	ld [wPlayerMonMinimized], a
+	ld b, SET_PAL_BATTLE
+	call RunPaletteCommand
+	ld hl, wEnemyBattleStatus1
+	res USING_TRAPPING_MOVE, [hl]
+	ld a, $1
+	ldh [hWhoseTurn], a
+	ld a, POOF_ANIM
+	call PlayMoveAnimation
+	hlcoord 4, 11
+	predef AnimateSendingOutMon
+	ld a, [wCurPartySpecies]
+	call PlayCry
+	call PrintEmptyString
+	jp SaveScreenTilesToBuffer1
+
+ForceSendOutMon::
+	ld hl, DraggedOutText
+	call PrintText
+
+	ld hl, wEnemyMonHP
+	ld a, [hli]
+	or [hl]
+	jp z, .skipDrawingEnemyHUDAndHPBar
 	call DrawEnemyHUDAndHPBar
 .skipDrawingEnemyHUDAndHPBar
 	call DrawPlayerHUDAndHPBar
@@ -2470,6 +2558,21 @@ ItemsCantBeUsedHereText:
 	text_far _ItemsCantBeUsedHereText
 	text_end
 
+TeleportChoosePlayerMon:
+	ld a, 1
+	ld [wForcePlayerToChooseMon], a
+
+	call SaveScreenTilesToBuffer2
+	call LoadScreenTilesFromBuffer1
+
+	xor a ; NORMAL_PARTY_MENU
+	ld [wPartyMenuTypeOrMessageID], a
+	ld [wMenuItemToSwap], a
+	call DisplayPartyMenu
+
+	; then reuse the existing validation/switch path
+	jp PartyMenuOrRockOrRun.checkIfPartyMonWasSelected
+
 PartyMenuOrRockOrRun:
 	dec a ; was Run selected?
 	jp nz, BattleMenu_RunWasSelected
@@ -2577,7 +2680,26 @@ PartyMenuOrRockOrRun:
 	jp .partyMonDeselected
 .notAlreadyOut
 	call HasMonFainted
-	jp z, .partyMonDeselected ; can't switch to fainted mon
+	jp z, .partyMonDeselected
+
+	; Teleport skips the normal retreat.
+	ld a, [wPlayerMoveNum]
+	cp TELEPORT
+	jr nz, .normalSwitch
+
+	ld a, $1
+	ld [wActionResultOrTookBattleTurn], a
+
+	call GBPalWhiteOut
+	call ClearSprites
+	call LoadHudTilePatterns
+	call LoadScreenTilesFromBuffer1
+	call RunDefaultPaletteCommand
+	call GBPalNormal
+
+	jp SwitchPlayerMonNoRetreat
+
+.normalSwitch
 	ld a, $1
 	ld [wActionResultOrTookBattleTurn], a
 	call GBPalWhiteOut
@@ -2593,6 +2715,8 @@ SwitchPlayerMon:
 	ld c, 50
 	call DelayFrames
 	call AnimateRetreatingPlayerMon
+
+SwitchPlayerMonNoRetreat::
 	ld a, [wWhichPokemon]
 	ld [wPlayerMonNumber], a
 	ld c, a
@@ -2611,6 +2735,50 @@ SwitchPlayerMon:
 	and a
 	ret
 
+ForceSendOutPlayerMon::
+	xor a
+	ld [wActionResultOrTookBattleTurn], a
+
+	call ClearSprites
+
+	ld a, [wWhichPokemon]
+	ld [wPlayerMonNumber], a
+
+	; Update species used by LoadMonBackPic.
+	ld c, a
+	ld b, 0
+	ld hl, wPartySpecies
+	add hl, bc
+	ld a, [hl]
+	ld [wBattleMonSpecies2], a
+	ld [wCurPartySpecies], a
+
+	; Restore selected party index to C.
+	ld a, [wWhichPokemon]
+	ld c, a
+
+	ld hl, wPartyGainExpFlags
+	ld b, FLAG_SET
+	push bc
+	predef FlagActionPredef
+	pop bc
+
+	ld hl, wPartyFoughtCurrentEnemyFlags
+	predef FlagActionPredef
+
+	call LoadBattleMonFromParty
+
+	call GBPalWhiteOut
+	call LoadHudTilePatterns
+	call LoadScreenTilesFromBuffer1
+	call RunDefaultPaletteCommand
+	call GBPalNormal
+
+	call ForceSendOutMon
+
+	ld a, 1
+	ld [wActionResultOrTookBattleTurn], a
+	ret
 AlreadyOutText:
 	text_far _AlreadyOutText
 	text_end
@@ -7156,3 +7324,20 @@ LoadMonBackPic:
 	ldh a, [hLoadedROMBank]
 	ld b, a
 	jp CopyVideoData
+
+ForceRemovePlayerMon::
+	call ReadPlayerMonCurHPAndStatus
+
+	hlcoord 9, 7
+	lb bc, 5, 11
+	call ClearScreenArea
+
+	hlcoord 1, 10
+	decoord 1, 11
+	call SlideDownFaintedMonPic
+
+	; Clear stale battle text before saving the screen.
+	call PrintEmptyString
+
+	call SaveScreenTilesToBuffer1
+	ret

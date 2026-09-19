@@ -835,7 +835,7 @@ ThrashPetalDanceEffect:
 SwitchAndTeleportEffect:
 	ldh a, [hWhoseTurn]
 	and a
-	jr nz, .handleEnemy
+	jp nz, .handleEnemy
 	ld a, [wIsInBattle]
 	dec a
 	jr nz, .notWildBattle1
@@ -868,14 +868,50 @@ SwitchAndTeleportEffect:
 	inc a
 	ld [wEscapedFromBattle], a
 	ld a, [wPlayerMoveNum]
-	jr .playAnimAndPrintText
+	jp .playAnimAndPrintText
 .notWildBattle1
-	ld c, 50
-	call DelayFrames
-	ld hl, IsUnaffectedText
+	; Player used the move in a trainer battle.
 	ld a, [wPlayerMoveNum]
 	cp TELEPORT
-	jp nz, PrintText
+	jr z, .playerTeleport
+
+	; Roar / Whirlwind force the enemy to switch.
+	call ChooseRandomAliveEnemyMon
+	jp nc, .playerTrainerMoveFailed
+
+	xor a
+	ld [wAnimationType], a
+	ld a, [wPlayerMoveNum]
+	call PlayBattleAnimation
+
+	; Restore normal battle palette after Roar/Whirlwind animation.
+	call RunDefaultPaletteCommand
+	call GBPalNormal
+
+	callfar ForceSwitchEnemyMon
+	ret
+
+.playerTeleport
+	; Teleport lets the player choose the replacement.
+	xor a
+	ld [wAnimationType], a
+	ld a, TELEPORT
+	call PlayBattleAnimation
+
+	; Save the battle screen after Teleport has removed the active mon.
+	call PrintEmptyString
+	call SaveScreenTilesToBuffer1
+
+	; Open the normal party menu path.
+	ld a, 1
+	ld [wForcePlayerToChooseMon], a
+
+	ld a, 1
+	jp PartyMenuOrRockOrRun
+
+.playerTrainerMoveFailed
+	ld c, 50
+	call DelayFrames
 	jp PrintButItFailedText_
 .handleEnemy
 	ld a, [wIsInBattle]
@@ -912,12 +948,40 @@ SwitchAndTeleportEffect:
 	ld a, [wEnemyMoveNum]
 	jr .playAnimAndPrintText
 .notWildBattle2
-	ld c, 50
-	call DelayFrames
-	ld hl, IsUnaffectedText
+	; Enemy used the move in a trainer battle.
 	ld a, [wEnemyMoveNum]
 	cp TELEPORT
-	jp nz, PrintText
+	jr z, .enemyTeleport
+
+	; Enemy Roar / Whirlwind force the player to switch.
+	call ChooseRandomAlivePlayerMon
+	jr nc, .enemyTrainerMoveFailed
+
+	xor a
+	ld [wAnimationType], a
+	ld a, [wEnemyMoveNum]
+	call PlayBattleAnimation
+
+	callfar ForceRemovePlayerMon
+	callfar ForceSendOutPlayerMon
+	ret
+
+.enemyTeleport
+	; Enemy Teleport switches the user.
+	call ChooseRandomAliveEnemyMon
+	jr nc, .enemyTrainerMoveFailed
+
+	xor a
+	ld [wAnimationType], a
+	ld a, TELEPORT
+	call PlayBattleAnimation
+
+	callfar ForceSwitchEnemyMon
+	ret
+
+.enemyTrainerMoveFailed
+	ld c, 50
+	call DelayFrames
 	jp ConditionalPrintButItFailed
 .playAnimAndPrintText
 	push af
@@ -934,6 +998,140 @@ SwitchAndTeleportEffect:
 	ld hl, WasBlownAwayText
 .printText
 	jp PrintText
+
+ChooseRandomAlivePlayerMon::
+	; First make sure the player has a valid replacement.
+	ld a, [wPartyCount]
+	ld c, a
+	ld b, 0
+	ld hl, wPartyMon1HP
+
+.checkForReplacement
+	ld a, [wPlayerMonNumber]
+	cp b
+	jr z, .nextMon
+
+	ld a, [hli]
+	or [hl]
+	dec hl
+	jr nz, .chooseRandomMon
+
+.nextMon
+	push bc
+	ld bc, wPartyMon2 - wPartyMon1
+	add hl, bc
+	pop bc
+	inc b
+	dec c
+	jr nz, .checkForReplacement
+
+	; No usable replacement.
+	and a ; clear carry
+	ret
+
+.chooseRandomMon
+	ld a, [wPartyCount]
+	ld c, a
+
+.randomLoop
+	call BattleRandom
+	and $7
+	cp c
+	jr nc, .randomLoop
+
+	ld b, a
+
+	; Don't select the active Pokémon.
+	ld a, [wPlayerMonNumber]
+	cp b
+	jr z, .randomLoop
+
+	; Check whether selected Pokémon is fainted.
+	ld hl, wPartyMon1HP
+	ld a, b
+	push bc
+	ld bc, wPartyMon2 - wPartyMon1
+	call AddNTimes
+	pop bc
+
+	ld a, [hli]
+	or [hl]
+	jr z, .randomLoop
+
+	; Valid Pokémon found.
+	ld a, b
+	ld [wWhichPokemon], a
+	scf
+	ret
+
+ChooseRandomAliveEnemyMon::
+	; First make sure the enemy has a valid replacement.
+	ld a, [wEnemyPartyCount]
+	ld c, a
+	ld b, 0
+	ld hl, wEnemyMon1HP
+
+.checkForReplacement
+	ld a, [wEnemyMonPartyPos]
+	cp b
+	jr z, .nextMon
+
+	ld a, [hli]
+	or [hl]
+	dec hl
+	jr nz, .chooseRandomMon
+
+.nextMon
+	push bc
+	ld bc, wEnemyMon2 - wEnemyMon1
+	add hl, bc
+	pop bc
+	inc b
+	dec c
+	jr nz, .checkForReplacement
+
+	; No usable replacement.
+	and a ; clear carry
+	ret
+
+.chooseRandomMon
+	ld a, [wEnemyPartyCount]
+	ld c, a
+
+.randomLoop
+	call BattleRandom
+	and $7
+	cp c
+	jr nc, .randomLoop
+
+	ld b, a
+
+	; Don't select the active enemy Pokémon.
+	ld a, [wEnemyMonPartyPos]
+	cp b
+	jr z, .randomLoop
+
+	; Check whether selected Pokémon is fainted.
+	ld hl, wEnemyMon1HP
+	ld a, b
+	push bc
+	ld bc, wEnemyMon2 - wEnemyMon1
+	call AddNTimes
+	pop bc
+
+	ld a, [hli]
+	or [hl]
+	jr z, .randomLoop
+
+	; Valid Pokémon found.
+	ld a, b
+	ld [wWhichPokemon], a
+	scf
+	ret
+
+DraggedOutText:
+	text_far _DraggedOutText
+	text_end
 
 RanFromBattleText:
 	text_far _RanFromBattleText

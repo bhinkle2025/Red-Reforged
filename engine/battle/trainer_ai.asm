@@ -721,6 +721,30 @@ AISwitchIfEnoughMons:
 	and a
 	ret
 
+ForceSwitchEnemyMon::
+	; Save current enemy HP/status back to party data.
+	ld a, [wEnemyMonPartyPos]
+	ld hl, wEnemyMon1HP
+	ld bc, wEnemyMon2 - wEnemyMon1
+	call AddNTimes
+	ld d, h
+	ld e, l
+	ld hl, wEnemyMonHP
+	ld bc, 4
+	call CopyData
+
+	; Prevent player response-switch prompt.
+	ld a, 1
+	ld [wFirstMonsNotOutYet], a
+
+	callfar EnemySendOutForcedMon
+
+	xor a
+	ld [wFirstMonsNotOutYet], a
+
+	scf
+	ret
+
 SwitchEnemyMon:
 
 ; prepare to withdraw the active monster: copy hp, number, and status to roster

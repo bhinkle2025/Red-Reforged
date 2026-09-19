@@ -138,6 +138,18 @@ _WasBlownAwayText::
 	line "was blown away!"
 	prompt
 
+_DraggedOutText::
+	text_ram wBattleMonNick
+	text " was"
+	line "dragged out!"
+	prompt
+
+_EnemyDraggedOutText::
+	text_ram wEnemyMonNick
+	text " was"
+	line "dragged out!"
+	prompt
+
 _ChargeMoveEffectText::
 	text "<USER>@"
 	text_end

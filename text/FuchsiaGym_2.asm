@@ -85,7 +85,7 @@ _FuchsiaGymKogaReceivedTM07Text::
 _FuchsiaGymKogaTM07ExplanationText::
 	text_start
 	para "TM07 contains"
-	line "SLUDGE!"
+	line "VENOSHOCK!"
 
 	para "A poisonous"
 	line "attack used for"

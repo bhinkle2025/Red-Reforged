@@ -83,8 +83,8 @@ SpecialTrainerMoves:
 	db 0
 
 	db KOGA, 1
-	db 1, 1, SELFDESTRUCT
-	db 1, 2, FIRE_BLAST
+	db 1, 1, ROAR
+	db 1, 2, ROAR
 	db 2, 1, TOXIC
 	db 2, 2, REST
 	db 2, 3, ACID
