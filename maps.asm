@@ -727,8 +727,8 @@ INCLUDE "data/maps/objects/CeladonMart2F.asm"
 CeladonMart2F_Blocks: INCBIN "maps/CeladonMart2F.blk"
 
 INCLUDE "data/maps/headers/FuchsiaGoodRodHouse.asm"
-INCLUDE "scripts/FuchsiaGoodRodHouse.asm"
-INCLUDE "data/maps/objects/FuchsiaGoodRodHouse.asm"
+INCLUDE "scripts/FuchsiaMoveTutor.asm"
+INCLUDE "data/maps/objects/FuchsiaMoveTutor.asm"
 
 INCLUDE "data/maps/headers/Daycare.asm"
 INCLUDE "scripts/Daycare.asm"

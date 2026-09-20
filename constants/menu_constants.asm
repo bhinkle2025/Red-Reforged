@@ -25,7 +25,7 @@ DEF PC_ITEM_CAPACITY  EQU 50
 	const TWO_OPTION_MENU                   ; $14
 	const BUY_SELL_QUIT_MENU                ; $15
 	const POKECENTER_SERVICES_MENU_TEMPLATE ; $16
-	const_skip                              ; $17
+	const MOVE_TUTOR_MENU_TEMPLATE          ; $17
 	const_skip                              ; $18
 	const_skip                              ; $19
 	const JP_POKEDEX_MENU_TEMPLATE          ; $1a

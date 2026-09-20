@@ -36,6 +36,7 @@ TextBoxTextAndCoordTable:
 	text_box_text JP_AH_MENU_TEMPLATE,                7,  6, 11, 10, JapaneseAhText,           8,  8
 	text_box_text JP_POKEDEX_MENU_TEMPLATE,          11,  8, 19, 17, JapanesePokedexMenu,     12, 10
 	text_box_text POKECENTER_SERVICES_MENU_TEMPLATE, 0, 0, 15, 10, PokemonCenterServicesMenuText, 2, 1
+	text_box_text MOVE_TUTOR_MENU_TEMPLATE,          0, 0, 13, 10, MoveTutorMenuText,          2, 1
 
 BuySellQuitText:
 	db   "BUY"
@@ -92,4 +93,10 @@ PokemonCenterServicesMenuText:
 	db   "DELETE MOVE"
 	next "REMEMBER MOVE"
 	next "WONDER TRADE"
+	next "CANCEL@"
+
+MoveTutorMenuText:
+	db   "TELEPORT"
+	next "WHIRLWIND"
+	next "ROAR"
 	next "CANCEL@"

@@ -1,67 +1,126 @@
-FuchsiaGoodRodHouse_Script:
+FuchsiaMoveTutor_Script:
 	jp EnableAutoTextBoxDrawing
 
-FuchsiaGoodRodHouse_TextPointers:
+FuchsiaMoveTutor_TextPointers:
 	def_text_pointers
-	dw_const FuchsiaGoodRodHouseFishingGuruText, TEXT_FUCHSIAGOODRODHOUSE_FISHING_GURU
+	dw_const FuchsiaMoveTutorText, TEXT_FUCHSIACITY_MOVE_TUTOR
 
-FuchsiaGoodRodHouseFishingGuruText:
+FuchsiaMoveTutorText:
 	text_asm
-	ld a, [wStatusFlags1]
-	bit BIT_GOT_GOOD_ROD, a
-	jr nz, .got_item
-	ld hl, .Text
+
+	; Intro dialogue.
+	ld hl, .IntroText
 	call PrintText
+
+	; Ask YES / NO.
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
-	jr nz, .refused
-	lb bc, GOOD_ROD, 1
-	call GiveItem
-	jr nc, .bag_full
-	ld hl, wStatusFlags1
-	set BIT_GOT_GOOD_ROD, [hl]
-	ld hl, .ReceivedGoodRodText
-	jr .done
-.bag_full
-	ld hl, .NoRoomText
-	jr .done
-.refused
-	ld hl, .ThatsSoDisappointingText
-	jr .done
-.got_item
-	ld hl, .HowAreTheFishText
-.done
-	call PrintText
+	jp nz, TextScriptEnd ; NO
+
+	; YES -> open Move Tutor menu.
+	ld a, MOVE_TUTOR_MENU_TEMPLATE
+	ld [wTextBoxID], a
+	call DisplayTextBoxID
+
+	xor a
+	ld [wCurrentMenuItem], a
+	ld [wTopMenuItemY], a
+	ld [wTopMenuItemX], a
+	ld [wMenuJoypadPollCount], a
+
+	ld a, 3 ; TELEPORT / WHIRLWIND / ROAR / CANCEL
+	ld [wMaxMenuItem], a
+	ld [wLastMenuItem], a
+
+	ld a, A_BUTTON | B_BUTTON
+	ld [wMenuWatchedKeys], a
+
+	call HandleMenuInput
+
+	bit B_BUTTON_F, a
+	jp nz, TextScriptEnd
+
+	ld a, [wCurrentMenuItem]
+	and a
+	jr z, .Teleport
+
+	cp 1
+	jr z, .Whirlwind
+
+	cp 2
+	jr z, .Roar
+
 	jp TextScriptEnd
 
-.Text:
-	text_far _FuchsiaGoodRodHouseFishingGuruText
-	text_end
+.Teleport
+	ld a, TELEPORT
+	jr .SelectedMove
 
-.ReceivedGoodRodText:
-	text_far _FuchsiaGoodRodHouseFishingGuruReceivedGoodRodText
-	sound_get_item_1
-	text_end
+.Whirlwind
+	ld a, WHIRLWIND
+	jr .SelectedMove
 
-.UnusedText:
-	para "つり　こそ"
-	line "おとこの　ロマン　だ！"
+.Roar
+	ld a, ROAR
 
-	para "へぼいつりざおは"
-	line "コイキングしか　つれ　なんだが"
-	line "この　いいつりざおなら"
-	line "もっと　いいもんが　つれるんじゃ！"
-	done
+.SelectedMove
+	ld [wMoveNum], a
 
-.ThatsSoDisappointingText:
-	text_far _FuchsiaGoodRodHouseFishingGuruThatsSoDisappointingText
-	text_end
+	; Select Pokemon
+	call SaveScreenTilesToBuffer2
+	xor a
+	ld [wListScrollOffset], a
+	ld [wPartyMenuTypeOrMessageID], a
+	ld [wUpdateSpritesEnabled], a
+	ld [wMenuItemToSwap], a
+	call DisplayPartyMenu
 
-.HowAreTheFishText:
-	text_far _FuchsiaGoodRodHouseFishingGuruHowAreTheFishText
-	text_end
+	push af
+	call GBPalWhiteOutWithDelay3
+	call RestoreScreenTilesAndReloadTilePatterns
 
-.NoRoomText:
-	text_far _FuchsiaGoodRodHouseFishingGuruNoRoomText
+	; Clear old "Which #MON?" text.
+	hlcoord 1, 13
+	lb bc, 4, 18
+	call ClearScreenArea
+
+	ld b, $9c
+	call CopyScreenTileBufferToVRAM
+
+	call LoadGBPal
+	pop af
+
+	jp c, TextScriptEnd
+
+	; wWhichPokemon now contains the selected party slot.
+	; Next step: check whether that Pokémon can learn [wMoveNum].
+	jp MoveTutorCheckCompatibility
+
+MoveTutorTeleportMons:
+	db BUTTERFREE
+	db CLEFAIRY, CLEFABLE
+	db JIGGLYPUFF, WIGGLYTUFF
+	db VENOMOTH
+	db ARCANINE
+	db ABRA, KADABRA, ALAKAZAM
+	db SLOWPOKE, SLOWBRO
+	db MAGNEMITE, MAGNETON
+	db SHELLDER, CLOYSTER
+	db DROWZEE, HYPNO
+	db VOLTORB, ELECTRODE
+	db EXEGGCUTE, EXEGGUTOR
+	db CHANSEY
+	db STARYU, STARMIE
+	db MR_MIME
+	db JYNX
+	db ELECTABUZZ
+	db MAGMAR
+	db PORYGON
+	db MEWTWO
+	db MEW
+	db $00
+
+.IntroText:
+	text_far _FuchsiaMoveTutorText
 	text_end
