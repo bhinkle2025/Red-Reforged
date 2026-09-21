@@ -13,7 +13,6 @@ INCLUDE "engine/gfx/sprite_oam.asm"
 INCLUDE "engine/gfx/oam_dma.asm"
 INCLUDE "engine/link/print_waiting_text.asm"
 INCLUDE "engine/overworld/sprite_collisions.asm"
-INCLUDE "engine/debug/debug_menu.asm"
 INCLUDE "engine/events/pick_up_item.asm"
 INCLUDE "engine/overworld/movement.asm"
 INCLUDE "engine/link/cable_club.asm"
@@ -365,3 +364,4 @@ INCLUDE "engine/menus/quantity_menu.asm" ; This can go anywhere
 SECTION "Debug Party", ROMX, BANK[44]
 
 INCLUDE "engine/debug/debug_party.asm"
+INCLUDE "engine/debug/debug_menu.asm"

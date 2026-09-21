@@ -29,10 +29,35 @@ _CinnabarLabMetronomeRoomScientist1TM35NoRoomText::
 	line "crammed full!"
 	done
 
-_CinnabarLabMetronomeRoomScientist2Text::
-	text "EEVEE can evolve"
-	line "into 1 of 3 kinds"
-	cont "of #MON."
+_CinnabarMoveTutorIntroText::
+	text "MY RESEARCH IS"
+	line "HIGHLY"
+	cont "EXPERIMENTAL!"
+
+	para "I CAN TEACH"
+	line "#MON SOME"
+	cont "UNUSUAL TRICKS."
+
+	para "CARE TO HELP"
+	line "WITH MY RESEARCH?"
+	done
+
+_CinnabarMoveTutorNoText::
+	text "HMM..."
+	line "CAUTION IS SO"
+	cont "TERRIBLY BORING."
+	done
+
+_CinnabarMoveTutorCantLearnText::
+	text "THIS #MON"
+	line "ISN'T SUITED TO"
+	cont "THAT EXPERIMENT!"
+	done
+
+_CinnabarMoveTutorAlreadyKnowsText::
+	text "THAT #MON"
+	line "ALREADY KNOWS"
+	cont "THAT MOVE!"
 	done
 
 _CinnabarLabMetronomeRoomPCText::

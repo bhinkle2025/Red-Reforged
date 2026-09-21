@@ -964,6 +964,9 @@ SwitchAndTeleportEffect:
 
 	callfar ForceRemovePlayerMon
 	callfar ForceSendOutPlayerMon
+
+	xor a
+	ld [wActionResultOrTookBattleTurn], a
 	ret
 
 .enemyTeleport

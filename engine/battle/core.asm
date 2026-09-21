@@ -308,7 +308,7 @@ MainInBattleLoop:
 	and a
 	ret nz ; return if pokedoll was used to escape from battle
 	ld a, [wBattleMonStatus]
-	and (1 << FRZ) | SLP_MASK
+	bit FRZ, a
 	jr nz, .selectEnemyMove ; if so, jump
 	ld a, [wPlayerBattleStatus1]
 	bit USING_TRAPPING_MOVE, a ; check if player is using a multi-turn attack like Wrap
@@ -4591,8 +4591,8 @@ GetDamageVarsForPlayerAttack:
 	ld d, a ; d = move power
 	ret z ; return if move power is zero
 	; Hex doubles in power if the target has a major status condition.
-	ld a, [wPlayerMoveEffect]
-	cp HEX_EFFECT
+	ld a, [wPlayerMoveNum]
+	cp HEX
 	jr nz, .checkVenoshock
 
 	ld a, [wEnemyMonStatus]
@@ -4600,15 +4600,16 @@ GetDamageVarsForPlayerAttack:
 	jr nz, .doublePower
 	jr .statusPowerDone
 
-	.checkVenoshock
-	cp VENOSHOCK_EFFECT
+.checkVenoshock
+	ld a, [wPlayerMoveNum]
+	cp VENOSHOCK
 	jr nz, .statusPowerDone
 
 	ld a, [wEnemyMonStatus]
 	bit PSN, a
 	jr z, .statusPowerDone
 
-	.doublePower
+.doublePower
 	sla d
 
 .statusPowerDone
@@ -4720,8 +4721,8 @@ GetDamageVarsForEnemyAttack:
 	and a
 	ret z ; return if move power is zero
 	; Hex doubles in power if the target has a major status condition.
-	ld a, [wEnemyMoveEffect]
-	cp HEX_EFFECT
+	ld a, [wEnemyMoveNum]
+	cp HEX
 	jr nz, .checkVenoshock
 
 	ld a, [wBattleMonStatus]
@@ -4730,7 +4731,8 @@ GetDamageVarsForEnemyAttack:
 	jr .statusPowerDone
 
 .checkVenoshock
-	cp VENOSHOCK_EFFECT
+	ld a, [wEnemyMoveNum]
+	cp VENOSHOCK
 	jr nz, .statusPowerDone
 
 	ld a, [wBattleMonStatus]
@@ -5727,9 +5729,24 @@ MoveHitTest:
 .swiftCheck
 	ld a, [de]
 	cp SWIFT_EFFECT
-	ret z ; Swift never misses (this was fixed from the Japanese versions)
-	cp NIGHT_SLASH_EFFECT
-	ret z ; Night Slash never misses
+	ret z ; Swift never misses
+
+	; Night Slash never misses.
+	ldh a, [hWhoseTurn]
+	and a
+	jr nz, .enemyNightSlashCheck
+
+	ld a, [wPlayerMoveNum]
+	cp NIGHT_SLASH
+	ret z
+	jr .normalAccuracyCheck
+
+.enemyNightSlashCheck
+	ld a, [wEnemyMoveNum]
+	cp NIGHT_SLASH
+	ret z
+
+.normalAccuracyCheck
 	call CheckTargetSubstitute ; substitute check (note that this overwrites a)
 	jr z, .checkForDigOrFlyStatus
 ; The fix for Swift broke this code. It's supposed to prevent HP draining moves from working on Substitutes.
