@@ -162,7 +162,7 @@ MoveSoundTable:
 	db SFX_BATTLE_31,          $80, $04 ; SHARPEN
 	db SFX_BATTLE_33,          $f0, $10 ; CONVERSION
 	db SFX_BATTLE_29,          $f8, $ff ; TRI_ATTACK
-	db SFX_BATTLE_26,          $f0, $ff ; SUPER_FANG
+	db SFX_BATTLE_33,          $00, $80 ; ROOST
 	db SFX_NOT_VERY_EFFECTIVE, $01, $ff ; SLASH
 	db SFX_BATTLE_2C,          $d8, $04 ; SUBSTITUTE
 	db SFX_NOT_VERY_EFFECTIVE, $00, $80 ; STEEL_WING

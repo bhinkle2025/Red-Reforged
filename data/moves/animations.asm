@@ -161,7 +161,7 @@ AttackAnimationPointers:
 	dw SharpenAnim
 	dw ConversionAnim
 	dw TriAttackAnim
-	dw SuperFangAnim
+	dw RoostAnim
 	dw SlashAnim
 	dw SubstituteAnim
 	dw SteelWingAnim
@@ -817,6 +817,7 @@ DoubleTeamAnim:
 	battle_anim BARRIER, SUBANIM_1_BARRIER, 1, 6
 	db -1 ; end
 
+RoostAnim:
 RecoverAnim:
 	battle_anim RECOVER, SE_BLINK_MON
 	battle_anim NO_MOVE, SE_LIGHT_SCREEN_PALETTE
@@ -1131,12 +1132,6 @@ TriAttackAnim:
 	battle_anim TRI_ATTACK, SE_DARK_SCREEN_FLASH
 	battle_anim NO_MOVE, SUBANIM_1_TRIANGLE_TOSS, 1, 6
 	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
-	db -1 ; end
-
-SuperFangAnim:
-	battle_anim LEECH_SEED, SE_DARK_SCREEN_PALETTE
-	battle_anim SUPER_FANG, SUBANIM_1_STAR_BIG_MOVING, 1, 6
-	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
 NightSlashAnim:

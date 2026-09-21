@@ -167,7 +167,7 @@
 	const SHARPEN      ; 9f
 	const CONVERSION   ; a0
 	const TRI_ATTACK   ; a1
-	const SUPER_FANG   ; a2
+	const ROOST        ; a2
 	const SLASH        ; a3
 	const SUBSTITUTE   ; a4
 	const STEEL_WING   ; a5

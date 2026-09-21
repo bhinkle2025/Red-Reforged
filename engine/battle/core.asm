@@ -422,6 +422,9 @@ MainInBattleLoop:
 	jp z, HandlePlayerMonFainted
 	call DrawHUDsAndHPBars
 	call CheckNumAttacksLeft
+	xor a
+	ld [wPlayerRoostActive], a
+	ld [wEnemyRoostActive], a
 	jp MainInBattleLoop
 .playerMovesFirst
 	call ExecutePlayerMove
@@ -450,6 +453,9 @@ MainInBattleLoop:
 	jp z, HandleEnemyMonFainted
 	call DrawHUDsAndHPBars
 	call CheckNumAttacksLeft
+	xor a
+	ld [wPlayerRoostActive], a
+	ld [wEnemyRoostActive], a
 	jp MainInBattleLoop
 
 HandleMovePriority:
@@ -5147,32 +5153,11 @@ ApplyAttackToEnemyPokemon:
 	ld a, [wPlayerMoveEffect]
 	cp OHKO_EFFECT
 	jr z, ApplyDamageToEnemyPokemon
-	cp SUPER_FANG_EFFECT
-	jr z, .superFangEffect
 
 	ld a, [wPlayerMovePower]
 	and a
 	jp z, ApplyAttackToEnemyPokemonDone
-	jr ApplyDamageToEnemyPokemon
 
-.superFangEffect
-	; set the damage to half the target's HP
-	ld hl, wEnemyMonHP
-	ld de, wDamage
-	ld a, [hli]
-	srl a
-	ld [de], a
-	inc de
-	ld b, a
-	ld a, [hl]
-	rr a
-	ld [de], a
-	or b
-	jr nz, ApplyDamageToEnemyPokemon
-
-	; make sure Super Fang's damage is always at least 1
-	ld a, $01
-	ld [de], a
 	jr ApplyDamageToEnemyPokemon
 
 ApplyDamageToEnemyPokemon:
@@ -5232,34 +5217,12 @@ ApplyAttackToPlayerPokemon:
 	ld a, [wEnemyMoveEffect]
 	cp OHKO_EFFECT
 	jr z, ApplyDamageToPlayerPokemon
-	cp SUPER_FANG_EFFECT
-	jr z, .superFangEffect
 
 	ld a, [wEnemyMovePower]
 	and a
 	jp z, ApplyAttackToPlayerPokemonDone
+
 	jr ApplyDamageToPlayerPokemon
-
-.superFangEffect
-	; set the damage to half the target's HP
-	ld hl, wBattleMonHP
-	ld de, wDamage
-	ld a, [hli]
-	srl a
-	ld [de], a
-	inc de
-	ld b, a
-	ld a, [hl]
-	rr a
-	ld [de], a
-	or b
-	jr nz, ApplyDamageToPlayerPokemon
-
-	; make sure Super Fang's damage is always at least 1
-	ld a, $01
-	ld [de], a
-	jr ApplyDamageToPlayerPokemon
-
 ApplyDamageToPlayerPokemon:
 	ld hl, wDamage
 	ld a, [hli]
@@ -5565,6 +5528,36 @@ AdjustDamageForMoveType:
 	ld a, [wEnemyMoveType]
 	ld [wMoveType], a
 .next
+	; Roost temporarily removes Flying from the defender's typing.
+	ldh a, [hWhoseTurn]
+	and a
+	jr nz, .checkPlayerRoost
+
+	; Player is attacking, so enemy is defending.
+	ld a, [wEnemyRoostActive]
+	and a
+	jr z, .roostTypeCheckDone
+	jr .suppressFlyingType
+
+.checkPlayerRoost
+	; Enemy is attacking, so player is defending.
+	ld a, [wPlayerRoostActive]
+	and a
+	jr z, .roostTypeCheckDone
+
+.suppressFlyingType
+	ld a, d
+	cp FLYING
+	jr nz, .checkRoostType2
+	ld d, $ff
+
+.checkRoostType2
+	ld a, e
+	cp FLYING
+	jr nz, .roostTypeCheckDone
+	ld e, $ff
+
+.roostTypeCheckDone
 	ld a, [wMoveType]
 	cp b ; does the move type match type 1 of the attacker?
 	jr z, .sameTypeAttackBonus

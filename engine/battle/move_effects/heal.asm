@@ -99,6 +99,26 @@ HealEffect_:
 	predef UpdateHPBar2
 	ld hl, DrawHUDsAndHPBars
 	call EffectCallBattleCore
+	; Roost: remove Flying typing for the rest of this turn.
+	ldh a, [hWhoseTurn]
+	and a
+	jr nz, .enemyRoostCheck
+
+	ld a, [wPlayerMoveNum]
+	cp ROOST
+	jr nz, .printHealText
+	ld a, 1
+	ld [wPlayerRoostActive], a
+	jr .printHealText
+
+.enemyRoostCheck
+	ld a, [wEnemyMoveNum]
+	cp ROOST
+	jr nz, .printHealText
+	ld a, 1
+	ld [wEnemyRoostActive], a
+
+.printHealText
 	ld hl, RegainedHealthText
 	jp PrintText
 .failed

@@ -264,6 +264,7 @@ SpearowEvosMoves:
 	db 22, MIRROR_MOVE
 	db 25, AGILITY
 	db 29, DRILL_PECK
+	db 36, ROOST
 	db 0
 
 VoltorbEvosMoves:
@@ -388,7 +389,7 @@ NidoranFEvosMoves:
 	db 21, DIG
 	db 24, ACID
 	db 27, BITE
-	db 31, SUPER_FANG
+	db 31, ROCK_SLIDE
 	db 0
 
 NidoqueenEvosMoves:
@@ -618,6 +619,7 @@ FearowEvosMoves:
 	db 22, MIRROR_MOVE
 	db 25, AGILITY
 	db 29, DRILL_PECK
+	db 36, ROOST
 	db 0
 
 PidgeyEvosMoves:
@@ -629,8 +631,9 @@ PidgeyEvosMoves:
 	db 9, QUICK_ATTACK
 	db 11, MIRROR_MOVE
 	db 15, WING_ATTACK
-	db 19, WHIRLWIND
-	db 23, AGILITY
+	db 25, WHIRLWIND
+	db 31, AGILITY
+	db 37, ROOST
 	db 44, HURRICANE
 	db 0
 
@@ -1038,6 +1041,7 @@ MoltresEvosMoves:
 ; Learnset
 	db 51, LEER
 	db 55, AGILITY
+	db 57, ROOST
 	db 60, SKY_ATTACK
 	db 0
 
@@ -1047,6 +1051,7 @@ ArticunoEvosMoves:
 ; Learnset
 	db 51, BLIZZARD
 	db 55, AGILITY
+	db 57, ROOST
 	db 60, MIST
 	db 0
 
@@ -1056,6 +1061,7 @@ ZapdosEvosMoves:
 ; Learnset
 	db 51, THUNDER
 	db 55, AGILITY
+	db 57, ROOST
 	db 60, LIGHT_SCREEN
 	db 0
 
@@ -1824,6 +1830,7 @@ PidgeottoEvosMoves:
 	db 15, WING_ATTACK
 	db 25, WHIRLWIND
 	db 31, AGILITY
+	db 37, ROOST
 	db 44, HURRICANE
 	db 0
 
@@ -1837,6 +1844,7 @@ PidgeotEvosMoves:
 	db 15, WING_ATTACK
 	db 25, WHIRLWIND
 	db 31, AGILITY
+	db 37, ROOST
 	db 44, HURRICANE
 	db 0
 
@@ -1982,8 +1990,8 @@ RattataEvosMoves:
 ; Learnset
 	db 6, QUICK_ATTACK
 	db 12, BITE
-	db 15, SUPER_FANG
-	db 21, HYPER_FANG
+	db 15, HYPER_FANG
+	db 21, DOUBLE_EDGE
 	db 24, EXTREMESPEED
 	db 27, SWORDS_DANCE
 	db 0
@@ -1994,8 +2002,8 @@ RaticateEvosMoves:
 ; Learnset
 	db 6, QUICK_ATTACK
 	db 12, BITE
-	db 14, SUPER_FANG
-	db 26, HYPER_FANG
+	db 15, HYPER_FANG
+	db 21, DOUBLE_EDGE
 	db 24, EXTREMESPEED
 	db 27, SWORDS_DANCE
 	db 0
@@ -2025,8 +2033,7 @@ NidorinaEvosMoves:
 	db 21, DIG
 	db 24, ACID
 	db 27, BITE
-	db 31, SUPER_FANG
-	
+	db 31, ROCK_SLIDE
 	db 0
 
 GeodudeEvosMoves:

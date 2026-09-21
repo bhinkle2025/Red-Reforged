@@ -161,7 +161,7 @@ MoveNames::
 	li "SHARPEN"
 	li "CONVERSION"
 	li "TRI ATTACK"
-	li "SUPER FANG"
+	li "ROOST"
 	li "SLASH"
 	li "SUBSTITUTE"
 	li "STEEL WING"

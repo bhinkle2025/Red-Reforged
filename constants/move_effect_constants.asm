@@ -44,7 +44,7 @@
 	const FLINCH_SIDE_EFFECT2        ; $25
 	const OHKO_EFFECT                ; $26 moves like Horn Drill
 	const CHARGE_EFFECT              ; $27 moves like Solar Beam
-	const SUPER_FANG_EFFECT          ; $28
+	const ROOST_EFFECT               ; $28
 	const SPECIAL_DAMAGE_EFFECT      ; $29 Seismic Toss, Night Shade, Sonic Boom, Dragon Rage, Psywave
 	const TRAPPING_EFFECT            ; $2A moves like Wrap
 	const FLY_EFFECT                 ; $2B
