@@ -2,8 +2,9 @@ _CinnabarLabMetronomeRoomScientist1Text::
 	text "Tch-tch-tch!"
 	line "I made a cool TM!"
 
-	para "It can cause all"
-	line "kinds of fun!"
+	para "It turns sturdy"
+	line "defense into"
+	cont "crushing force!"
 	prompt
 
 _CinnabarLabMetronomeRoomScientist1ReceivedTM35Text::
@@ -14,14 +15,13 @@ _CinnabarLabMetronomeRoomScientist1ReceivedTM35Text::
 	text_end
 
 _CinnabarLabMetronomeRoomScientist1TM35ExplanationText::
-	text "Tch-tch-tch!"
-	line "That's the sound"
-	cont "of a METRONOME!"
+	text "BODY PRESS uses"
+	line "the user's DEFENSE"
+	cont "to deal damage!"
 
-	para "It tweaks your"
-	line "#MON's brain"
-	cont "into using moves"
-	cont "it doesn't know!"
+	para "The tougher the"
+	line "#MON, the harder"
+	cont "it hits!"
 	done
 
 _CinnabarLabMetronomeRoomScientist1TM35NoRoomText::

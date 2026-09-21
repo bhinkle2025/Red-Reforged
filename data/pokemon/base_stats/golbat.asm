@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  VENOSHOCK,    SKY_ATTACK,   \
-	     HYPER_BEAM,   MEGA_DRAIN,   MIMIC,        DOUBLE_TEAM,  \
-	     SWIFT,        REST,         SUBSTITUTE,   CALM_MIND,    \
+	     HYPER_BEAM,   MEGA_DRAIN,   MIMIC,        LEECH_LIFE,   \
+	     SWIFT,        REST,         CALM_MIND,    ROOST,        \
 		 HEX,          STEEL_WING,   FLY
 	; end
 

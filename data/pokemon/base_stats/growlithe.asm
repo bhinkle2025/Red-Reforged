@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  FLAMETHROWER, OUTRAGE,      SUBMISSION,   \
-	     DRAGON_RAGE,  DIG,          MIMIC,        DOUBLE_TEAM,  REFLECT,      \
+	     DRAGON_RAGE,  DIG,          MIMIC,        REFLECT,      \
 	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         \
-	     SUBSTITUTE,   STRENGTH
+	     STRENGTH
 	; end
 
 	db 0 ; padding

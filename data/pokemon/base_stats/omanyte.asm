@@ -16,7 +16,7 @@
 	; tm/hm learnset
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  BUBBLEBEAM,   \
 	     ICE_BEAM,     BLIZZARD,     MIMIC,        ROCK_SLIDE,   \
-	     DOUBLE_TEAM,  REFLECT,      REST,         SUBSTITUTE,   \
+	     REFLECT,      REST,          \
 	     IRON_DEFENSE, SURF
 	; end
 

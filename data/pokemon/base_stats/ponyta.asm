@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  CALM_MIND,    \
-	     MIMIC,        DOUBLE_TEAM,  REFLECT,      SOLARBEAM,    \
-	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE,   \
+	     MIMIC,        REFLECT,      SOLARBEAM,    \
+	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,    \
 		 FLAMETHROWER, STRENGTH
 	; end
 

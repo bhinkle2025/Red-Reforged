@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm GIGA_IMPACT,  HYPER_BEAM,   THUNDERBOLT,  LIGHT_SCREEN, \
-	     THUNDER,      MIMIC,        DOUBLE_TEAM,  REFLECT,      \
+	     THUNDER,      MIMIC,        REFLECT,      \
 	     SELFDESTRUCT, SWIFT,        SKULL_BASH,   REST,         \
-	     THUNDER_WAVE, EXPLOSION,    SUBSTITUTE,   FLASH
+	     THUNDER_WAVE, EXPLOSION,    FLASH
 	; end
 
 	db 0 ; padding

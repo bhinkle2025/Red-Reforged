@@ -15,9 +15,10 @@
 
 	; tm/hm learnset
 	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  DRAGON_RAGE,  \
-	     EARTHQUAKE,   DIG,          MIMIC,        DOUBLE_TEAM,  \
+	     EARTHQUAKE,   DIG,          MIMIC,         \
 	     SELFDESTRUCT, SKULL_BASH,   REST,         EXPLOSION,    \
-	     ROCK_SLIDE,   SUBSTITUTE,   STRENGTH,     FLASH
+	     ROCK_SLIDE,   BODY_PRESS,  \
+		 STRENGTH,     FLASH
 	; end
 
 	db 0 ; padding

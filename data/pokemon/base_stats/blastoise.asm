@@ -14,11 +14,11 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    GIGA_IMPACT,  \
+	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    GIGA_IMPACT,  BODY_PRESS,   \
 	     DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     OUTRAGE,      \
 	     HYPER_BEAM,   SUBMISSION,   SEISMIC_TOSS, ICE_PUNCH,    \
-	     EARTHQUAKE,   DIG,          MIMIC,        DOUBLE_TEAM,  \
-	     REFLECT,      SKULL_BASH,   REST,         SUBSTITUTE,   IRON_DEFENSE, \
+	     EARTHQUAKE,   DIG,          MIMIC,         \
+	     REFLECT,      SKULL_BASH,   REST,         IRON_DEFENSE, \
 	     ROCK_SLIDE,   SURF,         STRENGTH,     FLASH
 	; end
 

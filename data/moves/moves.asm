@@ -171,8 +171,8 @@ Moves:
 	move HYPER_FANG,   FLINCH_SIDE_EFFECT1,         80, NORMAL,        90, 15
 	move SHARPEN,      ATTACK_UP1_EFFECT,            0, NORMAL,       100, 30
 	move CONVERSION,   CONVERSION_EFFECT,            0, NORMAL,       100, 30
-	move TRI_ATTACK,   BURN_SIDE_EFFECT2,            80, NORMAL,       100,10
-	move ROOST,        ROOST_EFFECT,                 0, FLYING,        100, 5
+	move TRI_ATTACK,   BURN_SIDE_EFFECT2,           80, NORMAL,       100, 10
+	move ROOST,        ROOST_EFFECT,                 0, FLYING,       100,  5
 	move SLASH,        NO_ADDITIONAL_EFFECT,        70, NORMAL,       100, 20
 	move SUBSTITUTE,   SUBSTITUTE_EFFECT,            0, NORMAL,       100, 10
 	move STEEL_WING,   NO_ADDITIONAL_EFFECT,        70, STEEL,         90, 25

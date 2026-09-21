@@ -14,10 +14,10 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm SWORDS_DANCE, BODY_SLAM,    DOUBLE_EDGE,  \
+	tmhm SWORDS_DANCE, BODY_SLAM,    DOUBLE_EDGE,  LEECH_LIFE,   \
 	     SUBMISSION,   SEISMIC_TOSS, EARTHQUAKE,   SHADOW_CLAW,  \
-	     DIG,          MIMIC,        DOUBLE_TEAM,  SWIFT,        \
-	     SKULL_BASH,   REST,         ROCK_SLIDE,   SUBSTITUTE,   CUT,          \
+	     DIG,          MIMIC,        SWIFT,        \
+	     SKULL_BASH,   REST,         ROCK_SLIDE,   CUT,          \
 	     STRENGTH
 	; end
 

@@ -16,7 +16,7 @@
 	; tm/hm learnset
 	tmhm SWORDS_DANCE, BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  REFLECT,      \
 	     HYPER_BEAM,   MEGA_DRAIN,   SOLARBEAM,    MIMIC,        VENOSHOCK,    \
-	     DOUBLE_TEAM,  SKULL_BASH,   REST,         SUBSTITUTE,   CALM_MIND,    \
+	     SKULL_BASH,   REST,         CALM_MIND,    \
 	     AMNESIA,      CUT,          FLASH
 	; end
 

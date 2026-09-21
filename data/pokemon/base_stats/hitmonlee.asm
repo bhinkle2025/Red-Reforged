@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    GIGA_IMPACT,  \
 	     DOUBLE_EDGE,  SUBMISSION,   SEISMIC_TOSS, ROCK_SLIDE,   \
-	     MIMIC,        DOUBLE_TEAM,  METRONOME,    SWIFT,        \
-	     SKULL_BASH,   REST,         SUBSTITUTE,   EARTHQUAKE,   SWORDS_DANCE, \
+	     MIMIC,        SWIFT,        \
+	     SKULL_BASH,   REST,         EARTHQUAKE,   SWORDS_DANCE, \
 		 STRENGTH
 	; end
 

@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  HYPER_BEAM,   \
 	     DRAGON_RAGE,  DIG,          MIMIC,        SOLARBEAM,    \
-	     DOUBLE_TEAM,  REFLECT,      FIRE_BLAST,   SWIFT,        SUBMISSION,   \
-	     SKULL_BASH,   REST,         SUBSTITUTE,   FLAMETHROWER, OUTRAGE,      \
+	     REFLECT,      FIRE_BLAST,   SWIFT,        SUBMISSION,   \
+	     SKULL_BASH,   REST,         FLAMETHROWER, OUTRAGE,      \
 		 STRENGTH
 	; end
 

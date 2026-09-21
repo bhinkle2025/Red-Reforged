@@ -14,10 +14,10 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm BODY_SLAM,    DOUBLE_EDGE,  VENOSHOCK,       \
+	tmhm BODY_SLAM,    DOUBLE_EDGE,  VENOSHOCK,    LEECH_LIFE,   \
 	     MEGA_DRAIN,   EARTHQUAKE,   DIG,          MIMIC,        \
-	     DOUBLE_TEAM,  SKULL_BASH,   REST,         ROCK_SLIDE,   \
-	     SUBSTITUTE,   STRENGTH
+	     SKULL_BASH,   REST,         ROCK_SLIDE,   \
+	     STRENGTH
 	; end
 
 	db 0 ; padding

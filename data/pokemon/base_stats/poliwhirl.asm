@@ -17,8 +17,8 @@
 	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    SWIFT,        \
 	     DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     \
 	     SUBMISSION,   SEISMIC_TOSS, EARTHQUAKE,   ICE_PUNCH,    \
-	     PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  \
-	     METRONOME,    SKULL_BASH,   REST,         AMNESIA,      SUBSTITUTE,   \
+	     PSYCHIC_M,    MIMIC,         \
+	     SKULL_BASH,   REST,         AMNESIA,       \
 	     DIG,          SURF,         STRENGTH
 	; end
 

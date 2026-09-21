@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm DOUBLE_EDGE,  STEEL_WING,   TRI_ATTACK,   \
-	     MIMIC,        DOUBLE_TEAM,  SWIFT,        \
-	     SKY_ATTACK,   REST,         SUBSTITUTE,   FLY
+	     MIMIC,        SWIFT,        ROOST,        \
+	     SKY_ATTACK,   REST,         FLY
 	; end
 
 	db 0 ; padding

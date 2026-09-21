@@ -14,10 +14,10 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  DREAM_EATER,  HEX,          \
+	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  DREAM_EATER,  HEX,          ROOST,        \
 	     HYPER_BEAM,   MEGA_DRAIN,   SOLARBEAM,    PSYCHIC_M,    IRON_DEFENSE, \
-	     CALM_MIND,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     SWIFT,        REST,         AMNESIA,      SUBSTITUTE
+	     CALM_MIND,    MIMIC,        REFLECT,      \
+	     SWIFT,        REST,         AMNESIA
 	; end
 
 	db 0 ; padding

@@ -16,9 +16,9 @@
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    LIGHT_SCREEN, \
 	     DOUBLE_EDGE,  SUBMISSION,   SEISMIC_TOSS, FIRE_PUNCH,   SWIFT,        \
-	     DIG,          PSYCHIC_M,    CALM_MIND,    MIMIC,        DOUBLE_TEAM,  \
-	     REFLECT,      METRONOME,    SKULL_BASH,   REST,         DAZZLE,       \
-	     THUNDER_WAVE, TRI_ATTACK,   SUBSTITUTE,   THUNDERPUNCH, HEX,          \   
+	     DIG,          PSYCHIC_M,    CALM_MIND,    MIMIC,        \
+	     REFLECT,      SKULL_BASH,   REST,         DAZZLE,       \
+	     THUNDER_WAVE, TRI_ATTACK,   THUNDERPUNCH, HEX,          \   
 		 ICE_PUNCH,    DREAM_EATER,  FLASH
 	; end
 

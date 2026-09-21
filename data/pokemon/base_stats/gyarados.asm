@@ -16,9 +16,9 @@
 	; tm/hm learnset
 	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  BUBBLEBEAM,   THUNDER_WAVE, \
 	     ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   EARTHQUAKE,   OUTRAGE,      \
-	     DRAGON_RAGE,  THUNDERBOLT,  THUNDER,      MIMIC,        DOUBLE_TEAM,  \
+	     DRAGON_RAGE,  THUNDERBOLT,  THUNDER,      MIMIC,        \
 	     REFLECT,      FIRE_BLAST,   SKULL_BASH,   REST,         \
-	     SUBSTITUTE,   FLAMETHROWER, SURF,         STRENGTH,     FLY
+	     FLAMETHROWER, SURF,         STRENGTH,     FLY
 	; end
 
 	db 0 ; padding

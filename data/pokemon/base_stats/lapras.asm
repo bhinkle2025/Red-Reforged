@@ -14,11 +14,11 @@
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  \
+	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  BODY_PRESS,   \
 	     BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   \
 	     SOLARBEAM,    DRAGON_RAGE,  THUNDERBOLT,  THUNDER,      EARTHQUAKE,   \
-	     PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     SKULL_BASH,   REST,         SUBSTITUTE,   DREAM_EATER,  OUTRAGE,      \
+	     PSYCHIC_M,    MIMIC,        REFLECT,      \
+	     SKULL_BASH,   REST,         DREAM_EATER,  OUTRAGE,      \
 	     SURF,         STRENGTH
 	; end
 

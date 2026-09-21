@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm DOUBLE_EDGE,  BUBBLEBEAM,   IRON_DEFENSE, \
 	     ICE_BEAM,     BLIZZARD,     MIMIC,        \
-	     DOUBLE_TEAM,  REFLECT,      SELFDESTRUCT, SWIFT,        \
-	     REST,         EXPLOSION,    TRI_ATTACK,   SUBSTITUTE,   SURF
+	     REFLECT,      SELFDESTRUCT, SWIFT,        \
+	     REST,         EXPLOSION,    TRI_ATTACK,   SURF
 	; end
 
 	db 0 ; padding

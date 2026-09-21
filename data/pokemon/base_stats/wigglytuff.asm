@@ -18,10 +18,10 @@
 	     DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     SWIFT,        \
 	     HYPER_BEAM,   SUBMISSION,   SEISMIC_TOSS, FIRE_PUNCH,   LIGHT_SCREEN, \
 	     SOLARBEAM,    THUNDERBOLT,  THUNDER,      PSYCHIC_M,    CALM_MIND,    \
-	     MIMIC,        DOUBLE_TEAM,  REFLECT,      FIRE_BLAST,   DAZZLE,       \
+	     MIMIC,        REFLECT,      FIRE_BLAST,   DAZZLE,       \
 	     SKULL_BASH,   REST,         THUNDER_WAVE, AMNESIA,      TRI_ATTACK,   \
-	     SUBSTITUTE,   THUNDERPUNCH, ICE_PUNCH,    DREAM_EATER,  DIG,          \
-		 FLAMETHROWER, STRENGTH,     FLASH,        HEX
+	     THUNDERPUNCH, ICE_PUNCH,    DREAM_EATER,  DIG,          \
+		 FLAMETHROWER, HEX,          BODY_PRESS,   STRENGTH,     FLASH,        
 	; end
 
 	db 0 ; padding

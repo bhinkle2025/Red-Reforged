@@ -14,10 +14,10 @@
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
-	tmhm DOUBLE_EDGE,  VENOSHOCK,       \
-	     MEGA_DRAIN,   MIMIC,        DOUBLE_TEAM,  CALM_MIND,    \
-	     SWIFT,        REST,         SUBSTITUTE,   HEX,          \
-		 STEEL_WING,   FLY
+	tmhm DOUBLE_EDGE,  VENOSHOCK,    LEECH_LIFE,   \
+	     MEGA_DRAIN,   MIMIC,        CALM_MIND,    \
+	     SWIFT,        REST,         HEX,          \
+		 STEEL_WING,   ROOST,        FLY
 	; end
 
 	db 0 ; padding

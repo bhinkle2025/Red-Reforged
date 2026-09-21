@@ -18,8 +18,8 @@
 	     GIGA_IMPACT,  DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     OUTRAGE,      \
 	     BLIZZARD,     HYPER_BEAM,   SUBMISSION,   THUNDERPUNCH, SHADOW_CLAW,  \
 	     SEISMIC_TOSS, FIRE_PUNCH,   THUNDERBOLT,  THUNDER,      EARTHQUAKE,   \
-	     MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     FIRE_BLAST,   SKULL_BASH,   REST,         ROCK_SLIDE,   SUBSTITUTE,   \
+	     MIMIC,        REFLECT,      BODY_PRESS,  \
+	     FIRE_BLAST,   SKULL_BASH,   REST,         ROCK_SLIDE,  \
 	     ICE_PUNCH,    DIG,          FLAMETHROWER, SURF,         STRENGTH,     \
 		 CUT,          HEX
 	; end

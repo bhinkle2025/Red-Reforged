@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm DOUBLE_EDGE,  PSYCHIC_M,    SWORDS_DANCE, LIGHT_SCREEN, \
-	     CALM_MIND,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
+	     CALM_MIND,    MIMIC,        REFLECT,      \
 	     SELFDESTRUCT, REST,         EXPLOSION,    \
-	     SUBSTITUTE,   DREAM_EATER,  SOLARBEAM,    VENOSHOCK,       STRENGTH,     \
+	     DREAM_EATER,  SOLARBEAM,    VENOSHOCK,       STRENGTH,     \
 		 FLASH
 	; end
 

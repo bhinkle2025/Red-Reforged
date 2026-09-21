@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm FIRE_PUNCH,   MEGA_DRAIN,   THUNDERBOLT,  THUNDER,      \
-	     PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  SELFDESTRUCT, DAZZLE,       \
-	     DREAM_EATER,  REST,         EXPLOSION,    SUBSTITUTE,   HEX,          \
+	     PSYCHIC_M,    MIMIC,        SELFDESTRUCT, DAZZLE,       \
+	     DREAM_EATER,  REST,         EXPLOSION,    HEX,          \
 		 THUNDERPUNCH, ICE_PUNCH,    VENOSHOCK,    CALM_MIND
 	; end
 

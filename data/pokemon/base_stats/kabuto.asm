@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  BUBBLEBEAM,   MEGA_DRAIN,   \
 	     ICE_BEAM,     BLIZZARD,     MIMIC,        ROCK_SLIDE,   \
-	     DOUBLE_TEAM,  REFLECT,      REST,         SUBSTITUTE,   \
-	     DIG,          IRON_DEFENSE, SURF
+	     REFLECT,      REST,         DIG,          IRON_DEFENSE, \
+		 LEECH_LIFE,   SURF
 	; end
 
 	db 0 ; padding

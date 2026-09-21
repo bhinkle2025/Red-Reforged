@@ -15,9 +15,10 @@
 
 	; tm/hm learnset
 	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  ROCK_SLIDE,   EARTHQUAKE,   \
-	     HYPER_BEAM,   DRAGON_RAGE,  MIMIC,        DOUBLE_TEAM,  FLAMETHROWER, \
+	     HYPER_BEAM,   DRAGON_RAGE,  MIMIC,        FLAMETHROWER, \
 	     REFLECT,      FIRE_BLAST,   SWIFT,        SKY_ATTACK,   \
-	     REST,         SUBSTITUTE,   STEEL_WING,   FLY,          STRENGTH
+	     REST,         STEEL_WING,   ROOST,                      \
+		 FLY,          STRENGTH
 	; end
 
 	db 0 ; padding

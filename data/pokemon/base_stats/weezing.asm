@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm HYPER_BEAM,   THUNDERBOLT,  THUNDER,      FLAMETHROWER, \
-	     MIMIC,        DOUBLE_TEAM,  SELFDESTRUCT, FIRE_BLAST,   \
-	     REST,         EXPLOSION,    SUBSTITUTE,   VENOSHOCK,    HEX,  \      
+	     MIMIC,        SELFDESTRUCT, FIRE_BLAST,   \
+	     REST,         EXPLOSION,    VENOSHOCK,    HEX,  \      
 		 GIGA_IMPACT,  FLASH
 	; end
 

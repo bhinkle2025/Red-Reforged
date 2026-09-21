@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  FLAMETHROWER, \
-	     DIG,          MIMIC,        DOUBLE_TEAM,  REFLECT,      CALM_MIND, \
-	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE
+	     DIG,          MIMIC,        REFLECT,      CALM_MIND, \
+	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST
 	; end
 
 	db 0 ; padding

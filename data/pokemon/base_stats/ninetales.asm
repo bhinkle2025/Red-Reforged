@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  HYPER_BEAM,   \
-	     DIG,          MIMIC,        DOUBLE_TEAM,  REFLECT,      DREAM_EATER,  \
+	     DIG,          MIMIC,        REFLECT,      DREAM_EATER,  \
 	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         CALM_MIND,    \
-	     SUBSTITUTE,   SOLARBEAM,    FLAMETHROWER, HEX
+	     SOLARBEAM,    FLAMETHROWER, HEX
 	; end
 
 	db 0 ; padding

@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  IRON_DEFENSE, \
 	     BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   \
-	     SUBMISSION,   SEISMIC_TOSS, MIMIC,        DOUBLE_TEAM,  ROCK_SLIDE,   \
-	     REFLECT,      SKULL_BASH,   REST,         SUBSTITUTE,   \
+	     SUBMISSION,   SEISMIC_TOSS, MIMIC,        ROCK_SLIDE,   \
+	     REFLECT,      SKULL_BASH,   REST,        \
 	     SURF
 	; end
 

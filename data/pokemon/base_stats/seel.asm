@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  \
 	     BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     \
-	     MIMIC,        DOUBLE_TEAM,  SKULL_BASH,   \
-	     REST,         SUBSTITUTE,   SURF,         STRENGTH
+	     MIMIC,        SKULL_BASH,   \
+	     REST,         SURF,         STRENGTH
 	; end
 
 	db 0 ; padding

@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  SWORDS_DANCE, SWIFT,        \
-	     HYPER_BEAM,   MIMIC,        DOUBLE_TEAM,  REFLECT,      STEEL_WING,   \
+	     HYPER_BEAM,   MIMIC,        REFLECT,      STEEL_WING,   ROOST,        \
 	     SKULL_BASH,   SKY_ATTACK,   REST,         TRI_ATTACK,   \
-	     SUBSTITUTE,   FLY
+	     FLY
 	; end
 
 	db 0 ; padding

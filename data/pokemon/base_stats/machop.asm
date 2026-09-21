@@ -16,9 +16,9 @@
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    LIGHT_SCREEN, \
 	     DOUBLE_EDGE,  SUBMISSION,   SEISMIC_TOSS, FIRE_PUNCH,   \
-	     EARTHQUAKE,   DIG,          MIMIC,        DOUBLE_TEAM,  \
-	     METRONOME,    FIRE_BLAST,   SKULL_BASH,   REST,         \
-	     ROCK_SLIDE,   SUBSTITUTE,   THUNDERPUNCH, ICE_PUNCH,    FLAMETHROWER, \
+	     EARTHQUAKE,   DIG,          MIMIC,        \
+	     FIRE_BLAST,   SKULL_BASH,   REST,         \
+	     ROCK_SLIDE,   THUNDERPUNCH, ICE_PUNCH,    FLAMETHROWER, \
 		 STRENGTH
 	; end
 

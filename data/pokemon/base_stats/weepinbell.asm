@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm SWORDS_DANCE, DOUBLE_EDGE,  VENOSHOCK,    CALM_MIND,    SWIFT,        \
-	     MEGA_DRAIN,   SOLARBEAM,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     REST,         SUBSTITUTE,   CUT,          FLASH
+	     MEGA_DRAIN,   SOLARBEAM,    MIMIC,        REFLECT,      LEECH_LIFE,   \
+	     REST,         CUT,          FLASH
 	; end
 
 	db 0 ; padding

@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm DOUBLE_EDGE,  MEGA_DRAIN,   VENOSHOCK,    SWIFT,       \
-	     SOLARBEAM,    PSYCHIC_M,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     REST,         SUBSTITUTE
+	     SOLARBEAM,    PSYCHIC_M,    MIMIC,        REFLECT,      \
+	     REST,         LEECH_LIFE
 	; end
 
 	db 0 ; padding

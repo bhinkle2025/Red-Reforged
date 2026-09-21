@@ -17,8 +17,8 @@
 	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    CALM_MIND,    PSYCHIC_M,    \
 	     DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     SHADOW_CLAW,  \
 	     SUBMISSION,   SEISMIC_TOSS, ICE_PUNCH,    AMNESIA,      TRI_ATTACK,   \
-	     DIG,          MIMIC,        DOUBLE_TEAM,  SWIFT,        LIGHT_SCREEN, \
-	     SKULL_BASH,   REST,         SUBSTITUTE,   SURF,         STRENGTH,     \
+	     DIG,          MIMIC,        SWIFT,        LIGHT_SCREEN, \
+	     SKULL_BASH,   REST,         SURF,         STRENGTH,     \
 		 FLASH
 	; end
 

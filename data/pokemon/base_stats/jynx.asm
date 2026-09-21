@@ -17,9 +17,9 @@
 	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    GIGA_IMPACT,  \
 	     DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     \
 	     HYPER_BEAM,   SUBMISSION,   SEISMIC_TOSS, ICE_PUNCH,    \
-	     PSYCHIC_M,    CALM_MIND,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
-	     METRONOME,    SKULL_BASH,   REST,         HEX,          \
-	     SUBSTITUTE,   DREAM_EATER,  LIGHT_SCREEN, FLASH
+	     PSYCHIC_M,    CALM_MIND,    MIMIC,        REFLECT,      \
+	     SKULL_BASH,   REST,         HEX,          \
+	     DREAM_EATER,  LIGHT_SCREEN, FLASH
 	; end
 
 	db 0 ; padding

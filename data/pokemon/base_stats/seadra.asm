@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  BUBBLEBEAM,   \
 	     ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   MIMIC,        OUTRAGE,      \
-	     DOUBLE_TEAM,  SWIFT,        SKULL_BASH,   REST,         \
-	     SUBSTITUTE,   SURF,         DRAGON_RAGE,  FLASH
+	     SWIFT,        SKULL_BASH,   REST,         \
+	     SURF,         DRAGON_RAGE,  FLASH
 	; end
 
 	db 0 ; padding

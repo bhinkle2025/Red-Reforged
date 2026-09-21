@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm SWORDS_DANCE, GIGA_IMPACT,  DOUBLE_EDGE,  HYPER_BEAM,   \
-	     MIMIC,        DOUBLE_TEAM,  SWIFT,        STEEL_WING,   \
-		 LIGHT_SCREEN, SUBMISSION,   \
-	     SKULL_BASH,   REST,         SUBSTITUTE,   CUT
+	     MIMIC,        SWIFT,        STEEL_WING,   \
+		 LIGHT_SCREEN, SUBMISSION,   ROOST,        \
+	     SKULL_BASH,   REST,         CUT
 	; end
 
 	db 0 ; padding

@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  BLIZZARD,     SHADOW_CLAW,  ICE_BEAM,     \
-	     THUNDERBOLT,  THUNDER,      MIMIC,        DOUBLE_TEAM,  DIG,          \
-	     REFLECT,      SKULL_BASH,   REST,         SUBSTITUTE,   \
+	     THUNDERBOLT,  THUNDER,      MIMIC,        DIG,          \
+	     REFLECT,      SKULL_BASH,   REST,        \
 		 VENOSHOCK,    CUT,          STRENGTH
 	; end
 

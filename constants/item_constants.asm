@@ -188,10 +188,10 @@ DEF TM01 EQU const_value
 	add_tm PSYCHIC_M    ; $E5
 	add_tm CALM_MIND    ; $E6
 	add_tm MIMIC        ; $E7
-	add_tm DOUBLE_TEAM  ; $E8
+	add_tm LEECH_LIFE   ; $E8
 	add_tm REFLECT      ; $E9
 	add_tm IRON_DEFENSE ; $EA
-	add_tm METRONOME    ; $EB
+	add_tm BODY_PRESS   ; $EB
 	add_tm SELFDESTRUCT ; $EC
 	add_tm OUTRAGE      ; $ED
 	add_tm FIRE_BLAST   ; $EE
@@ -206,7 +206,7 @@ DEF TM01 EQU const_value
 	add_tm EXPLOSION    ; $F7
 	add_tm ROCK_SLIDE   ; $F8
 	add_tm TRI_ATTACK   ; $F9
-	add_tm SUBSTITUTE   ; $FA
+	add_tm ROOST        ; $FA
 ASSERT NUM_TMS == const_value - TM01, "NUM_TMS ({d:NUM_TMS}) does not match the number of add_tm definitions"
 
 DEF NUM_TM_HM EQU NUM_TMS + NUM_HMS

@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  DIG,          \
-	     MIMIC,        DOUBLE_TEAM,  REFLECT,      SWIFT,        \
-	     SKULL_BASH,   REST,         SUBSTITUTE,   HEX,          \
+	     MIMIC,        REFLECT,      SWIFT,        \
+	     SKULL_BASH,   REST,         HEX,          \
 		 CALM_MIND
 	; end
 

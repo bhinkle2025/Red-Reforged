@@ -15,10 +15,10 @@
 
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    DIG,         \
-	     DOUBLE_EDGE,  SUBMISSION,   SEISMIC_TOSS, THUNDERPUNCH, CALM_MIND,    \
-	     THUNDERBOLT,  THUNDER,      MIMIC,        DOUBLE_TEAM,  REFLECT,      \
+	     SUBMISSION,   SEISMIC_TOSS, THUNDERPUNCH, CALM_MIND,    \
+	     THUNDERBOLT,  THUNDER,      MIMIC,        REFLECT,      \
 	     SWIFT,        SKULL_BASH,   REST,         THUNDER_WAVE, LIGHT_SCREEN, \
-	     SUBSTITUTE,   FLASH,        SURF,         STRENGTH
+	     FLASH,        SURF,         STRENGTH
 	; end
 
 	db 0 ; padding

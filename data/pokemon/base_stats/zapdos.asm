@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  STEEL_WING,   LIGHT_SCREEN, \
 	     HYPER_BEAM,   THUNDERBOLT,  THUNDER,      MIMIC,        \
-	     DOUBLE_TEAM,  REFLECT,      SWIFT,        SKY_ATTACK,   \
-	     REST,         THUNDER_WAVE, SUBSTITUTE,   FLY,          FLASH
+	     REFLECT,      SWIFT,        SKY_ATTACK,   ROOST,        \
+	     REST,         THUNDER_WAVE, FLY,          FLASH
 	; end
 
 	db 0 ; padding

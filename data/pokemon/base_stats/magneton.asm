@@ -15,9 +15,9 @@
 
 	; tm/hm learnset
 	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  HYPER_BEAM,   IRON_DEFENSE, \
-	     THUNDERBOLT,  THUNDER,      MIMIC,        DOUBLE_TEAM,  \
+	     THUNDERBOLT,  THUNDER,      MIMIC,          \
 	     REFLECT,      SWIFT,        REST,         THUNDER_WAVE, \
-	     SUBSTITUTE,   LIGHT_SCREEN, EXPLOSION,    TRI_ATTACK,   \
+	     LIGHT_SCREEN, EXPLOSION,    TRI_ATTACK,   \
 		 FLASH
 	; end
 

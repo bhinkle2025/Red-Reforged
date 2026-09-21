@@ -16,11 +16,11 @@
 	; tm/hm learnset
 	tmhm MEGA_PUNCH,   MEGA_KICK,    BODY_SLAM,    GIGA_IMPACT,  LIGHT_SCREEN, \
 	     DOUBLE_EDGE,  BUBBLEBEAM,   ICE_BEAM,     BLIZZARD,     IRON_DEFENSE, \
-	     HYPER_BEAM,   SUBMISSION,   SEISMIC_TOSS, ICE_PUNCH,    \
+	     HYPER_BEAM,   SUBMISSION,   SEISMIC_TOSS, ICE_PUNCH,    BODY_PRESS,   \
 	     EARTHQUAKE,   DIG,          PSYCHIC_M,    DREAM_EATER,  \
-	     CALM_MIND,    MIMIC,        DOUBLE_TEAM,  REFLECT,      \
+	     CALM_MIND,    MIMIC,        REFLECT,      \
 	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         THUNDER_WAVE, \
-	     AMNESIA,      TRI_ATTACK,   SUBSTITUTE,   SURF,         STRENGTH,     \
+	     AMNESIA,      TRI_ATTACK,   SURF,         STRENGTH,     \
 	     FLAMETHROWER, HEX,          FLASH
 	; end
 

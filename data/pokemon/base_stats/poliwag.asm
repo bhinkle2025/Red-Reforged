@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  BUBBLEBEAM,   SWIFT,        \
 	     ICE_BEAM,     BLIZZARD,     PSYCHIC_M,    DIG,          \
-	     MIMIC,        DOUBLE_TEAM,  SKULL_BASH,   REST,         \
-	     AMNESIA,      SUBSTITUTE,   SURF
+	     MIMIC,        SKULL_BASH,   REST,         \
+	     AMNESIA,      SURF
 	; end
 
 	db 0 ; padding

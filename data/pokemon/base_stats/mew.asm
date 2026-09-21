@@ -20,10 +20,10 @@
 	     SUBMISSION,   SEISMIC_TOSS, FIRE_PUNCH,   FLAMETHROWER, DAZZLE,       \
 	     MEGA_DRAIN,   SOLARBEAM,    DRAGON_RAGE,  THUNDERBOLT,  THUNDER,      \
 	     EARTHQUAKE,   DIG,          PSYCHIC_M,    CALM_MIND,    SHADOW_CLAW,  \
-	     MIMIC,        DOUBLE_TEAM,  REFLECT,      METRONOME,    IRON_DEFENSE, \
+	     MIMIC,        REFLECT,      BODY_PRESS,   IRON_DEFENSE, LEECH_LIFE,   \
 	     SELFDESTRUCT, OUTRAGE,      FIRE_BLAST,   SWIFT,        SKULL_BASH,   \
 	     HEX,          DREAM_EATER,  SKY_ATTACK,   REST,         THUNDER_WAVE, \
-	     AMNESIA,      EXPLOSION,    ROCK_SLIDE,   TRI_ATTACK,   SUBSTITUTE,   \
+	     AMNESIA,      EXPLOSION,    ROCK_SLIDE,   TRI_ATTACK,   ROOST,        \
 	     CUT,          FLY,          SURF,         STRENGTH,     FLASH,        \
 	     UNUSED
 	; end

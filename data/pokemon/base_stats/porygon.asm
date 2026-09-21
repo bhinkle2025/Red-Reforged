@@ -16,9 +16,9 @@
 	; tm/hm learnset
 	tmhm GIGA_IMPACT,  DOUBLE_EDGE,  ICE_BEAM,     BLIZZARD,     SELFDESTRUCT, \
 	     HYPER_BEAM,   DREAM_EATER,  THUNDERBOLT,  THUNDER,      PSYCHIC_M,    \
-	     MIMIC,        DOUBLE_TEAM,  REFLECT,      \
+	     MIMIC,        REFLECT,      \
 	     SWIFT,        SKULL_BASH,   REST,         THUNDER_WAVE, HEX,          \
-	     TRI_ATTACK,   SUBSTITUTE,   SOLARBEAM,    FLASH
+	     TRI_ATTACK,   SOLARBEAM,    FLASH
 	; end
 
 	db 0 ; padding

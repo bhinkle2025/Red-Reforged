@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm BODY_SLAM,    DOUBLE_EDGE,  BUBBLEBEAM,   THUNDER_WAVE, \
 	     THUNDERBOLT,  THUNDER,      DREAM_EATER,  DIG,          CALM_MIND,   \
-	     MIMIC,        DOUBLE_TEAM,  SWIFT,        SKULL_BASH,   SHADOW_CLAW, \
-	     REST,         SUBSTITUTE,   HEX,          CUT,          FLASH
+	     MIMIC,        SWIFT,        SKULL_BASH,   SHADOW_CLAW, \
+	     REST,         HEX,          CUT,          FLASH
 	; end
 
 	db 0 ; padding

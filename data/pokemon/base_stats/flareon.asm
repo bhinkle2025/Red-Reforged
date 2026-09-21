@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm BODY_SLAM,    GIGA_IMPACT,  DOUBLE_EDGE,  HYPER_BEAM,   \
-	     MIMIC,        DOUBLE_TEAM,  REFLECT,      DIG,          CALM_MIND,    \
-	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         SUBSTITUTE,   \
+	     MIMIC,        REFLECT,      DIG,          CALM_MIND,    \
+	     FIRE_BLAST,   SWIFT,        SKULL_BASH,   REST,         \
 		 FLAMETHROWER, HEX,          STRENGTH
 	; end
 

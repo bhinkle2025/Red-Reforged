@@ -16,8 +16,8 @@
 	; tm/hm learnset
 	tmhm SWORDS_DANCE, GIGA_IMPACT,  DOUBLE_EDGE,  BUBBLEBEAM,   \
 	     ICE_BEAM,     BLIZZARD,     HYPER_BEAM,   DAZZLE,       \
-	     MEGA_DRAIN,   MIMIC,        DOUBLE_TEAM,  REFLECT,      SWIFT,  \
-	     SKULL_BASH,   REST,         SUBSTITUTE,   CUT,          SURF
+	     MEGA_DRAIN,   MIMIC,        REFLECT,      SWIFT,  \
+	     SKULL_BASH,   REST,         CUT,          SURF
 	; end
 
 	db 0 ; padding

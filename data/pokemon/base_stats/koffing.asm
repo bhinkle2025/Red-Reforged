@@ -15,8 +15,8 @@
 
 	; tm/hm learnset
 	tmhm THUNDERBOLT,  THUNDER,      MIMIC,        FLAMETHROWER, \
-	     DOUBLE_TEAM,  SELFDESTRUCT, FIRE_BLAST,   REST,         \
-	     EXPLOSION,    SUBSTITUTE,   VENOSHOCK,    HEX,  FLASH
+	     SELFDESTRUCT, FIRE_BLAST,   REST,         \
+	     EXPLOSION,    VENOSHOCK,    HEX,  FLASH
 	; end
 
 	db 0 ; padding
