@@ -416,25 +416,50 @@ StatModifierUpEffect:
 	ld de, wEnemyMoveEffect
 .statModifierUpEffect
 	ld a, [de]
+	cp ATTACK_UP_SIDE_EFFECT
+	jr nz, .normalStatUp
+
+	; 30% chance for Strength's Attack boost
+	call BattleRandom
+	cp 30 percent + 1
+	ret nc
+
+	xor a ; Attack = stat index 0
+	jr .incrementStatMod
+
+.normalStatUp
 	sub ATTACK_UP1_EFFECT
-	cp EVASION_UP1_EFFECT + $3 - ATTACK_UP1_EFFECT ; covers all +1 effects
+	cp EVASION_UP1_EFFECT + $3 - ATTACK_UP1_EFFECT
 	jr c, .incrementStatMod
-	sub ATTACK_UP2_EFFECT - ATTACK_UP1_EFFECT ; map +2 effects to equivalent +1 effect
+	sub ATTACK_UP2_EFFECT - ATTACK_UP1_EFFECT
+
 .incrementStatMod
 	ld c, a
 	ld b, $0
 	add hl, bc
 	ld b, [hl]
-	inc b ; increment corresponding stat mod
+	inc b
+
 	ld a, $d
-	cp b ; can't raise stat past +6 ($d or 13)
-	jp c, PrintNothingHappenedText
+	cp b
+	jr nc, .checkTwoStages
+
+	; Secondary effects fail silently at +6.
 	ld a, [de]
-	cp ATTACK_UP1_EFFECT + $8 ; is it a +2 effect?
+	cp ATTACK_UP_SIDE_EFFECT
+	ret z
+	jp PrintNothingHappenedText
+
+.checkTwoStages
+	ld a, [de]
+	cp ATTACK_UP_SIDE_EFFECT
+	jr z, .ok ; Strength only raises Attack one stage
+
+	cp ATTACK_UP1_EFFECT + $8
 	jr c, .ok
-	inc b ; if so, increment stat mod again
+	inc b
 	ld a, $d
-	cp b ; unless it's already +6
+	cp b
 	jr nc, .ok
 	ld b, a
 .ok
@@ -540,7 +565,18 @@ UpdateStatDone:
 	call nz, Bankswitch
 	pop de
 .notMinimize
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, [wPlayerMoveEffect]
+	jr z, .checkStrengthSideEffect
+	ld a, [wEnemyMoveEffect]
+
+.checkStrengthSideEffect
+	cp ATTACK_UP_SIDE_EFFECT
+	jr z, .applyBadgeBoostsAndStatusPenalties
+
 	call PlayCurrentMoveAnimation
+
 	ld a, [de]
 	cp MINIMIZE
 	jr nz, .applyBadgeBoostsAndStatusPenalties
@@ -581,8 +617,12 @@ MonsStatsRoseText:
 	jr z, .playerTurn
 	ld a, [wEnemyMoveEffect]
 .playerTurn
+	cp ATTACK_UP_SIDE_EFFECT
+	jr z, .normalRise
 	cp ATTACK_DOWN1_EFFECT
 	ret nc
+
+.normalRise
 	ld hl, RoseText
 	ret
 

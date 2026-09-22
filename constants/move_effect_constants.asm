@@ -78,7 +78,7 @@
 	const SPECIAL_DOWN_SIDE_EFFECT   ; $47
 	const HEX_EFFECT                 ; $48
 	const VENOSHOCK_EFFECT           ; $49
-	const_skip                       ; $4A
+	const ATTACK_UP_SIDE_EFFECT      ; $4A
 	const_skip                       ; $4B
 	const CONFUSION_SIDE_EFFECT      ; $4C
 	const TWINEEDLE_EFFECT           ; $4D

@@ -80,7 +80,7 @@ Moves:
 	move LOW_KICK,     FLINCH_SIDE_EFFECT2,         50, FIGHTING,      90, 20
 	move BODY_PRESS,   NO_ADDITIONAL_EFFECT,        80, FIGHTING,     100, 20
 	move SEISMIC_TOSS, NO_ADDITIONAL_EFFECT,        75, FIGHTING,     100, 15
-	move STRENGTH,     NO_ADDITIONAL_EFFECT,       100, NORMAL,       100, 15
+	move STRENGTH,     ATTACK_UP_SIDE_EFFECT,       80, NORMAL,       100, 15
 	move ABSORB,       DRAIN_HP_EFFECT,             40, GRASS,        100, 20
 	move MEGA_DRAIN,   DRAIN_HP_EFFECT,             75, GRASS,        100, 10
 	move LEECH_SEED,   LEECH_SEED_EFFECT,            0, GRASS,         90, 10

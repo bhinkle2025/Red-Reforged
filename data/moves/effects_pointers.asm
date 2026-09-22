@@ -72,9 +72,9 @@ MoveEffectPointerTable:
 	dw StatModifierDownEffect    ; DEFENSE_DOWN_SIDE_EFFECT
 	dw StatModifierDownEffect    ; SPEED_DOWN_SIDE_EFFECT
 	dw StatModifierDownEffect    ; SPECIAL_DOWN_SIDE_EFFECT
-	dw StatModifierDownEffect    ; unused effect
-	dw StatModifierDownEffect    ; unused effect
-	dw StatModifierDownEffect    ; unused effect
+	dw StatModifierDownEffect    ; HEX_EFFECT
+	dw StatModifierDownEffect    ; VENOSHOCK_EFFECT
+	dw StatModifierUpEffect      ; ATTACK_UP_SIDE_EFFECT
 	dw StatModifierDownEffect    ; unused effect
 	dw ConfusionSideEffect       ; CONFUSION_SIDE_EFFECT
 	dw TwoToFiveAttacksEffect    ; TWINEEDLE_EFFECT
