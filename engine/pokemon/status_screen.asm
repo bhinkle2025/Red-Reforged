@@ -564,7 +564,8 @@ DVParse:
 	or b
 	ld b, a
 
-	ld [hl], b	;load hp dv
+	ld a, b
+	ld [wDVCalcVar1], a	; load HP DV
 	
 	pop bc
 	pop hl
