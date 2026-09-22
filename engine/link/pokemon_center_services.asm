@@ -28,8 +28,7 @@ PokemonCenterServicesNPC::
 	jp PokemonCenterServices_WonderTrade
 
 PokemonCenterServices_WonderTrade:
-	ld hl, WonderTradeComingSoonText
-	call PrintText
+	farcall WonderTrade
 	ret
 
 ; ---------------------------------------------------------

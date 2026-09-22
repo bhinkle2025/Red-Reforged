@@ -54,6 +54,29 @@ GainExperience:
 	inc de
 	jr .gainStatExpLoop
 .statExpDone
+
+	; Hard mode: Pokemon already at or above the
+	; current level cap gain no level EXP.
+	ld a, [wDifficulty]
+	and a
+	jr z, .canGainExp
+
+	call GetLevelCap
+
+	ld hl, wPartyMon1Level
+	ld bc, wPartyMon2 - wPartyMon1
+	ld a, [wWhichPokemon]
+	call AddNTimes
+
+	ld a, [hl]        ; current level
+	ld b, a
+	ld a, [wMaxLevel] ; current hard-mode cap
+	ld c, a
+	ld a, b
+	cp c
+	jp nc, .nextMon   ; current level >= cap
+
+.canGainExp	
 	xor a
 	ldh [hMultiplicand], a
 	ldh [hMultiplicand + 1], a

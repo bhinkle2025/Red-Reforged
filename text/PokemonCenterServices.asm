@@ -54,3 +54,26 @@ _WonderTradeComingSoonText::
 	text "Wonder Trade isn't"
 	line "ready yet."
 	done
+
+_WonderTradeIntroText::
+	text "WONDER TRADE lets"
+	line "you send away"
+	cont "one #MON."
+
+	para "You'll receive"
+	line "a random #MON"
+	cont "in return!"
+
+	para "Want to make a"
+	line "WONDER TRADE?"
+	prompt
+
+_WonderTradeChooseMonText::
+	text "Which #MON will"
+	line "you trade?"
+	prompt
+
+_WonderTradeSelectedText::
+	text "Okay! Let's see"
+	line "what you get!"
+	done

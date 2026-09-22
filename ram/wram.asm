@@ -2274,6 +2274,9 @@ wEXPBarKeepFullFlag:: ds 1
 
 wPlayerRoostActive:: ds 1
 wEnemyRoostActive::  ds 1
+wWonderTradeSelectedMon:: ds 1
+wWonderTradeLevel::   ds 1
+wWonderTradeSpecies:: ds 1
 
 SECTION "Stack", WRAM0
 
