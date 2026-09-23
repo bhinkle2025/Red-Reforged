@@ -318,6 +318,16 @@ _ReflectGainedArmorText::
 	line "gained armor!"
 	prompt
 
+_LightScreenWoreOffText::
+	text "LIGHT SCREEN"
+	line "wore off!"
+	prompt
+
+_ReflectWoreOffText::
+	text "REFLECT wore"
+	line "off!"
+	prompt
+
 _ShroudedInMistText::
 	text "<USER>'s"
 	line "shrouded in mist!"

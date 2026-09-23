@@ -2278,6 +2278,11 @@ wWonderTradeSelectedMon:: ds 1
 wWonderTradeLevel::   ds 1
 wWonderTradeSpecies:: ds 1
 
+wPlayerReflectTurns::     ds 1
+wPlayerLightScreenTurns:: ds 1
+wEnemyReflectTurns::      ds 1
+wEnemyLightScreenTurns::  ds 1
+
 SECTION "Stack", WRAM0
 
 ; the stack grows downward

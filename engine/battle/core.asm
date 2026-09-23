@@ -425,6 +425,7 @@ MainInBattleLoop:
 	xor a
 	ld [wPlayerRoostActive], a
 	ld [wEnemyRoostActive], a
+	callfar DecrementScreenTurns
 	jp MainInBattleLoop
 .playerMovesFirst
 	call ExecutePlayerMove
@@ -456,6 +457,7 @@ MainInBattleLoop:
 	xor a
 	ld [wPlayerRoostActive], a
 	ld [wEnemyRoostActive], a
+	callfar DecrementScreenTurns
 	jp MainInBattleLoop
 
 HandleMovePriority:
@@ -744,29 +746,45 @@ HandleEnemyMonFainted:
 	ld a, d
 	and a
 	jp z, HandlePlayerBlackOut ; if no party mons are alive, the player blacks out
+
 	ld hl, wBattleMonHP
 	ld a, [hli]
 	or [hl] ; is battle mon HP zero?
-	call nz, DrawPlayerHUDAndHPBar ; if battle mon HP is not zero, draw player HD and HP bar
+	call nz, DrawPlayerHUDAndHPBar
+
 	ld a, [wIsInBattle]
 	dec a
 	ret z ; return if it's a wild battle
+
 	call AnyEnemyPokemonAliveCheck
 	jp z, TrainerBattleVictory
+
 	ld hl, wBattleMonHP
 	ld a, [hli]
 	or [hl] ; does battle mon have 0 HP?
-	jr nz, .skipReplacingBattleMon ; if not, skip replacing battle mon
-	call DoUseNextMonDialogue ; this call is useless in a trainer battle. it shouldn't be here
+	jr nz, .skipReplacingBattleMon
+
+	call DoUseNextMonDialogue
 	ret c
 	call ChooseNextMon
+
 .skipReplacingBattleMon
 	ld a, $1
 	ld [wActionResultOrTookBattleTurn], a
 	call ReplaceFaintedEnemyMon
 	jp z, EnemyRan
+
 	xor a
 	ld [wActionResultOrTookBattleTurn], a
+
+	; Turn ended because of a faint.
+	callfar DecrementScreenTurns
+
+	; Clear temporary Roost state.
+	xor a
+	ld [wPlayerRoostActive], a
+	ld [wEnemyRoostActive], a
+
 	jp MainInBattleLoop
 
 FaintEnemyPokemon:
@@ -1000,10 +1018,12 @@ HandlePlayerMonFainted:
 	ld a, d
 	and a
 	jp z, HandlePlayerBlackOut
+
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	or [hl] ; is enemy mon's HP 0?
 	jr nz, .doUseNextMonDialogue ; if not, jump
+
 ; the enemy mon has 0 HP
 	call FaintEnemyPokemon
 	ld a, [wIsInBattle]
@@ -1011,18 +1031,32 @@ HandlePlayerMonFainted:
 	ret z            ; if wild encounter, battle is over
 	call AnyEnemyPokemonAliveCheck
 	jp z, TrainerBattleVictory
+
 .doUseNextMonDialogue
 	call DoUseNextMonDialogue
 	ret c ; return if the player ran from battle
+
 	call ChooseNextMon
-	jp nz, MainInBattleLoop ; if the enemy mon has more than 0 HP, go back to battle loop
+	jr nz, .resumeBattle ; enemy mon is still alive
+
 ; the enemy mon has 0 HP
 	ld a, $1
 	ld [wActionResultOrTookBattleTurn], a
 	call ReplaceFaintedEnemyMon
-	jp z, EnemyRan ; if enemy ran from battle rather than sending out another mon, jump
+	jp z, EnemyRan ; enemy ran instead of sending another mon
+
 	xor a
 	ld [wActionResultOrTookBattleTurn], a
+
+.resumeBattle
+	; A full turn ended because of a faint.
+	callfar DecrementScreenTurns
+
+	; Clear temporary Roost state as well.
+	xor a
+	ld [wPlayerRoostActive], a
+	ld [wEnemyRoostActive], a
+
 	jp MainInBattleLoop
 
 ; resets flags, slides mon's pic down, plays cry, and prints fainted message
@@ -3578,6 +3612,7 @@ PlayerCalcMoveDamage:
 	               ; for these moves, accuracy tests will only occur if they are called as part of the effect itself
 	call AdjustDamageForMoveType
 	call RandomizeDamage
+	call ApplyReflectLightScreenDamageReduction
 .moveHitTest
 	call MoveHitTest
 handleIfPlayerMoveMissed:
@@ -4585,6 +4620,116 @@ IgnoredOrdersText:
 	text_far _IgnoredOrdersText
 	text_end
 
+ApplyReflectLightScreenDamageReduction:
+	push af
+	push bc
+	push de
+	push hl
+
+	; Critical hits ignore Reflect and Light Screen.
+	ld a, [wCriticalHitOrOHKO]
+	and a
+	jr nz, .done
+
+	ldh a, [hWhoseTurn]
+	and a
+	jr nz, .enemyAttacking
+
+; Player attacking.
+	ld a, [wPlayerMoveType]
+	ld e, a
+	ld a, [wPlayerMoveNum]
+	ld b, a
+	jr .checkCategory
+
+.enemyAttacking
+; Enemy attacking.
+	ld a, [wEnemyMoveType]
+	ld e, a
+	ld a, [wEnemyMoveNum]
+	ld b, a
+
+.checkCategory
+	ld a, e
+	cp SPECIAL
+	jr nc, .normallySpecial
+
+; Normally physical type.
+	ld hl, PhysicalToSpecialMoves
+.physicalToSpecialLoop
+	ld a, [hli]
+	cp b
+	jr z, .special
+	cp $ff
+	jr nz, .physicalToSpecialLoop
+	jr .physical
+
+.normallySpecial
+	ld hl, SpecialToPhysicalMoves
+.specialToPhysicalLoop
+	ld a, [hli]
+	cp b
+	jr z, .physical
+	cp $ff
+	jr nz, .specialToPhysicalLoop
+	jr .special
+
+.physical
+	ldh a, [hWhoseTurn]
+	and a
+	jr nz, .enemyPhysical
+
+	; Player attacking -> enemy side is defending.
+	ld a, [wEnemyReflectTurns]
+	and a
+	jr z, .done
+	jr .halveDamage
+
+.enemyPhysical
+	; Enemy attacking -> player side is defending.
+	ld a, [wPlayerReflectTurns]
+	and a
+	jr z, .done
+	jr .halveDamage
+
+.special
+	ldh a, [hWhoseTurn]
+	and a
+	jr nz, .enemySpecial
+
+	; Player attacking -> enemy side is defending.
+	ld a, [wEnemyLightScreenTurns]
+	and a
+	jr z, .done
+	jr .halveDamage
+
+.enemySpecial
+	; Enemy attacking -> player side is defending.
+	ld a, [wPlayerLightScreenTurns]
+	and a
+	jr z, .done
+
+.halveDamage
+	; wDamage is big-endian. Divide by 2.
+	ld hl, wDamage
+	srl [hl]
+	inc hl
+	rr [hl]
+
+	; Minimum damage is 1.
+	ld a, [hld]
+	or [hl]
+	jr nz, .done
+	inc hl
+	inc [hl]
+
+.done
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
 ; sets b, c, d, and e for the CalculateDamage routine in the case of an attack by the player mon
 GetDamageVarsForPlayerAttack:
 	xor a
@@ -4648,12 +4793,7 @@ GetDamageVarsForPlayerAttack:
 	ld a, [hli]
 	ld b, a
 	ld c, [hl] ; bc = enemy defense
-	ld a, [wEnemyBattleStatus3]
-	bit HAS_REFLECT_UP, a ; check for Reflect
-	jr z, .physicalAttackCritCheck
-; if the enemy has used Reflect, double the enemy's defense
-	sla c
-	rl b
+
 .physicalAttackCritCheck
 	ld hl, wBattleMonAttack
 
@@ -4668,17 +4808,9 @@ GetDamageVarsForPlayerAttack:
 	ld a, [hli]
 	ld b, a
 	ld c, [hl] ; bc = enemy special
-	ld a, [wEnemyBattleStatus3]
-	bit HAS_LIGHT_SCREEN_UP, a ; check for Light Screen
-	jr z, .specialAttackCritCheck
-; if the enemy has used Light Screen, double the enemy's special
-	sla c
-	rl b
-; reflect and light screen boosts do not cap the stat at MAX_STAT_VALUE, so weird things will happen during stats scaling
-; if a Pokemon with 512 or more Defense has used Reflect, or if a Pokemon with 512 or more Special has used Light Screen
+
 .specialAttackCritCheck
 	ld hl, wBattleMonSpecial
-	; Always jump to .scaleStats and use current stats, even on crits
 	jr .scaleStats
 .scaleStats
 	ld a, [hli]
@@ -4778,12 +4910,7 @@ GetDamageVarsForEnemyAttack:
 	ld a, [hli]
 	ld b, a
 	ld c, [hl] ; bc = player defense
-	ld a, [wPlayerBattleStatus3]
-	bit HAS_REFLECT_UP, a ; check for Reflect
-	jr z, .physicalAttackCritCheck
-; if the player has used Reflect, double the player's defense
-	sla c
-	rl b
+
 .physicalAttackCritCheck
 	ld hl, wEnemyMonAttack
 
@@ -4793,19 +4920,13 @@ GetDamageVarsForEnemyAttack:
 	jr nz, .scaleStats
 	ld hl, wEnemyMonDefense
 	jr .scaleStats
+
 .specialAttack
 	ld hl, wBattleMonSpecial
 	ld a, [hli]
 	ld b, a
-	ld c, [hl]
-	ld a, [wPlayerBattleStatus3]
-	bit HAS_LIGHT_SCREEN_UP, a ; check for Light Screen
-	jr z, .specialAttackCritCheck
-; if the player has used Light Screen, double the player's special
-	sla c
-	rl b
-; reflect and light screen boosts do not cap the stat at MAX_STAT_VALUE, so weird things will happen during stats scaling
-; if a Pokemon with 512 or more Defense has used Reflect, or if a Pokemon with 512 or more Special has used Light Screen
+	ld c, [hl] ; bc = player special
+
 .specialAttackCritCheck
 	ld hl, wEnemyMonSpecial
 ; if either the offensive or defensive stat is too large to store in a byte, scale both stats by dividing them by 4
@@ -6037,7 +6158,7 @@ EnemyCalcMoveDamage:
 	jp z, EnemyCheckIfFlyOrChargeEffect
 	call AdjustDamageForMoveType
 	call RandomizeDamage
-
+	call ApplyReflectLightScreenDamageReduction
 EnemyMoveHitTest:
 	call MoveHitTest
 handleIfEnemyMoveMissed:

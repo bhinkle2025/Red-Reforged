@@ -2,6 +2,10 @@ InitBattleVariables:
 	ldh a, [hTileAnimations]
 	ld [wSavedTileAnimations], a
 	xor a
+	ld [wPlayerReflectTurns], a
+	ld [wEnemyReflectTurns], a
+	ld [wPlayerLightScreenTurns], a
+	ld [wEnemyLightScreenTurns], a
 	ld [wActionResultOrTookBattleTurn], a
 	ld [wBattleResult], a
 	ld hl, wPartyAndBillsPCSavedMenuItem
