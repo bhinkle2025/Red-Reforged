@@ -459,6 +459,7 @@ GyaradosEvosMoves:
 	db 0
 ; Learnset
 	db 20, GUST
+	db 21, RAGE
 	db 23, WATERFALL
 	db 25, DRAGON_RAGE
 	db 32, BITE
@@ -1463,6 +1464,7 @@ BeedrillEvosMoves:
 	db 0
 ; Learnset
 	db 10, FURY_ATTACK
+	db 13, RAGE
 	db 16, TWINEEDLE
 	db 19, TOXIC
 	db 21, ACID

@@ -10,12 +10,9 @@ DecrementPP:
 	jr z, .playersTurn
 	ld hl, wEnemyBattleStatus1
 .playersTurn	
-	ld a, [hli]          ; load the wPlayerBattleStatus1 pokemon status flags and increment hl to load the
-	                     ; wPlayerBattleStatus2 status flags later
+	ld a, [hli]
 	and (1 << STORING_ENERGY) | (1 << THRASHING_ABOUT) | (1 << ATTACKING_MULTIPLE_TIMES)
-	ret nz               ; if any of these statuses are true, don't decrement PP
-	bit USING_RAGE, [hl]
-	ret nz               ; don't decrement PP either if Pokemon is using Rage
+	ret nz            ; don't decrement PP either if Pokemon is using Rage
 	ld hl, wBattleMonPP  ; PP of first move (in battle)
 	ldh a, [hWhoseTurn]
 	and a

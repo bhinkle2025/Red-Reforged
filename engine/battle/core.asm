@@ -291,7 +291,7 @@ MainInBattleLoop:
 	xor a
 	ld [wFirstMonsNotOutYet], a
 	ld a, [wPlayerBattleStatus2]
-	and (1 << NEEDS_TO_RECHARGE) | (1 << USING_RAGE) ; check if the player is using Rage or needs to recharge
+	and 1 << NEEDS_TO_RECHARGE
 	jr nz, .selectEnemyMove
 ; the player is not using Rage and doesn't need to recharge
 	ld hl, wEnemyBattleStatus1
@@ -3395,7 +3395,7 @@ SelectEnemyMove:
 	jp .done
 .noLinkBattle
 	ld a, [wEnemyBattleStatus2]
-	and (1 << NEEDS_TO_RECHARGE) | (1 << USING_RAGE) ; need to recharge or using rage
+	and 1 << NEEDS_TO_RECHARGE
 	ret nz
 	ld hl, wEnemyBattleStatus1
 	ld a, [hl]
@@ -3997,17 +3997,17 @@ CheckPlayerStatusConditions:
 	jp .returnToHL
 
 .RageCheck
-	ld a, [wPlayerBattleStatus2]
-	bit USING_RAGE, a ; is mon using rage?
-	jp z, .checkPlayerStatusConditionsDone ; if we made it this far, mon can move normally this turn
-	ld a, RAGE
-	ld [wNamedObjectIndex], a
-	call GetMoveName
-	call CopyToStringBuffer
-	xor a
-	ld [wPlayerMoveEffect], a
-	ld hl, PlayerCanExecuteMove
-	jp .returnToHL
+	ld hl, wPlayerBattleStatus2
+	bit USING_RAGE, [hl]
+	jr z, .checkPlayerStatusConditionsDone
+
+	; Using another move ends Rage mode.
+	ld a, [wPlayerMoveNum]
+	cp RAGE
+	jr z, .checkPlayerStatusConditionsDone
+
+	res USING_RAGE, [hl]
+	jr .checkPlayerStatusConditionsDone
 
 .returnToHL
 	xor a
@@ -6509,17 +6509,17 @@ CheckEnemyStatusConditions:
 	jp nz, .enemyReturnToHL
 	jp .enemyReturnToHL
 .checkIfUsingRage
-	ld a, [wEnemyBattleStatus2]
-	bit USING_RAGE, a ; is mon using rage?
-	jp z, .checkEnemyStatusConditionsDone ; if we made it this far, mon can move normally this turn
-	ld a, RAGE
-	ld [wNamedObjectIndex], a
-	call GetMoveName
-	call CopyToStringBuffer
-	xor a
-	ld [wEnemyMoveEffect], a
-	ld hl, EnemyCanExecuteMove
-	jp .enemyReturnToHL
+	ld hl, wEnemyBattleStatus2
+	bit USING_RAGE, [hl]
+	jr z, .checkEnemyStatusConditionsDone
+
+	; Using another move ends Rage mode.
+	ld a, [wEnemyMoveNum]
+	cp RAGE
+	jr z, .checkEnemyStatusConditionsDone
+
+	res USING_RAGE, [hl]
+	jr .checkEnemyStatusConditionsDone
 .enemyReturnToHL
 	xor a ; set Z flag
 	ret
