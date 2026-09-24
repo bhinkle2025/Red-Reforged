@@ -31,6 +31,11 @@ RedsHouse2FBedStashText:
 	jp TextScriptEnd
 
 RedsHouse2FBedStashScript:
+	; Rare Candy stash is exclusive to Hard Mode.
+	ld a, [wDifficulty]
+	and a
+	jr z, .normalMode
+
 	CheckEvent EVENT_FOUND_BED_CANDY_STASH
 	jr nz, .empty
 
@@ -43,6 +48,11 @@ RedsHouse2FBedStashScript:
 	call PrintText
 	ret
 
+.normalMode
+	ld hl, RedsHouse2FNormalModeCandyText
+	call PrintText
+	ret
+
 .bagFull
 	ld hl, RedsHouse2FCandyStashNoRoomText
 	call PrintText
@@ -52,6 +62,10 @@ RedsHouse2FBedStashScript:
 	ld hl, RedsHouse2FNoMoreCandyText
 	call PrintText
 	ret
+
+RedsHouse2FNormalModeCandyText:
+	text_far _RedsHouse2FNormalModeCandyText
+	text_end
 
 RedsHouse2FFoundCandyStashText:
 	text_far _RedsHouse2FFoundCandyStashText

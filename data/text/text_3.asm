@@ -367,9 +367,12 @@ _HardModeText::
 	text "You have chosen"
 	line "HARD MODE!"
 
-	para "Increased"
-	line "difficulty."
-	
+	para "Level caps."
+	line "No battle items."
+
+	para "SET battle style"
+	line "is enforced."
+
 	para "Continue on"
 	line "HARD MODE?"
 	done

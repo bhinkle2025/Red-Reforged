@@ -1,3 +1,14 @@
+_RedsHouse2FNormalModeCandyText::
+	text "You check under"
+	line "the bed..."
+
+	para "Only dust bunnies!"
+
+	para "The RARE CANDY"
+	line "fairy only visits"
+	cont "HARD MODE!"
+	done
+
 _RedsHouse2FFoundCandyStashText::
 	text "You found a hidden"
 	line "stash of "
