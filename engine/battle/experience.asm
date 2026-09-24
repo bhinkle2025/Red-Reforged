@@ -216,21 +216,16 @@ GainExperience:
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMonNicks
 	call GetPartyMonName
+
+	; Normal participant pass prints individual EXP.
+	; Shared EXP.ALL message was already printed above.
 	ld a, [wBoostExpByExpAll]
 	and a
-	jr nz, .printExpAllText
-	; Normal participant EXP message
+	jr nz, .skipExpText
+
 	ld hl, GainedText
 	call PrintText
-	jr .skipExpText
-.printExpAllText
-	; Only print the shared EXP message once,
-	; when processing the first eligible nonparticipant.
-	ld a, [wWhichPokemon]
-	and a
-	jr nz, .skipExpText
-	ld hl, WithExpAllText
-	call PrintText
+
 .skipExpText
 	xor a
 	ld [wMonDataLocation], a
