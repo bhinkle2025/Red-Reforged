@@ -34,7 +34,7 @@ StartMenu_Pokemon::
 	ld [wTextBoxID], a
 	call DisplayTextBoxID ; display pokemon menu options
 	ld hl, wFieldMoves
-	lb bc, 2, 12 ; max menu item ID, top menu item Y
+	lb bc, 3, 10 ; max menu item ID, top menu item Y
 	ld e, 5
 .adjustMenuVariablesLoop
 	dec e
@@ -70,15 +70,23 @@ StartMenu_Pokemon::
 ; if the B button wasn't pressed
 	ld a, [wMaxMenuItem]
 	ld b, a
-	ld a, [wCurrentMenuItem] ; menu selection
+	ld a, [wCurrentMenuItem]
+
 	cp b
-	jp z, .exitMenu ; if the player chose Cancel
+	jp z, .exitMenu ; CANCEL
+
 	dec b
 	cp b
 	jr z, .choseSwitch
+
+	dec b
+	cp b
+	jr z, .choseRename
+
 	dec b
 	cp b
 	jp z, .choseStats
+
 	ld c, a
 	ld b, 0
 	ld hl, wFieldMoves
@@ -93,6 +101,20 @@ StartMenu_Pokemon::
 	ld [wPartyMenuTypeOrMessageID], a
 	call GoBackToPartyMenu
 	jp .checkIfPokemonChosen
+.choseRename
+	; Point HL to the selected Pokémon's nickname.
+	ld hl, wPartyMonNicks
+	ld a, [wWhichPokemon]
+	call SkipFixedLengthTextEntries
+
+	; Open the standard Pokémon naming screen.
+	ld a, NAME_MON_SCREEN
+	ld [wNamingScreenType], a
+	predef AskName
+
+	; Restore the overworld/party menu graphics afterward.
+	call ReloadMapData
+	jp StartMenu_Pokemon
 .choseStats
 	call ClearSprites
 	xor a ; PLAYER_PARTY_DATA
