@@ -2283,6 +2283,10 @@ wPlayerLightScreenTurns:: ds 1
 wEnemyReflectTurns::      ds 1
 wEnemyLightScreenTurns::  ds 1
 
+wCapturePartyCount:: db
+wCaptureGainExpFlags:: db
+wCaptureFoughtFlags:: db
+
 SECTION "Stack", WRAM0
 
 ; the stack grows downward

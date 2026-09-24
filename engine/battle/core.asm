@@ -2462,6 +2462,13 @@ UseBagItem:
 	call CopyToStringBuffer
 	xor a
 	ld [wPseudoItemID], a
+	; Preserve pre-capture EXP state.
+	ld a, [wPartyCount]
+	ld [wCapturePartyCount], a
+	ld a, [wPartyGainExpFlags]
+	ld [wCaptureGainExpFlags], a
+	ld a, [wPartyFoughtCurrentEnemyFlags]
+	ld [wCaptureFoughtFlags], a
 	call UseItem
 	call LoadHudTilePatterns
 	call ClearSprites
@@ -2512,6 +2519,10 @@ UseBagItem:
 ;   3) wipe/refresh the tilemap, then exit as a capture victory.
 ; =====================================================================
 .returnAfterCapturingMon
+	ld a, [wCaptureGainExpFlags]
+	ld [wPartyGainExpFlags], a
+	ld a, [wCaptureFoughtFlags]
+	ld [wPartyFoughtCurrentEnemyFlags], a
     ; Hard reset battle VRAM patterns because Dex/nickname + EXP text
     ; can overwrite HUD/HP bar tile graphics.
     call DisableLCD
@@ -2536,6 +2547,7 @@ UseBagItem:
     ld   [wTextBoxID], a
     call DisplayTextBoxID
     call PrintEmptyString
+	call SaveScreenTilesToBuffer1
 
     ; ======== EXP gain (mirror faint-EXP logic) ========
 
@@ -2546,32 +2558,36 @@ UseBagItem:
 	jr   z, .GiveToFighters
 
 .GiveToFighters
-    ; First pass: give EXP to participants (full or halved as above)
-    xor  a
-    ld   [wBoostExpByExpAll], a
+    ; First pass: give EXP to participants.
+    xor a
+    ld [wBoostExpByExpAll], a
     farcall GainExperience
 
-    ; Second pass if Exp. All is active: share with entire party
-    pop  af
-    jr   z, .AfterExp
+    ; Second pass only if EXP.ALL is active.
+    pop af
+    jr z, .AfterExp
 
-    ld   a, 1
-    ld   [wBoostExpByExpAll], a
+    ld a, TRUE
+    ld [wBoostExpByExpAll], a
 
- ; Build bitmask of all current party members
-	ld   a, [wPartyCount]
-	ld   b, 0
+    xor a
+    ld [wExpAllMessagePrinted], a
+
+    ; Build mask from party that existed before the capture.
+    ld a, [wCapturePartyCount]
+    ld b, 0
+
 .SetFlagsLoop
     scf
-    rl   b
-    dec  a
-    jr   nz, .SetFlagsLoop
+    rl b
+    dec a
+    jr nz, .SetFlagsLoop
 
-; Remove participants so only nonparticipants get shared EXP
-	ld   a, [wPartyFoughtCurrentEnemyFlags]
-	cpl
-	and  b
-	ld   [wPartyGainExpFlags], a
+    ; Remove participants so only nonparticipants get shared EXP.
+    ld a, [wCaptureFoughtFlags]
+    cpl
+    and b
+    ld [wPartyGainExpFlags], a
 
     farcall GainExperience
 
