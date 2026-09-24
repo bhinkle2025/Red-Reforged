@@ -21,8 +21,10 @@ WonderTrade::
 	xor a
 	ld [wListScrollOffset], a
 	ld [wPartyMenuTypeOrMessageID], a
-	ld [wUpdateSpritesEnabled], a
 	ld [wMenuItemToSwap], a
+
+	dec a
+	ld [wUpdateSpritesEnabled], a ; $ff
 
 	call DisplayPartyMenu
 
@@ -48,11 +50,24 @@ WonderTrade::
 	; Generate the random Wonder Trade Pokemon.
 	call WonderTrade_GeneratePokemon
 
+	; Announce the trade.
+	ld hl, WonderTradeSelectedText
+	call PrintText
+
+	; Play the link cable trade animation.
+	call WonderTrade_PlayTradeAnimation
+
 	; Complete the trade.
 	call WonderTrade_CompleteTrade
 
-	ld hl, WonderTradeSelectedText
-	call PrintText
+	; Restore the normal map after the trade cutscene.
+	call ClearScreen
+	call WonderTrade_RestoreScreen
+	farcall RedrawMapView
+
+	; Immediately restore player/NPC sprites.
+	call UpdateSprites
+	call DelayFrame
 	ret
 
 WonderTrade_CompleteTrade:
@@ -75,6 +90,13 @@ WonderTrade_CompleteTrade:
 	ld a, $80
 	ld [wMonDataLocation], a
 	call AddPartyMon
+
+	; Apply Wonder Trade OT name and randomized Trainer ID.
+	call WonderTrade_CopyOTDataToReceivedMon
+
+	; Trigger trade evolutions.
+	callfar EvolveTradeMon
+
 	; Wonder Trade Pokemon always arrives at full HP.
 	ld hl, wPartyMons
 	ld a, [wPartyCount]
@@ -97,8 +119,15 @@ WonderTrade_CompleteTrade:
 	inc hl
 	ld [hl], e
 
-	; Give it its normal species name instead of a nickname.
-	ld a, [wWonderTradeSpecies]
+	; Give it its actual final species name.
+	ld hl, wPartySpecies
+	ld a, [wPartyCount]
+	dec a
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+
 	ld [wNamedObjectIndex], a
 	call GetMonName
 
@@ -165,6 +194,131 @@ WonderTrade_RandomByte:
 	ld a, [wPlayTimeSeconds]
 	add b
 	ret
+
+WonderTrade_PlayTradeAnimation:
+	call LoadHpBarAndStatusTilePatterns
+	call WonderTrade_PrepareTradeData
+	predef InternalClockTradeAnim
+	ret
+
+WonderTrade_PrepareTradeData:
+	; ---------------------------------------------------------
+	; Species
+	; ---------------------------------------------------------
+
+	; Get the species of the Pokemon the player is sending.
+	ld a, [wWonderTradeSelectedMon]
+	ld c, a
+	ld b, 0
+	ld hl, wPartySpecies
+	add hl, bc
+	ld a, [hl]
+	ld [wTradedPlayerMonSpecies], a
+
+	; Species being received.
+	ld a, [wWonderTradeSpecies]
+	ld [wTradedEnemyMonSpecies], a
+
+	; ---------------------------------------------------------
+	; Player Pokemon OT name
+	; ---------------------------------------------------------
+
+	ld hl, wPartyMonOT
+	ld bc, NAME_LENGTH
+	ld a, [wWonderTradeSelectedMon]
+	call AddNTimes
+
+	ld de, wTradedPlayerMonOT
+	ld bc, NAME_LENGTH
+	call CopyData
+
+	; ---------------------------------------------------------
+	; Wonder Trade OT name
+	; ---------------------------------------------------------
+
+	ld hl, WonderTrade_TrainerString
+	ld de, wTradedEnemyMonOT
+	ld bc, NAME_LENGTH
+	call CopyData
+
+	; The trade animation also uses the link enemy trainer name.
+	ld hl, WonderTrade_TrainerString
+	ld de, wLinkEnemyTrainerName
+	ld bc, NAME_LENGTH
+	call CopyData
+
+	; ---------------------------------------------------------
+	; Player Pokemon OT ID
+	; ---------------------------------------------------------
+
+	ld hl, wPartyMon1OTID
+	ld bc, wPartyMon2 - wPartyMon1
+	ld a, [wWonderTradeSelectedMon]
+	call AddNTimes
+
+	ld de, wTradedPlayerMonOTID
+	ld bc, 2
+	call CopyData
+
+	; ---------------------------------------------------------
+	; Random Wonder Trade OT ID
+	; ---------------------------------------------------------
+
+	call Random
+	ld hl, hRandomAdd
+	ld de, wTradedEnemyMonOTID
+	ld bc, 2
+	jp CopyData
+
+
+WonderTrade_TrainerString:
+	db "WONDER@@@@@"
+
+WonderTrade_CopyOTDataToReceivedMon:
+	; Received Pokemon is always the last Pokemon in the party.
+
+	; ---------------------------------------------------------
+	; OT name
+	; ---------------------------------------------------------
+
+	ld hl, wPartyMonOT
+	ld bc, NAME_LENGTH
+	ld a, [wPartyCount]
+	dec a
+	call AddNTimes
+
+	ld d, h
+	ld e, l
+	ld hl, wTradedEnemyMonOT
+	ld bc, NAME_LENGTH
+	call CopyData
+
+	; ---------------------------------------------------------
+	; OT ID
+	; ---------------------------------------------------------
+
+	ld hl, wPartyMon1OTID
+	ld bc, wPartyMon2 - wPartyMon1
+	ld a, [wPartyCount]
+	dec a
+	call AddNTimes
+
+	ld d, h
+	ld e, l
+	ld hl, wTradedEnemyMonOTID
+	ld bc, 2
+	jp CopyData
+
+WonderTrade_RestoreScreen:
+	call GBPalWhiteOutWithDelay3
+	call RestoreScreenTilesAndReloadTilePatterns
+	call ReloadTilesetTilePatterns
+	call LoadScreenTilesFromBuffer2
+	call Delay3
+	call LoadGBPal
+	ld c, 10
+	call DelayFrames
+	farjp LoadWildData
 
 WonderTradeSpeciesTable:
 	; Bulbasaur line

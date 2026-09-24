@@ -372,10 +372,10 @@ GengarEvosMoves:
 ; Learnset
 	db 19, POISON_GAS
 	db 21, HEX
-	db 30, TOXIC
-	db 36, VENOSHOCK
-	db 39, SHADOW_PUNCH
-	db 45, DREAM_EATER
+	db 26, TOXIC
+	db 28, VENOSHOCK
+	db 31, SHADOW_PUNCH
+	db 33, DREAM_EATER
 	db 0
 
 NidoranFEvosMoves:
@@ -1796,10 +1796,10 @@ HaunterEvosMoves:
 ; Learnset
 	db 19, POISON_GAS
 	db 21, HEX
-	db 30, TOXIC
-	db 36, VENOSHOCK
-	db 39, SHADOW_PUNCH
-	db 45, DREAM_EATER
+	db 26, TOXIC
+	db 28, VENOSHOCK
+	db 31, SHADOW_PUNCH
+	db 33, DREAM_EATER
 	db 0
 
 AbraEvosMoves:
@@ -1964,6 +1964,7 @@ PonytaEvosMoves:
 	db 10, QUICK_ATTACK
 	db 14, DOUBLE_KICK
 	db 17, STOMP
+	db 22, BLAZE_KICK
 	db 26, FIRE_SPIN
 	db 32, AGILITY
 	db 38, FIRE_BLAST
@@ -1978,6 +1979,7 @@ RapidashEvosMoves:
 	db 10, QUICK_ATTACK
 	db 14, DOUBLE_KICK
 	db 17, STOMP
+	db 22, BLAZE_KICK
 	db 26, FIRE_SPIN
 	db 32, AGILITY
 	db 38, FIRE_BLAST

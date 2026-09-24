@@ -29,6 +29,11 @@ PokemonCenterServicesNPC::
 
 PokemonCenterServices_WonderTrade:
 	farcall WonderTrade
+
+	; Wonder Trade already restored the overworld.
+	; Prevent the outer text handler from waiting for another button.
+	ld a, 1
+	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ret
 
 ; ---------------------------------------------------------
@@ -334,7 +339,17 @@ PokemonCenterServices_RememberMove:
 	xor a
 	ld [wPrintItemPrices], a
 
+	; DisplayListMenuID overwrites wWhichPokemon while drawing the list,
+	; so preserve the selected party Pokemon.
+	ld a, [wWhichPokemon]
+	push af
+
 	call DisplayListMenuID
+
+	pop bc
+	ld a, b
+	ld [wWhichPokemon], a
+
 	ret c
 
 	; Get selected move from wMoveBuffer.

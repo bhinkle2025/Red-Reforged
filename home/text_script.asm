@@ -82,7 +82,23 @@ ENDM
 	dict  TX_SCRIPT_POKECENTER_PC,           TextScript_PokemonCenterPC
 	dict2 TX_SCRIPT_VENDING_MACHINE,         farcall VendingMachineMenu
 	dict  TX_SCRIPT_PRIZE_VENDOR,            TextScript_GameCornerPrizeMenu
-	dict2 TX_SCRIPT_CABLE_CLUB_RECEPTIONIST, callfar PokemonCenterServicesNPC
+	cp TX_SCRIPT_CABLE_CLUB_RECEPTIONIST
+	jr nz, .notPokemonCenterServices
+
+	callfar PokemonCenterServicesNPC
+
+	; Normally dict2 jumps straight to AfterDisplayingTextID,
+	; which forces an extra button press. Allow Wonder Trade
+	; to skip that wait.
+	ld a, [wDoNotWaitForButtonPressAfterDisplayingText]
+	and a
+	jr z, AfterDisplayingTextID
+
+	xor a
+	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
+	jr HoldTextDisplayOpen
+
+.notPokemonCenterServices
 
 	call PrintText_NoCreatingTextBox ; display the text
 	ld a, [wDoNotWaitForButtonPressAfterDisplayingText]
