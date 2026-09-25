@@ -5887,7 +5887,58 @@ MoveHitTest:
 	jp z, .moveMissed
 .checkForDigOrFlyStatus
 	bit INVULNERABLE, [hl]
+	jr z, .invulnerabilityCheckDone
+
+	; Get attacking move.
+	dec de
+	ld a, [de]
+	ld c, a ; preserve attacking move
+
+	; Earthquake requires Dig.
+	ld b, DIG
+	cp EARTHQUAKE
+	jr z, .checkInvulnerableTarget
+
+	; Thunder, Gust, and Hurricane require Fly.
+	ld b, FLY
+	cp THUNDER
+	jr z, .checkInvulnerableTarget
+	cp GUST
+	jr z, .checkInvulnerableTarget
+	cp HURRICANE
 	jp nz, .moveMissed
+
+.checkInvulnerableTarget
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, [wEnemyMoveNum]
+	jr z, .compareInvulnerableTarget
+	ld a, [wPlayerMoveNum]
+
+.compareInvulnerableTarget
+	cp b
+	jp nz, .moveMissed
+
+	; Earthquake vs Dig and Gust vs Fly deal double damage.
+	ld a, c
+	cp EARTHQUAKE
+	jr z, .doubleSemiInvulnerableDamage
+	cp GUST
+	jr nz, .invulnerabilityCheckDone
+
+.doubleSemiInvulnerableDamage
+	ld hl, wDamage + 1
+	sla [hl]
+	dec hl
+	rl [hl]
+	jr nc, .invulnerabilityCheckDone
+
+	; Cap overflow at $FFFF.
+	ld [hl], $ff
+	inc hl
+	ld [hl], $ff
+
+.invulnerabilityCheckDone
 	ldh a, [hWhoseTurn]
 	and a
 	jr nz, .enemyTurn

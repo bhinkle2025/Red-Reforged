@@ -210,9 +210,9 @@ RhydonEvosMoves:
 	db 30, STOMP
 	db 36, FURY_ATTACK
 	db 42, HAMMER_ARM
-	db 48, ROCK_SLIDE
-	db 54, EARTHQUAKE
-	db 60, DOUBLE_EDGE
+	db 43, ROCK_SLIDE
+	db 48, EARTHQUAKE
+	db 55, DOUBLE_EDGE
 	db 0
 
 KangaskhanEvosMoves:
@@ -1386,8 +1386,9 @@ ZubatEvosMoves:
 	db EVOLVE_LEVEL, 22, GOLBAT
 	db 0
 ; Learnset
-	db 10, CONFUSE_RAY
+	db 10, SCREECH
 	db 15, BITE
+	db 18, CONFUSE_RAY
 	db 21, WING_ATTACK
 	db 25, LEECH_LIFE
 	db 28, ACID
@@ -1627,8 +1628,9 @@ GolbatEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 10, CONFUSE_RAY
+	db 10, SCREECH
 	db 15, BITE
+	db 18, CONFUSE_RAY
 	db 21, WING_ATTACK
 	db 25, LEECH_LIFE
 	db 28, ACID
