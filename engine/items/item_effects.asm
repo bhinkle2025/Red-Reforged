@@ -2984,9 +2984,11 @@ FindWildLocationsOfMon:
 	ld a, [hli]
 	and a
 	call nz, CheckMapForMon ; land
+	jr c, .passWaterCheck
 	ld a, [hli]
 	and a
 	call nz, CheckMapForMon ; water
+.passWaterCheck
 	pop hl
 	inc hl
 	inc hl
@@ -3007,10 +3009,13 @@ CheckMapForMon:
 	ld a, c
 	ld [de], a
 	inc de
+	scf ; set c flag if match found
+	ret
 .nextEntry
 	inc hl
 	inc hl
 	dec b
 	jr nz, .loop
 	dec hl
+	and a ; clear flags if no match found
 	ret
