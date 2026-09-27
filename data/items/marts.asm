@@ -8,7 +8,7 @@ PewterMartClerkText::
 	script_mart POKE_BALL, POTION, ANTIDOTE, BURN_HEAL, AWAKENING, PARLYZ_HEAL
 
 CeruleanMartClerkText::
-	script_mart POKE_BALL, POTION, ANTIDOTE, BURN_HEAL, AWAKENING, PARLYZ_HEAL
+	script_mart NET_BALL, DUSK_BALL, MOON_BALL, BURN_HEAL, AWAKENING, PARLYZ_HEAL
 
 UnusedBikeShopClerkText:: ; unreferenced
 	script_mart BICYCLE

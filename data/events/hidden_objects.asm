@@ -474,7 +474,7 @@ PokemonTower5HiddenObjects:
 
 Route13HiddenObjects:
 	hidden_object  1, 14, PP_UP, HiddenItems
-	hidden_object 16, 13, RARE_CANDY, HiddenItems
+	hidden_object 16, 13, NET_BALL, HiddenItems
 	db -1 ; end
 
 SafariZoneEntranceHiddenObjects:
@@ -498,7 +498,7 @@ CopycatsHouse2FHiddenObjects:
 	db -1 ; end
 
 CeruleanCave1HiddenObjects:
-	hidden_object 14, 11, RARE_CANDY, HiddenItems
+	hidden_object 14, 11, DUSK_BALL, HiddenItems
 	db -1 ; end
 
 CeruleanCave3HiddenObjects:
@@ -533,7 +533,7 @@ Mansion3HiddenObjects:
 	db -1 ; end
 
 Mansion4HiddenObjects:
-	hidden_object  1,  9, RARE_CANDY, HiddenItems
+	hidden_object  1,  9, NET_BALL, HiddenItems
 	hidden_object 20,  3, SPRITE_FACING_UP, Mansion4Script_Switches
 	hidden_object 18, 25, SPRITE_FACING_UP, Mansion4Script_Switches
 	db -1 ; end
@@ -618,7 +618,7 @@ BikeShopHiddenObjects:
 	db -1 ; end
 
 Route11HiddenObjects:
-	hidden_object 48,  5, RARE_CANDY, HiddenItems
+	hidden_object 48,  5, MOON_BALL, HiddenItems
 	db -1 ; end
 
 Route12HiddenObjects:
@@ -630,7 +630,7 @@ SilphCo11FHiddenObjects:
 	db -1 ; end
 
 Route17HiddenObjects:
-	hidden_object 15,  14, RARE_CANDY, HiddenItems
+	hidden_object 15,  14, NET_BALL, HiddenItems
 	hidden_object  8,  45, FULL_RESTORE, HiddenItems
 	hidden_object 17,  72, PP_UP, HiddenItems
 	hidden_object  4,  91, BIRD_WHISTLE, HiddenItems
@@ -648,7 +648,7 @@ UndergroundPathWeHiddenObjects:
 	db -1 ; end
 
 CeladonCityHiddenObjects:
-	hidden_object 48, 15, RARE_CANDY, HiddenItems
+	hidden_object 48, 15, MOON_BALL, HiddenItems
 	db -1 ; end
 
 SeafoamIslands4HiddenObjects:

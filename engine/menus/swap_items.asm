@@ -314,6 +314,8 @@ ItemSortList::
 	db LANTERN
 	db ITEMFINDER
 	db EXP_ALL
+	db REPEL
+	db ESCAPE_ROPE
 	db TOWN_MAP
 	; Rods
 	db OLD_ROD
@@ -323,13 +325,12 @@ ItemSortList::
 	db POKE_BALL
 	db GREAT_BALL
 	db ULTRA_BALL
+	db NET_BALL
+	db DUSK_BALL
+	db MOON_BALL
 	db SAFARI_BALL
 	db MASTER_BALL
 	; Common Items
-	db REPEL
-	db SUPER_REPEL
-	db MAX_REPEL
-	db ESCAPE_ROPE
 	db POKE_DOLL
 	; Health
 	db POTION
@@ -366,7 +367,6 @@ ItemSortList::
 	db DIRE_HIT	
 	; Permanent Raises
 	db RARE_CANDY
-	db EXP_CANDY_XL
 	db PP_UP
 	db BOTTLE_CAP
 	; Stones

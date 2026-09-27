@@ -73,6 +73,13 @@ OakSpeech:
 	ld [wItemQuantity], a
 	call AddItemToInventory
 
+	; Give Itemfinder
+	ld a, ITEMFINDER
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+
 	ld a, [wDefaultMap]
 	ld [wDestinationMap], a
 	call PrepareForSpecialWarp

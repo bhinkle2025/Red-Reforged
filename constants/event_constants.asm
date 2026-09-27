@@ -225,7 +225,8 @@
 
 ; Route 2 events
 	const_next $3D8
-	const EVENT_GOT_HM05
+	const EVENT_GOT_ROUTE2_AIDE_REWARD
+	const EVENT_GOT_HM05_ROCK_TUNNEL
 
 ; Route 3 events
 	const_next $3E0

@@ -12,7 +12,7 @@ Route15Gate2FOaksAideText:
 	jr nz, .got_item
 	ld a, 50
 	ldh [hOaksAideRequirement], a
-	ld a, RARE_CANDY
+	ld a, NET_BALL
 	ldh [hOaksAideRewardItem], a
 	ld [wNamedObjectIndex], a
 	call GetItemName

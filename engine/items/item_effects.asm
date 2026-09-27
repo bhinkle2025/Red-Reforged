@@ -55,7 +55,7 @@ ItemUsePtrTable:
 	dw ItemUseWhistle    ; BIRD_WHISTLE
 	dw ItemUseGloves     ; POWER_GLOVES
 	dw ItemUseLantern    ; LANTERN
-	dw ItemUseVitamin    ; EXP_CANDY_XL
+	dw ItemUseBall       ; MOON_BALL
 	dw ItemUseVitamin    ; RARE_CANDY
 	dw UnusableItem      ; DOME_FOSSIL
 	dw UnusableItem      ; HELIX_FOSSIL
@@ -72,8 +72,8 @@ ItemUsePtrTable:
 	dw ItemUseMedicine   ; REVIVE
 	dw ItemUseMedicine   ; MAX_REVIVE
 	dw ItemUseGuardSpec  ; GUARD_SPEC
-	dw ItemUseSuperRepel ; SUPER_REPEL
-	dw ItemUseMaxRepel   ; MAX_REPEL
+	dw ItemUseBall       ; NET_BALL
+	dw ItemUseBall       ; DUSK_BALL
 	dw ItemUseDireHit    ; DIRE_HIT
 	dw UnusableItem      ; COIN
 	dw ItemUseMedicine   ; FRESH_WATER
@@ -102,6 +102,10 @@ ItemUsePtrTable:
 	dw ItemUsePPRestore  ; MAX_ELIXER
 
 ItemUseBall:
+
+; Clear stale capture state before handling any ball use.
+	xor a
+	ld [wCapturedMonSpecies], a
 
 ; Balls can't be used out of battle.
 	ld a, [wIsInBattle]
@@ -206,8 +210,14 @@ ItemUseBall:
 	cp MASTER_BALL
 	jp z, .captured
 
-; Anything will do for the basic Poké Ball.
+; Poké Ball and conditional specialty balls use the full [0,255] range.
 	cp POKE_BALL
+	jr z, .checkForAilments
+	cp NET_BALL
+	jr z, .checkForAilments
+	cp DUSK_BALL
+	jr z, .checkForAilments
+	cp MOON_BALL
 	jr z, .checkForAilments
 
 ; If it's a Great/Ultra/Safari Ball and Rand1 is greater than 200, try again.
@@ -309,8 +319,9 @@ ItemUseBall:
 .skip3
 	pop bc ; b = Rand1 - Status
 
-; If Rand1 - Status > CatchRate, the ball fails to capture the Pokémon.
-	ld a, [wEnemyMonActualCatchRate]
+; Get the effective catch rate, including special-ball bonuses.
+	call GetBallAdjustedCatchRate
+	; a = effective catch rate, capped at 255
 	cp b
 	jr c, .failedToCapture
 
@@ -328,7 +339,7 @@ ItemUseBall:
 	jr c, .failedToCapture
 
 .captured
-	jr .skipShakeCalculations
+	jp .skipShakeCalculations
 
 .failedToCapture
 	ldh a, [hQuotient + 3]
@@ -352,9 +363,17 @@ ItemUseBall:
 	ld b, 255
 	cp POKE_BALL
 	jr z, .skip4
+	cp NET_BALL
+	jr z, .skip4
+	cp DUSK_BALL
+	jr z, .skip4
+	cp MOON_BALL
+	jr z, .skip4
+
 	ld b, 200
 	cp GREAT_BALL
 	jr z, .skip4
+
 	ld b, 150
 	cp ULTRA_BALL
 	jr z, .skip4
@@ -677,6 +696,190 @@ ItemUseBicycle:
 .printText
 	jp PrintText
 
+GetBallAdjustedCatchRate:
+; Returns the effective catch rate in A.
+;
+; Net Ball:
+;   x3 against Bug- or Water-type Pokémon.
+;
+; Dusk Ball:
+;   x3 in qualifying dark/cave locations.
+;
+; Moon Ball:
+;   x4 against the Nidoran, Clefairy, and Jigglypuff families.
+;
+; All multipliers are capped at 255.
+
+	ld a, [wCurItem]
+
+	cp NET_BALL
+	jr z, .netBall
+
+	cp DUSK_BALL
+	jr z, .duskBall
+
+	cp MOON_BALL
+	jr z, .moonBall
+
+.normal
+	ld a, [wEnemyMonActualCatchRate]
+	ret
+
+
+; --------------------
+; Net Ball
+; --------------------
+
+.netBall
+	ld a, [wEnemyMonType1]
+	cp WATER
+	jr z, .times3
+	cp BUG
+	jr z, .times3
+
+	ld a, [wEnemyMonType2]
+	cp WATER
+	jr z, .times3
+	cp BUG
+	jr z, .times3
+
+	jr .normal
+
+
+; --------------------
+; Dusk Ball
+; --------------------
+
+.duskBall
+	call IsDuskBallLocation
+	jr c, .times3
+	jr .normal
+
+
+; --------------------
+; Moon Ball
+; --------------------
+
+.moonBall
+	ld a, [wEnemyMonSpecies2]
+
+	cp NIDORAN_F
+	jr z, .times4
+	cp NIDORINA
+	jr z, .times4
+	cp NIDOQUEEN
+	jr z, .times4
+
+	cp NIDORAN_M
+	jr z, .times4
+	cp NIDORINO
+	jr z, .times4
+	cp NIDOKING
+	jr z, .times4
+
+	cp CLEFAIRY
+	jr z, .times4
+	cp CLEFABLE
+	jr z, .times4
+
+	cp JIGGLYPUFF
+	jr z, .times4
+	cp WIGGLYTUFF
+	jr z, .times4
+
+	jr .normal
+
+
+; --------------------
+; Multipliers
+; --------------------
+
+.times3
+	push bc
+	ld a, [wEnemyMonActualCatchRate]
+	ld b, a
+	add a
+	jr c, .times3Max
+	add b
+	jr c, .times3Max
+	pop bc
+	ret
+
+.times3Max
+	pop bc
+	ld a, $ff
+	ret
+
+.times4
+	ld a, [wEnemyMonActualCatchRate]
+	add a
+	jr c, .maxCatchRate
+	add a
+	jr c, .maxCatchRate
+	ret
+
+.maxCatchRate
+	ld a, $ff
+	ret
+
+
+IsDuskBallLocation:
+; Carry = Dusk Ball receives its x3 bonus.
+
+	ld a, [wCurMap]
+
+	; Mt. Moon
+	cp MT_MOON_1F
+	jr z, .duskBonus
+	cp MT_MOON_B1F
+	jr z, .duskBonus
+	cp MT_MOON_B2F
+	jr z, .duskBonus
+
+	; Diglett's Cave
+	cp DIGLETTS_CAVE
+	jr z, .duskBonus
+
+	; Rock Tunnel
+	cp ROCK_TUNNEL_1F
+	jr z, .duskBonus
+	cp ROCK_TUNNEL_B1F
+	jr z, .duskBonus
+
+	; Victory Road
+	cp VICTORY_ROAD_1F
+	jr z, .duskBonus
+	cp VICTORY_ROAD_2F
+	jr z, .duskBonus
+	cp VICTORY_ROAD_3F
+	jr z, .duskBonus
+
+	; Seafoam Islands
+	cp SEAFOAM_ISLANDS_1F
+	jr z, .duskBonus
+	cp SEAFOAM_ISLANDS_B1F
+	jr z, .duskBonus
+	cp SEAFOAM_ISLANDS_B2F
+	jr z, .duskBonus
+	cp SEAFOAM_ISLANDS_B3F
+	jr z, .duskBonus
+	cp SEAFOAM_ISLANDS_B4F
+	jr z, .duskBonus
+
+	; Cerulean Cave
+	cp CERULEAN_CAVE_1F
+	jr z, .duskBonus
+	cp CERULEAN_CAVE_2F
+	jr z, .duskBonus
+	cp CERULEAN_CAVE_B1F
+	jr z, .duskBonus
+
+	and a
+	ret
+
+.duskBonus
+	scf
+	ret
 ; indirectly used by SURF in StartMenu_Pokemon.surf
 ItemUseSurfboard:
 	ld a, [wWalkBikeSurfState]

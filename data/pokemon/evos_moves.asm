@@ -258,7 +258,7 @@ SpearowEvosMoves:
 	db EVOLVE_LEVEL, 20, FEAROW
 	db 0
 ; Learnset
-	db 9, LEER
+	db 9, FLY
 	db 15, FURY_ATTACK
 	db 18, WING_ATTACK
 	db 22, MIRROR_MOVE

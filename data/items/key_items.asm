@@ -38,7 +38,7 @@ KeyItemFlags:
 	dbit TRUE  ; BIRD_WHISTLE
 	dbit TRUE  ; POWER_GLOVES
 	dbit TRUE  ; LANTERN
-	dbit FALSE ; EXP_CANDY_XL
+	dbit FALSE ; MOON_BALL
 	dbit FALSE ; RARE_CANDY
 	dbit TRUE  ; DOME_FOSSIL
 	dbit TRUE  ; HELIX_FOSSIL
@@ -55,8 +55,8 @@ KeyItemFlags:
 	dbit FALSE ; REVIVE
 	dbit FALSE ; MAX_REVIVE
 	dbit FALSE ; GUARD_SPEC
-	dbit FALSE ; SUPER_REPEL
-	dbit FALSE ; MAX_REPEL
+	dbit FALSE ; NET_BALL
+	dbit FALSE ; DUSK_BALL
 	dbit FALSE ; DIRE_HIT
 	dbit FALSE ; COIN
 	dbit FALSE ; FRESH_WATER

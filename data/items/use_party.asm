@@ -14,7 +14,6 @@ UsableItems_PartyMenu:
 	db FIRE_STONE
 	db THUNDER_STONE
 	db WATER_STONE
-	db EXP_CANDY_XL
 	db RARE_CANDY
 	db LINKING_CABLE
 	db LEAF_STONE

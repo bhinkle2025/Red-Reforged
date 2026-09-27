@@ -47,7 +47,7 @@ DEF SAFARI_ROCK EQU CASCADEBADGE ; overload
 	const BIRD_WHISTLE  ; $24
 	const POWER_GLOVES  ; $25
 	const LANTERN       ; $26
-	const EXP_CANDY_XL  ; $27
+	const MOON_BALL     ; $27
 	const RARE_CANDY    ; $28
 	const DOME_FOSSIL   ; $29
 	const HELIX_FOSSIL  ; $2A
@@ -64,8 +64,8 @@ DEF SAFARI_ROCK EQU CASCADEBADGE ; overload
 	const REVIVE        ; $35
 	const MAX_REVIVE    ; $36
 	const GUARD_SPEC    ; $37
-	const SUPER_REPEL   ; $38
-	const MAX_REPEL     ; $39
+	const NET_BALL      ; $38
+	const DUSK_BALL     ; $39
 	const DIRE_HIT      ; $3A
 	const COIN          ; $3B
 	const FRESH_WATER   ; $3C
@@ -218,8 +218,3 @@ DEF UNUSED_TMNUM EQU __tmhm_value__
 
 DEF MAX_HIDDEN_ITEMS EQU 112
 DEF MAX_HIDDEN_COINS EQU 16
-
-DEF EXP_CANDY_S_AMOUNT  EQU 800
-DEF EXP_CANDY_M_AMOUNT  EQU 3000
-DEF EXP_CANDY_L_AMOUNT  EQU 10000
-DEF EXP_CANDY_XL_AMOUNT EQU 30000

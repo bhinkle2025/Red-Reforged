@@ -22,7 +22,7 @@ Route11Gate2FOaksAideText:
 	jr c, .got_item
 	ld a, 30
 	ldh [hOaksAideRequirement], a
-	ld a, ITEMFINDER
+	ld a, MOON_BALL
 	ldh [hOaksAideRewardItem], a
 	ld [wNamedObjectIndex], a
 	call GetItemName

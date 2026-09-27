@@ -34,11 +34,11 @@ ItemPrices::
 	bcd3 2100  ; FIRE_STONE
 	bcd3 2100  ; THUNDER_STONE
 	bcd3 2100  ; WATER_STONE
-	bcd3 100   ; EXP_CANDY_XL
-	bcd3 800   ; EXP_CANDY_S
-	bcd3 3000  ; EXP_CANDY_M
-	bcd3 10000 ; EXP_CANDY_L
-	bcd3 30000 ; EXP_CANDY_XL
+    bcd3 0     ; SHEARS
+    bcd3 0     ; BIRD_WHISTLE
+    bcd3 0     ; POWER_GLOVES
+    bcd3 0     ; LANTERN
+    bcd3 500   ; MOON_BALL
 	bcd3 4800  ; RARE_CANDY
 	bcd3 0     ; DOME_FOSSIL
 	bcd3 0     ; HELIX_FOSSIL
@@ -55,8 +55,8 @@ ItemPrices::
 	bcd3 1500  ; REVIVE
 	bcd3 4000  ; MAX_REVIVE
 	bcd3 700   ; GUARD_SPEC
-	bcd3 500   ; SUPER_REPEL
-	bcd3 700   ; MAX_REPEL
+	bcd3 500   ; NET_BALL
+	bcd3 500   ; DUSK_BALL
 	bcd3 650   ; DIRE_HIT
 	bcd3 10    ; COIN
 	bcd3 200   ; FRESH_WATER

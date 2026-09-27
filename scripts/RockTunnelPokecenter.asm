@@ -13,7 +13,47 @@ RockTunnelPokecenterNurseText:
 	script_pokecenter_nurse
 
 RockTunnelPokecenterGentlemanText:
-	text_far _RockTunnelPokecenterGentlemanText
+	text_asm
+	CheckEvent EVENT_GOT_HM05_ROCK_TUNNEL
+	jr nz, .alreadyGotFlash
+
+	ld hl, .OfferFlashText
+	call PrintText
+
+	lb bc, HM_FLASH, 1
+	call GiveItem
+	jr nc, .bagFull
+
+	SetEvent EVENT_GOT_HM05_ROCK_TUNNEL
+	ld hl, .GotFlashText
+	call PrintText
+	jp TextScriptEnd
+
+.bagFull
+	ld hl, .BagFullText
+	call PrintText
+	jp TextScriptEnd
+
+.alreadyGotFlash
+	ld hl, .AlreadyGotFlashText
+	call PrintText
+	jp TextScriptEnd
+
+.OfferFlashText:
+	text_far _RockTunnelPokecenterGentlemanOfferFlashText
+	text_end
+
+.GotFlashText:
+	text_far _RockTunnelPokecenterGentlemanGotFlashText
+	sound_get_item_1
+	text_end
+
+.BagFullText:
+	text_far _RockTunnelPokecenterGentlemanBagFullText
+	text_end
+
+.AlreadyGotFlashText:
+	text_far _RockTunnelPokecenterGentlemanAlreadyGotFlashText
 	text_end
 
 RockTunnelPokecenterFisherText:
