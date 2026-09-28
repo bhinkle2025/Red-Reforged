@@ -24,6 +24,7 @@ DrawHP_:
 	ld a, $6
 	ld d, a
 	jp .drawHPBarAndPrintFraction
+
 .nonzeroHP
 	ld a, [wLoadedMonMaxHP]
 	ld d, a
@@ -33,7 +34,7 @@ DrawHP_:
 	ld a, $6
 	ld d, a
 	ld c, a
-	; shin pokered status screen func
+
 .drawHPBarAndPrintFraction
 	pop hl
 	push de
@@ -46,25 +47,12 @@ DrawHP_:
 	jr z, .printFractionBelowBar
 	ld bc, $9 ; right of bar
 	jr .printFraction
+
 .printFractionBelowBar
 	ld bc, SCREEN_WIDTH + 1 ; below bar
+
 .printFraction
 	add hl, bc
-	call DVParse
-	call Joypad
-	ld a, [hJoyHeld]
-	bit 2, a
-	jr z, .checkstart
-	ld de, wLoadedMonHPExp
-	lb bc, 2, 5
-	jr .printnum
-.checkstart	; print DVs if start is held
-	bit 3, a
-	jr z, .doregular
-	ld de, wDVCalcVar1 
-	lb bc, 1, 2
-	jr .printnum
-.doregular
 	ld de, wLoadedMonHP
 	lb bc, 2, 3
 	call PrintNumber
@@ -72,12 +60,10 @@ DrawHP_:
 	ld [hli], a
 	ld de, wLoadedMonMaxHP
 	lb bc, 2, 3
-.printnum
 	call PrintNumber
 	pop hl
 	pop de
 	ret
-
 
 ; Predef 0x37
 StatusScreen:
@@ -138,6 +124,37 @@ StatusScreen:
 	call PlaceString ; "TYPE1/"
 	hlcoord 11, 3
 	predef DrawHP
+
+	; Parse DVs for the status-screen DV page.
+	push de
+	ld bc, SCREEN_WIDTH + 1
+	add hl, bc
+	call DVParse
+
+	; 0 = regular HP
+	; 1 = HP DV
+	ld a, [wDVCalcVar1]
+	and a
+	jr z, .regularHP
+
+	; Clear the normal HP fraction first.
+	push hl
+	ld a, " "
+	ld b, 7
+.clearHPValue
+	ld [hli], a
+	dec b
+	jr nz, .clearHPValue
+	pop hl
+
+	; Page 1: HP DV
+	ld de, wDVCalcVar2 + 4
+	lb bc, 1, 2
+	call PrintNumber
+
+.regularHP
+	pop de
+
 	ld hl, wStatusScreenHPBarColor
 	call GetHealthBarColor
 	ld b, SET_PAL_STATUS_SCREEN
@@ -189,9 +206,7 @@ StatusScreen:
 	call LoadFlippedFrontSpriteByMonIndex ; draw Pokémon picture
 	ld a, [wCurPartySpecies]
 	call PlayCry
-	call WaitForTextScrollButtonPress
 	pop af
-	ldh [hTileAnimations], a
 	ret
 
 .GetStringPointer
@@ -290,12 +305,14 @@ PrintStatsBox:
 	pop bc
 	add hl, bc
 ; New Stat Exp / DVs display functionality, from shin pokered.
-;joenote - print stat exp if select is held
-	call Joypad
-	ld a, [hJoyHeld]
-.checkstart	;joenote - print DVs if start is held
-	bit 3, a
+	; wDVCalcVar1:
+	; 0 = regular stats
+	; 1 = DVs
+	ld a, [wDVCalcVar1]
+	and a
 	jr z, .doregular
+
+	; Page 1: DVs (0-15).
 	ld de, wDVCalcVar2
 	lb bc, 1, 2
 	call PrintStat
@@ -305,6 +322,7 @@ PrintStatsBox:
 	call PrintStat
 	ld de, wDVCalcVar2 + 3
 	jp PrintNumber
+
 .doregular
 	ld de, wLoadedMonAttack
 	lb bc, 2, 3
@@ -461,15 +479,9 @@ StatusScreen2:
 	ld a, $1
 	ldh [hAutoBGTransferEnabled], a
 	call Delay3
-	call WaitForTextScrollButtonPress ; wait for button
 	pop af
 	ldh [hTileAnimations], a
-	ld hl, wStatusFlags2
-	res BIT_NO_AUDIO_FADE_OUT, [hl]
-	ld a, $77
-	ldh [rNR50], a
-	call GBPalWhiteOut
-	jp ClearScreen
+	ret
 
 CalcExpToLevelUp:
 	ld a, [wLoadedMonLevel]
@@ -564,9 +576,132 @@ DVParse:
 	or b
 	ld b, a
 
-	ld a, b
-	ld [wDVCalcVar1], a	; load HP DV
+	ld [hl], b	; load HP DV
 	
 	pop bc
 	pop hl
+	ret
+
+StatusScreenLoop:
+	ldh a, [hTileAnimations]
+	push af
+
+	; Every newly opened status screen begins on regular stats.
+	xor a
+	ld [wDVCalcVar1], a
+
+.displayNextMon
+	predef StatusScreen
+
+.waitStatsInput
+	call PokemonStatsWaitForButtonPress
+	bit BIT_D_UP, a
+	jr nz, .prevMon
+	bit BIT_D_DOWN, a
+	jr nz, .nextMon
+	bit BIT_SELECT, a
+	jr nz, .nextStatsPage
+	bit BIT_B_BUTTON, a
+	jr nz, .exitStatus
+
+	; A opens the moves/EXP page.
+	predef StatusScreen2
+
+.waitMovesInput
+	call PokemonStatusWaitForButtonPress
+	bit BIT_D_UP, a
+	jr nz, .prevMon
+	bit BIT_D_DOWN, a
+	jr nz, .nextMon
+	; A or B exits from the moves/EXP page.
+	jr .exitStatus
+
+.nextStatsPage
+	ld a, [wDVCalcVar1]
+	xor 1
+	ld [wDVCalcVar1], a
+	jr .displayNextMon
+
+.nextMon
+	ld hl, wWhichPokemon
+	inc [hl]
+	ld hl, wPartyAndBillsPCSavedMenuItem
+	inc [hl]
+	jr .displayNextMon
+
+.prevMon
+	ld hl, wWhichPokemon
+	dec [hl]
+	ld hl, wPartyAndBillsPCSavedMenuItem
+	dec [hl]
+	jr .displayNextMon
+
+.exitStatus
+	pop af
+	ldh [hTileAnimations], a
+	ld hl, wStatusFlags2
+	res BIT_NO_AUDIO_FADE_OUT, [hl]
+	ld a, $77
+	ldh [rNR50], a
+	call GBPalWhiteOut
+	jp ClearScreen
+
+PokemonStatsWaitForButtonPress:
+	ld a, A_BUTTON | B_BUTTON | SELECT
+	ld b, a
+
+	; Allow UP unless we're viewing the first party Pokémon.
+	ld a, [wWhichPokemon]
+	and a
+	jr z, .checkDown
+	ld a, b
+	or D_UP
+	ld b, a
+
+.checkDown
+	; Allow DOWN unless we're viewing the last party Pokémon.
+	ld a, [wPartyCount]
+	dec a
+	ld c, a
+	ld a, [wWhichPokemon]
+	cp c
+	jr z, PokedexStatusWaitForButtonPressLoop
+	ld a, b
+	or D_DOWN
+	ld b, a
+	jr PokedexStatusWaitForButtonPressLoop
+
+
+PokemonStatusWaitForButtonPress:
+	ld a, A_BUTTON | B_BUTTON
+	ld b, a
+
+	; Allow UP unless we're viewing the first party Pokémon.
+	ld a, [wWhichPokemon]
+	and a
+	jr z, .checkDown
+	ld a, b
+	or D_UP
+	ld b, a
+
+.checkDown
+	; Allow DOWN unless we're viewing the last party Pokémon.
+	ld a, [wPartyCount]
+	dec a
+	ld c, a
+	ld a, [wWhichPokemon]
+	cp c
+	jr z, PokedexStatusWaitForButtonPressLoop
+	ld a, b
+	or D_DOWN
+	ld b, a
+
+PokedexStatusWaitForButtonPressLoop:
+.waitForButtonPress
+	push bc
+	call JoypadLowSensitivity
+	pop bc
+	ldh a, [hJoy5]
+	and b
+	jr z, .waitForButtonPress
 	ret

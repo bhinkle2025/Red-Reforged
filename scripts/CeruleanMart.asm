@@ -16,4 +16,4 @@ CeruleanMartCooltrainerFText:
 	text_end
 
 CeruleanMartClerkText::
-	script_mart POKE_BALL, DUSK_BALL, MOON_BALL, LEMONADE, AWAKENING, PARLYZ_HEAL
+	script_mart POKE_BALL, POTION, ANTIDOTE, BURN_HEAL, AWAKENING, PARLYZ_HEAL
