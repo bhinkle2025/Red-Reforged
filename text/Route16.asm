@@ -95,6 +95,11 @@ _Route16Text7::
 	line "blocks the way!"
 	done
 
+_Route16UsePokeFluteText::
+	text "Play the #"
+	line "FLUTE?"
+	done
+
 _Route16SnorlaxWokeUpText::
 	text "SNORLAX woke up!"
 

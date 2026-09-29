@@ -3,6 +3,11 @@ _Route12SnorlaxText::
 	line "blocks the way!"
 	done
 
+_Route12UsePokeFluteText::
+	text "Play the #"
+	line "FLUTE?"
+	done
+
 _Route12SnorlaxWokeUpText::
 	text "SNORLAX woke up!"
 
