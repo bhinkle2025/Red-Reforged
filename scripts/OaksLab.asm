@@ -579,6 +579,17 @@ OaksLabOakGivesPokedexScript:
 	ldh [hTextID], a
 	call DisplayTextID
 	call Delay3
+
+	; Give 5 Poké Balls
+	lb bc, POKE_BALL, 5
+	call GiveItem
+	SetEvent EVENT_GOT_POKEBALLS_FROM_OAK
+
+	ld a, TEXT_OAKSLAB_OAK_GIVES_POKEBALLS
+	ldh [hTextID], a
+	call DisplayTextID
+	call Delay3
+
 	ld a, HS_POKEDEX_1
 	ld [wMissableObjectIndex], a
 	predef HideObject
@@ -750,6 +761,7 @@ OaksLab_TextPointers:
 	dw_const OaksLabOakGotPokedexText,            TEXT_OAKSLAB_OAK_GOT_POKEDEX
 	dw_const OaksLabOakThatWasMyDreamText,        TEXT_OAKSLAB_OAK_THAT_WAS_MY_DREAM
 	dw_const OaksLabRivalLeaveItAllToMeText,      TEXT_OAKSLAB_RIVAL_LEAVE_IT_ALL_TO_ME
+	dw_const OaksLabOakGivesPokeballsText,        TEXT_OAKSLAB_OAK_GIVES_POKEBALLS
 
 OaksLab_TextPointers2:
 	dw OaksLabRivalText
@@ -986,8 +998,6 @@ OaksLabOak1Text:
 	ld b, POKE_BALL
 	call IsItemInBag
 	jr nz, .come_see_me_sometimes
-	CheckEvent EVENT_BEAT_ROUTE22_RIVAL_1ST_BATTLE
-	jr nz, .give_poke_balls
 	CheckEvent EVENT_GOT_POKEDEX
 	jr nz, .mon_around_the_world
 	CheckEventReuseA EVENT_BATTLED_RIVAL_IN_OAKS_LAB
@@ -1018,14 +1028,6 @@ OaksLabOak1Text:
 	jr .done
 .mon_around_the_world
 	ld hl, .PokemonAroundTheWorldText
-	call PrintText
-	jr .done
-.give_poke_balls
-	CheckAndSetEvent EVENT_GOT_POKEBALLS_FROM_OAK
-	jr nz, .come_see_me_sometimes
-	lb bc, POKE_BALL, 5
-	call GiveItem
-	ld hl, .GivePokeballsText
 	call PrintText
 	jr .done
 .come_see_me_sometimes
@@ -1220,6 +1222,12 @@ OaksLabOakThatWasMyDreamText:
 
 OaksLabRivalLeaveItAllToMeText:
 	text_far _OaksLabRivalLeaveItAllToMeText
+	text_end
+
+OaksLabOakGivesPokeballsText:
+	text_far _OaksLabOak1ReceivedPokeballsText
+	sound_get_key_item
+	text_far _OaksLabGivePokeballsExplanationText
 	text_end
 
 OaksLabScientistText:
