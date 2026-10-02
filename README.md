@@ -2,6 +2,44 @@
 
 This is a disassembly of Pokémon Red and Blue.
 
+Credits:
+Battle engine changes
+Attack after waking up from sleep: Jojobear13, Xillicis, Chatot4444, lotsobs
+Poison, burn, and leech seed does 1/8th damage: Xillicis, Chatot4444, Rangi42
+Remove 25% chance for enemy stat down moves to miss: Xillicis
+Implement move priority system: Xillicis
+
+Upgrades to existing features
+Free some space in the Home BANK: Vortiene
+Free MORE some space in the Home BANK: Rangi42
+Add Item Sorting In Bag: devolov
+Push B in Wild Battle Moves to Run: devolov
+Increase the total amount of money that can be won from trainer battles: mattcit
+Adding hard mode: Hentenmon and thoth-33
+Infinite TMs: Vortiene 
+Allow to fly to any map and from any map: RainbowMetalPidgeon, kagnusdev
+
+Features from different generations
+Running Shoes: JustRegularLuna
+Physical/Special Split: SwimmingLink, JHGPokemon, Xillicis
+Move Deleter & Move Relearner: Mateo, jojobear13, ShiraTheMogul
+Hyper Training: ShiraTheMogul, VimesCarrot, lotsobs
+Already Caught Icon on Battle HUD: dannye, ZetaPx
+Portable PC in the START menu: RainbowMetalPidgeon, CreamElDudJafar
+Allow multiple moves to be learned at the same level: kagnusdev
+In-battle EXP bar: DannyE33
+Gen 7+ critical hit chance mechanic: mirko93s
+Enemy Pokémon use PP: Porygondolier, LegitmateKeeper
+Quantity Menus: Add or Subtract 10 with Left and Right Buttons: Porygondolier, kagnusdev
+Use Cut, Surf, and Strength from the Overworld: lotsobs
+
+Removing features
+Remove stat EXP: Hentenmon
+
+Miscellaneous
+Adding Gym Leader Rematches: Hentenmon, Fotomac, thoth-33, Brunhardt
+
+
 It builds the following ROMs:
 
 - Pokemon Red (UE) [S][!].gb `sha1: ea9bcae617fdf159b045185467ae58b2e4a48b9a`
