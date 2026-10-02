@@ -2,42 +2,48 @@
 
 This is a disassembly of Pokémon Red and Blue.
 
-Credits:
-Battle engine changes
-Attack after waking up from sleep: Jojobear13, Xillicis, Chatot4444, lotsobs
-Poison, burn, and leech seed does 1/8th damage: Xillicis, Chatot4444, Rangi42
-Remove 25% chance for enemy stat down moves to miss: Xillicis
-Implement move priority system: Xillicis
+# Credits
 
-Upgrades to existing features
-Free some space in the Home BANK: Vortiene
-Free MORE some space in the Home BANK: Rangi42
-Add Item Sorting In Bag: devolov
-Push B in Wild Battle Moves to Run: devolov
-Increase the total amount of money that can be won from trainer battles: mattcit
-Adding hard mode: Hentenmon and thoth-33
-Infinite TMs: Vortiene 
-Allow to fly to any map and from any map: RainbowMetalPidgeon, kagnusdev
+## Battle Engine Changes
 
-Features from different generations
-Running Shoes: JustRegularLuna
-Physical/Special Split: SwimmingLink, JHGPokemon, Xillicis
-Move Deleter & Move Relearner: Mateo, jojobear13, ShiraTheMogul
-Hyper Training: ShiraTheMogul, VimesCarrot, lotsobs
-Already Caught Icon on Battle HUD: dannye, ZetaPx
-Portable PC in the START menu: RainbowMetalPidgeon, CreamElDudJafar
-Allow multiple moves to be learned at the same level: kagnusdev
-In-battle EXP bar: DannyE33
-Gen 7+ critical hit chance mechanic: mirko93s
-Enemy Pokémon use PP: Porygondolier, LegitmateKeeper
-Quantity Menus: Add or Subtract 10 with Left and Right Buttons: Porygondolier, kagnusdev
-Use Cut, Surf, and Strength from the Overworld: lotsobs
+- **Attack after waking up from sleep** — Jojobear13, Xillicis, Chatot4444, lotsobs
+- **Poison, burn, and Leech Seed deal 1/8 damage** — Xillicis, Chatot4444, Rangi42
+- **Remove 25% chance for enemy stat-lowering moves to miss** — Xillicis
+- **Implement move priority system** — Xillicis
 
-Removing features
-Remove stat EXP: Hentenmon
+## Upgrades to Existing Features
 
-Miscellaneous
-Adding Gym Leader Rematches: Hentenmon, Fotomac, thoth-33, Brunhardt
+- **Free some space in the Home BANK** — Vortiene
+- **Free MORE space in the Home BANK** — Rangi42
+- **Add item sorting in Bag** — devolov
+- **Push B in wild battle move menu to Run** — devolov
+- **Increase the total amount of money that can be won from trainer battles** — mattcit
+- **Add Hard Mode** — Hentenmon, thoth-33
+- **Infinite TMs** — Vortiene
+- **Allow Fly to any map and from any map** — RainbowMetalPidgeon, kagnusdev
+
+## Features from Different Generations
+
+- **Running Shoes** — JustRegularLuna
+- **Physical/Special Split** — SwimmingLink, JHGPokemon, Xillicis
+- **Move Deleter & Move Relearner** — Mateo, jojobear13, ShiraTheMogul
+- **Hyper Training** — ShiraTheMogul, VimesCarrot, lotsobs
+- **Already Caught icon on Battle HUD** — dannye, ZetaPx
+- **Portable PC in the START menu** — RainbowMetalPidgeon, CreamElDudJafar
+- **Allow multiple moves to be learned at the same level** — kagnusdev
+- **In-battle EXP bar** — DannyE33
+- **Gen 7+ critical hit chance mechanic** — mirko93s
+- **Enemy Pokémon use PP** — Porygondolier, LegitmateKeeper
+- **Quantity menus: add or subtract 10 with Left and Right buttons** — Porygondolier, kagnusdev
+- **Use Cut, Surf, and Strength from the overworld** — lotsobs
+
+## Removed Features
+
+- **Remove Stat EXP** — Hentenmon
+
+## Miscellaneous
+
+- **Gym Leader Rematches** — Hentenmon, Fotomac, thoth-33, Brunhardt
 
 
 It builds the following ROMs:
