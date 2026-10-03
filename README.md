@@ -1,6 +1,16 @@
-# Pokémon Red and Blue [![Build Status][ci-badge]][ci]
+# Pokémon Red Reforged [![Build Status][ci-badge]][ci]
 
-This is a disassembly of Pokémon Red and Blue.
+**Pokémon Red Reforged** is a modernized reimagining of the original Pokémon Red, designed to preserve the classic Gen I experience while improving balance, challenge, quality of life, and overall depth.
+
+The game keeps the familiar Kanto region and original 151 Pokémon, but updates many of the systems around them. Pokémon have revised stats, typings, learnsets, evolutions, and move options; trainer battles and Gym Leaders are more carefully designed; wild encounters and progression have been reworked; and many mechanics have been brought closer to later-generation standards.
+
+Red Reforged also adds a wide range of quality-of-life improvements, including features such as improved menus and information, easier team management, modernized evolution methods, Pokémon services, and other conveniences intended to reduce unnecessary grinding and frustration.
+
+For players looking for a tougher experience, the game includes stronger trainer encounters and additional challenges, along with expanded post-game content such as Gym Leader rematches and new battles.
+
+The goal of Red Reforged is simple: **make Pokémon Red feel deeper, smoother, and more complete without losing what made the original game special.**
+
+If you know Pokémon Red, Kanto will still feel familiar—but you should not assume everything works the way you remember.
 
 # Credits
 
